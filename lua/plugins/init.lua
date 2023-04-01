@@ -60,10 +60,9 @@ require("lazy").setup({
     -- 函数预览
     "simrat39/symbols-outline.nvim",
     -- 代码高亮
-    {"nvim-treesitter/nvim-treesitter", 
-    },
+    --'nvim-treesitter/nvim-treesitter", 
     -- 高亮括号
-    "p00f/nvim-ts-rainbow",
+ --   "p00f/nvim-ts-rainbow",
     -- 标签页
     "akinsho/bufferline.nvim",
     -- 底栏

@@ -5,25 +5,9 @@ require'nvim-treesitter.configs'.setup{
     -- 启用代码高亮功能
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = true,
     },
-
-    rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = nil,
-    },
-    -- 启用增量选择
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = 'gnn',
-            node_incremental = 'grn',
-            node_decremental = 'grm',
-            scope_incremental = 'grc',
-        }
-    },
-    -- 启用基于Treesitter的代码格式化(=) . NOTE: This is an experimental feature.
+   -- 启用基于Treesitter的代码格式化(=) . NOTE: This is an experimental feature.
     indent = {
         enable = true
     }
