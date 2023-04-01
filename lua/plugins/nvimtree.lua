@@ -36,5 +36,4 @@ require("nvim-tree").setup({
     
 })
 
---equire("nvim-tree").setup()
 

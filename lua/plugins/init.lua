@@ -61,7 +61,6 @@ require("lazy").setup({
     "simrat39/symbols-outline.nvim",
     -- 代码高亮
     {"nvim-treesitter/nvim-treesitter", 
-        commit = "df6f3220890d8641067bfee0718244e46d9693dd",
     },
     -- 高亮括号
     "p00f/nvim-ts-rainbow",
