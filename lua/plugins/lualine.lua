@@ -88,8 +88,8 @@ ins_left {
     function()
         return '▊'
     end,
-    color = function()
-        -- auto change color according to neovims mode
+     color = function()
+        -- 棰滆壊鍙樺寲
         local mode_color = {
             n = colors.blue,
             i = colors.violet,
@@ -114,9 +114,9 @@ ins_left {
         }
         return { fg = mode_color[vim.fn.mode()] }
     end,
+    padding = { right = 1 },
 
-    padding = { left = 0, right = 1 }, -- We don't need space before this
-}
+   }
 
 
 -- 图标蓝色代表插入,红色代表命令,选择模式是绿
@@ -243,16 +243,6 @@ ins_right {
     cond = conditions.hide_in_width,
     color = { fg = colors.violet, gui = 'bold' },
 }
-
---[[
-ins_right {
-    'fileformat',
-    fmt = string.upper,
-    icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-    color = { fg = colors.green, gui = 'bold' },
-}
-]]
-
 ins_right {
     function()
         return '▊'
