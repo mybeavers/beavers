@@ -124,7 +124,7 @@ ins_left {
     -- mode component
     function()
         --当前系统图标
-        return ''
+        return '  ＞◡❛料峭'
     end,
     color = function()
         -- 颜色变化
@@ -153,42 +153,6 @@ ins_left {
         return { fg = mode_color[vim.fn.mode()] }
     end,
     padding = { right = 1 },
-}
-
--- 显示name
-ins_left {
-    function ()
-        return "＞◡❛料峭"
-    end,
-    color = function()
-        -- auto change color according to neovims mode
-        local mode_color = {
-            n = colors.blue,
-            i = colors.violet,
-            v = colors.green,
-            [''] = colors.blue,
-            V = colors.blue,
-            c = colors.red,
-            no = colors.red,
-            s = colors.orange,
-            S = colors.orange,
-            [''] = colors.orange,
-            ic = colors.yellow,
-            R = colors.violet,
-            Rv = colors.violet,
-            cv = colors.red,
-            ce = colors.red,
-            r = colors.cyan,
-            rm = colors.cyan,
-            ['r?'] = colors.cyan,
-            ['!'] = colors.red,
-            t = colors.red,
-        }
-
-        return { fg = mode_color[vim.fn.mode()] }
-    end,
-    --    cond = conditions.hide_in_width,
-
 }
 
 -- 显示time
@@ -322,22 +286,4 @@ ins_right {
     padding = { left = 1 },
 }
 
-
---[[
--- 显示文件大小
-ins_left {
-  -- filesize component
-  'filesize',
-  cond = conditions.buffer_not_empty,
-  cond = conditions.hide_in_width,
-}
--- 显示当前文件名
-ins_left {
-  'filename',
-  cond = conditions.buffer_not_empty,
-  color = { fg = colors.magenta, gui = 'bold' },
-}
-]]
-
--- Now don't forget to initialize lualine
 lualine.setup(config)

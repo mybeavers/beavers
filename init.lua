@@ -11,6 +11,7 @@ require("plugins.bufferline")
 require("plugins.treesitter")
 require("plugins.dashboard")
 require("plugins.lualine")
+--require("plugins.lualineTheme2")
 require("plugins.indent")
 require("plugins.nvimtree")
 require("plugins.markdown")
@@ -25,5 +26,19 @@ require("lsp.cmp")
 -- icons: 
     --"＞◡❛", " " ," ", " ", " ", " ", " ", " ", " ", ''
     --"",""," ,"ﰊ","", "", "", "", ""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
