@@ -8,7 +8,7 @@ require("core.command")
 require("plugins")
 require("plugins.onedarkpro")
 require("plugins.bufferline")
---require("plugins.treesitter")
+require("plugins.treesitter")
 require("plugins.dashboard")
 require("plugins.lualine")
 require("plugins.indent")
@@ -25,4 +25,5 @@ require("lsp.cmp")
 -- icons: 
     --"＞◡❛", " " ," ", " ", " ", " ", " ", " ", " ", ''
     --"",""," ,"ﰊ","", "", "", "", ""
+
 

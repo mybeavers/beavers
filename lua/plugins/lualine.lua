@@ -230,7 +230,8 @@ ins_left {
 ins_left { 'location' }
 
 -- 显示文本百分比
-ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+ins_left { 'progress'}
+
 
 -- 显示代码错误信息
 ins_left {
@@ -276,16 +277,17 @@ ins_right {
     'o:encoding', -- option component same as &encoding in viml
     fmt = string.upper, -- I'm not sure why it's upper case either ;)
     cond = conditions.hide_in_width,
-    color = { fg = colors.green, gui = 'bold' },
+    color = { fg = colors.violet, gui = 'bold' },
 }
 
+--[[
 ins_right {
     'fileformat',
     fmt = string.upper,
     icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
     color = { fg = colors.green, gui = 'bold' },
 }
-
+]]
 
 ins_right {
     function()

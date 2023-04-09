@@ -18,9 +18,11 @@ vim.cmd [[
 
 
 --光标修改
-vim.cmd[[ 
-    autocmd VimLeave * set guicursor=n:ver50-ncvCursor
-]]
+--vim.cmd[[ 
+--    autocmd VimLeave * set guicursor=n:ver50-ncvCursor
+--]]
+
+
 
 
 -- 恢复光标位置

@@ -19,8 +19,8 @@ require("lazy").setup({
     -- +==================================+
     {
         "nvim-tree/nvim-tree.lua",
-        commit = "9c97e6449b0b0269bd44e1fd4857184dfa57bb4c",
-
+        lazy = false,
+        priority = 900,
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
@@ -48,9 +48,9 @@ require("lazy").setup({
     -- 主题colorscheme
     {
         "olimorris/onedarkpro.nvim",
-        commit = "828d1af53c466a2cf4940e8dc920b1ea026a455a",
         --启动之前装载
- --       priority = 1000,
+        lazy = false,
+        priority = 1000,
     },
     --开始页
     {'glepnir/dashboard-nvim',
@@ -60,19 +60,18 @@ require("lazy").setup({
     -- 函数预览
     "simrat39/symbols-outline.nvim",
     -- 代码高亮
-    --'nvim-treesitter/nvim-treesitter", 
+    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
     -- 高亮括号
- --   "p00f/nvim-ts-rainbow",
+    "p00f/nvim-ts-rainbow",
     -- 标签页
     "akinsho/bufferline.nvim",
     -- 底栏
     "nvim-lualine/lualine.nvim",
-
+    
     -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
     "williamboman/nvim-lsp-installer",
-    --"williamboman/mason.nvim",
     "neovim/nvim-lspconfig",
 
 
@@ -88,8 +87,6 @@ require("lazy").setup({
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
-        --    "hrsh7th/cmp-path",
-        --    "hrsh7th/cmp-cmdline",
             "SirVer/ultisnips",
             "quangnguyen30192/cmp-nvim-ultisnips",
         },
