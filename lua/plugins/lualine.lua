@@ -35,22 +35,23 @@ local config = {
         section_separators = '',
         --[[
         theme = {
-            normal = { c = { fg = colors.fg, bg = colors.bg } },
-            inactive = { c = { fg = colors.fg, bg = colors.bg } },
+        normal = { c = { fg = colors.fg, bg = colors.bg } },
+        inactive = { c = { fg = colors.fg, bg = colors.bg } },
         },]]
         theme = vim.g.colorscheme;
 
     },
+
     sections = {
-        -- these are to remove the defaults
-        lualine_a = {},
+        lualine_a = {
+        },
         lualine_b = {},
-        lualine_y = {},
-        lualine_z = {},
-        -- These will be filled later
         lualine_c = {},
         lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
     },
+
     inactive_sections = {
         -- these are to remove the defaults
         lualine_a = {},
@@ -88,7 +89,7 @@ ins_left {
     function()
         return '▊'
     end,
-     color = function()
+    color = function()
         -- 棰滆壊鍙樺寲
         local mode_color = {
             n = colors.blue,
@@ -116,7 +117,7 @@ ins_left {
     end,
     padding = { right = 1 },
 
-   }
+}
 
 
 -- 图标蓝色代表插入,红色代表命令,选择模式是绿
@@ -189,12 +190,12 @@ ins_left {
     end,
     cond = conditions.hide_in_width,
 }
-
 -- 显示光标所在 行:列
 ins_left { 'location' }
 
 -- 显示文本百分比
 ins_left { 'progress'}
+
 
 
 -- 显示代码错误信息
@@ -225,6 +226,10 @@ ins_right {
     },
     cond = conditions.hide_in_width,
 }
+
+
+
+
 
 -- git分支
 ins_right {

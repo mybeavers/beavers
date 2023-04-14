@@ -1,5 +1,6 @@
---require("mason").setup{}
-require("nvim-lsp-installer").setup{}
+--require("nvim-lsp-installer").setup{}
+
+require("mason").setup{}
 local opts = { noremap=true, silent=true }
 -- 查看代码诊断信息
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -34,7 +35,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 
 -- after local capabilities = ....
 -- start server --启动语言服务器
-local servers = { "pyright", "clangd", "jdtls", "vimls",}
+local servers = { "pyright", "clangd", "jdtls"}
 
 -- 遍历
 for _, lsp in ipairs(servers) do

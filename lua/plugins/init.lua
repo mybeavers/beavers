@@ -67,11 +67,14 @@ require("lazy").setup({
     "akinsho/bufferline.nvim",
     -- 底栏
     "nvim-lualine/lualine.nvim",
-    
     -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
-    "williamboman/nvim-lsp-installer",
+    
+    {"williamboman/mason.nvim",
+        build = ":MasonUpdate",
+    },
+
     "neovim/nvim-lspconfig",
 
 
