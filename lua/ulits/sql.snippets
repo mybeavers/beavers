@@ -1,0 +1,150 @@
+# 0.数据类型
+snippet int "int" w
+INT
+endsnippet
+
+snippet char "char" w 
+CAHR($0)
+endsnippet
+
+snippet varchar "varchar" w 
+VARCHAR($0)
+endsnippet
+
+snippet date "date" w 
+DATE 
+endsnippet
+
+snippet timedate "timedate" w 
+TIMEDATE
+endsnippet
+
+snippet double "double" w 
+DOUBLE
+endsnippet
+
+
+# 1. ====================数据库与表的增删改查===========================
+# 创建
+snippet create "create database/table name" w
+CREATE 
+endsnippet
+
+# 删除
+snippet drop "drop database/table name" b
+DROP 
+endsnippet
+
+# 查看
+snippet show "show databases;" b
+SHOW 
+endsnippet
+
+# 数据库
+snippet database "database" w
+DATABASE 
+endsnippet
+
+# 表
+snippet table "table" w
+TABLE
+endsnippet
+
+# 指定编码
+snippet character_set "character set utf8; " w 
+CHARACTER SET $0
+endsnippet
+# ==============================================
+
+
+
+
+# 2. ==========增删改查=================================
+snippet insert "INSERT INTO tableName (column1, ...) VALUES (date1, ...);" b
+INSERT INTO
+endsnippet
+
+snippet  delete "DELETE FROM tableName [WHERE expression] " b
+DELETE 
+endsnippet
+
+snippet update "UPDATE tableName SET column=newdate [WHERE expression]" b
+UPDATE
+endsnippet
+
+snippet select "SELECT column1 FROM tableName [WHERE expression]" b
+SELECT
+endsnippet
+snippet from "select ... from table" w 
+FROM 
+endsnippet
+
+snippet values "values" w 
+VALUES
+endsnippet
+# ======================================================
+
+
+
+
+
+# 3. 函数=====================================
+snippet count "返回行的总数" w 
+COUNT()
+endsnippet
+
+snippet sum "求和" w
+SUM()
+endsnippet
+
+snippet avg "求平均值" w 
+AVG()
+endsnippet
+
+snippet key "求最大值" w 
+MAX()
+endsnippet
+
+snippet min "求最小值" w 
+MIN()
+endsnippet
+
+snippet md5 "加密函数" w 
+MD5()
+endsnippet
+
+snippet if "IF(expr1, expr2, expr3)单分支判断: 如果expr1为true, 则返回expr2, 否则返回expr3." w 
+IF()
+endsnippet
+
+snippet case "多分支判断" w 
+CASE 
+    WHEN expr1 THEN expr2 
+    WHEN expr3 THEN expr4 
+    ELSE expr5 
+END;
+endsnippet
+
+# 4. SELECT 
+
+
+# 5. 约束
+snippet notnull "非空约束: 使用该约束的列, 数据不能为NULL;" w 
+NOT NULL 
+endsnippet
+
+snippet unique "唯一约束: 使用该约束的列, 数据不能重复." w 
+UNIQUE 
+endsnippet
+
+snippet primary "唯一约束: 使用该约束的列, 数据不能重复" w 
+PRIMARY KEY 
+endsnippet
+
+snippet foreign "外键约束" w 
+FOREIGN KEY  
+endsnippet
+
+snippet check "检查约束" w 
+CHECK 
+endsnippet
