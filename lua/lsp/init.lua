@@ -37,7 +37,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 
 -- after local capabilities = ....
 -- start server --启动语言服务器
-local servers = {"pyright", "clangd", "vtsls", "bashls"}
+local servers = {"pyright", "clangd", "bashls"}
 
 -- 遍历
 for _, lsp in ipairs(servers) do
@@ -58,6 +58,8 @@ local function on_language_status(_, result)
   command(string.format('echo "%s"', result.message))
   command 'echohl None'
 end
+
+
 lspconfig.jdtls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
@@ -66,6 +68,5 @@ lspconfig.jdtls.setup({
         ["$/progress"] = vim.schedule_wrap(on_language_status),
     },
 })
-
 
 require("lsp.lspconfig").setup()

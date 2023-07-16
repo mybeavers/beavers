@@ -10,10 +10,7 @@ end
 
 
 -- 自动保存
---:
---:
---
---vim.api.nvim_command("autocmd InsertLeave *.java,*.py,*.md,*.c,*.txt,*.sql silent wall")
+vim.api.nvim_command("autocmd InsertLeave *.java,*.py,*.md,*.c,*.txt,*.sql silent wall")
 
 
 

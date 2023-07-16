@@ -16,6 +16,7 @@ require("plugins.nvimtree")
 require("plugins.markdown")
 require("plugins.ultisnips")
 require("plugins.symbols")
+require("plugins.gitsigns")
 --lsp补全
 require("lsp")
 require("lsp.cmp")

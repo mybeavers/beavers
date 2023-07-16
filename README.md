@@ -28,9 +28,25 @@
 <br><br>
 
 
+<h1 align="center"> Install VIM </h1>
+> 安装环境: ubuntu > apt, 确保安装python3, 并且安装pip3
+> sudo add-apt-repository ppa:neovim-ppa/unstable && sudo apt update 
+> sudo apt install neovim && sudo pip3 install pynvim
+
+<br> 
+
+> 我的配置
+> cd ~/.config && git clone https://gitee.com/mybeavers/beavers.git && mv beavers nvim 
+
 
 
 <h1 align="center"> USE VIM </h1>
+
+
+
+
+
+
 
 #### 一. 基本模式
 1. **命令模式**(Command mode)
@@ -56,13 +72,25 @@
 1. **方向移动**
     - 方式一: h  [光标右移] , j [光标下移] , k [光标上移] , l [光标左移] 
     - 方式二: 键盘方向键
+
+<br> 
+
+
 2. **单词跳转**
     - w/W : 向后跳转一个单词距离[按照空格判断]
     - b/B : 向前跳转一个单词距离[按照空格判断]
+
+<br> 
+
+
 3. **行内跳转**
     - $ : 跳转到当前光标行的最后一个字符后.
     - 0 : 跳转到当前光标行的开头.
     - Home键跳转到行的开头, End键跳转到行尾部. 功能与$, 0相同.
+
+<br> 
+
+
 4. **行间跳转**
     - gg : 跳转到文件的首行
     - G : 跳转到文件的尾行
@@ -72,9 +100,18 @@
     - Shift+} : 移动到下一个段落
     - ctrl+u : 光标向上滚动半屏[根据空格判断]
     - ctrl+d : 光标向下滚动半屏[根据空格判断]
-    
-5. **符号跳转**
+
+<br> 
+
+
+5. **括号跳转**
     - % : 匹配字符[{}, [], ()]间跳转.
-6. **字符匹配跳转**
-    - / :输入想要移动的字符, vim会在当前文件内进行字符匹配
+
+<br> 
+
+
+
+6. **字符匹配查询**
+    - / : 输入想要移动的字符, vim会在当前文件内进行字符匹配
+    - n : 当使用 / 搜索字符时, 如何有多个结果, 可以使用 n 跳转到下一个结果
 
