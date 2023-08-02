@@ -1,11 +1,11 @@
 -- 将wsl中的nvim复制内容同步到windows粘贴板
 if vim.fn.has('wsl') then
     vim.cmd [[
-  augroup Yank
-  autocmd!
-  autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
-  augroup END
-    ]]   
+        augroup Yank
+        autocmd!
+        autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+        augroup END
+    ]]
 end
 
 -- 自动保存
@@ -27,7 +27,8 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
--- 创建缺失的目录
+
+
 vim.api.nvim_create_user_command("MakeDirectory", function()
     ---@diagnostic disable-next-line: missing-parameter
     local path = vim.fn.expand("%")
@@ -41,12 +42,12 @@ end, { desc = "Create directory if it doesn't exist" })
 
 -- 自动补齐字符
 vim.cmd([[
-inoremap ( ()<LEFT>
-inoremap [ []<LEFT>
-inoremap { {}<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-inoremap < <><LEFT>
+    inoremap ( ()<LEFT>
+    inoremap [ []<LEFT>
+    inoremap { {}<LEFT>
+    inoremap " ""<LEFT>
+    inoremap ' ''<LEFT>
+    inoremap < <><LEFT>
 ]])
 
 -- 外侧退出括号
@@ -56,7 +57,9 @@ vim.cmd([[
     inoremap <expr> } getline('.')[col('.')-1] == '}' ? "\<Right>" : "}"
 ]])
 
-
-
-
+-- 快速注释
+vim.cmd([[ 
+    vnoremap <silent> 1 :s/^/\/\//<CR>
+    vnoremap <silent> 2 :s/\/\//<CR>
+]])
 
