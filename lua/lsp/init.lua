@@ -37,7 +37,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 
 -- after local capabilities = ....
 -- start server --启动语言服务器
-local servers = {"pyright", "clangd", "bashls"}
+local servers = {"pyright", "clangd", "bashls", "lua_ls"}
 
 -- 遍历
 for _, lsp in ipairs(servers) do

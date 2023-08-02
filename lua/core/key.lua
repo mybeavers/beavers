@@ -45,22 +45,6 @@ map("n", "<F24>", ":call RunCode()<CR>", opt)
 
 -- 5 ==============括号补全=================
 -- 补全括号和引号
-vim.cmd([[
-    inoremap ( ()<LEFT>
-    inoremap [ []<LEFT>
-    inoremap { {}<LEFT>
-    inoremap ' ''<LEFT>
-    inoremap " ""<LEFT>
-]])
---inoremap { {}<Esc>i<CR><Esc>koi<Esc>j<C-S-v><S-%>=j<S-$>xa
-
--- 外侧退出括号
-vim.cmd([[
-    inoremap <expr> ) getline('.')[col('.')-1] == ')' ? "\<Right>" : ")"
-    inoremap <expr> ] getline('.')[col('.')-1] == ']' ? "\<Right>" : "]"
-    inoremap <expr> } getline('.')[col('.')-1] == '}' ? "\<Right>" : "}"
-]])
-
 
 -- 6 ===========文件搜索/函数预览==========
 --   ====依赖于telescop和treesitter插件====
@@ -83,7 +67,7 @@ map("n", "<C-s>", ":SymbolsOutline<CR>", opt)
 map("i", "<C-s>", "<ESC>:SymbolsOutline<CR>", opt)
 
 -- 10 =============主题切换================
-
+vim.api.nvim_set_keymap("n", "0", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", {noremap = true, silent = true})
 -- +====================================+
 -- |            快捷键函数              |
 -- +====================================+

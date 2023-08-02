@@ -66,17 +66,17 @@ require("lazy").setup({
     "akinsho/bufferline.nvim",
     -- 底栏
     "nvim-lualine/lualine.nvim",
-
+    -- git标记
     "lewis6991/gitsigns.nvim",
-
+    
     -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
-    
+    -- lsp服务器按照插件
     {"williamboman/mason.nvim",
         build = ":MasonUpdate",
     },
-
+    -- lsp服务器配置插件
     "neovim/nvim-lspconfig",
 
 

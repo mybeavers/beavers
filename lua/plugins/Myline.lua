@@ -85,11 +85,13 @@ end
 
 
 
+
 ins_left {
     function()
         return '▊'
     end,
     color = function()
+        -- 棰滆壊鍙樺寲
         local mode_color = {
             n = colors.blue,
             i = colors.violet,
@@ -118,13 +120,13 @@ ins_left {
 
 }
 
+
 -- 图标蓝色代表插入,红色代表命令,选择模式是绿
 ins_left {
     -- mode component
     function()
         --当前系统图标
-        -- return '  ＞◡❛料峭'
-        return '  ❛◡❛料峭'
+        return '  ＞◡❛料峭'
     end,
     color = function()
         -- 颜色变化
@@ -189,11 +191,10 @@ ins_left {
     end,
     cond = conditions.hide_in_width,
 }
-
--- 光标位置
+-- 显示光标所在 行:列
 ins_left { 'location' }
 
--- 光标位置
+-- 显示文本百分比
 ins_left { 'progress'}
 
 
@@ -248,7 +249,6 @@ ins_right {
     cond = conditions.hide_in_width,
     color = { fg = colors.violet, gui = 'bold' },
 }
-
 ins_right {
     function()
         return '▊'
@@ -281,5 +281,6 @@ ins_right {
     end,
     padding = { left = 1 },
 }
+
 
 lualine.setup(config)
