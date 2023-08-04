@@ -63,3 +63,16 @@ vim.cmd([[
     vnoremap <silent> 2 :s/\/\//<CR>
 ]])
 
+-- 语法高亮
+vim.cmd([[
+function! JavaHighlightLspTypes()
+  highlight @lsp.type.modifier.java guifg=#C678DD           "关键字
+  highlight @lsp.type.class.java guifg=#E5C07B              "类
+  highlight @lsp.type.property.java guifg=#E06C75           "变量
+  highlight @lsp.type.method.java guifg=#61AFEF             "方法
+  highlight @lsp.type.annotationMember.java guifg=#61AFEF   "注解方法
+  highlight @lsp.type.enumMember.java guifg=#D19A66         "枚举常量
+endfunction
+
+autocmd ColorScheme * call JavaHighlightLspTypes()
+]])
