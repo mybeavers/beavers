@@ -19,13 +19,13 @@ require("lazy").setup({
     -- +==================================+
     {
         "nvim-tree/nvim-tree.lua",
-        lazy = false,
-        priority = 1000,
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
+
     },
     -- 文件搜索
+
    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
@@ -40,7 +40,6 @@ require("lazy").setup({
             vim.fn["mkdp#util#install"]() end,
     },
     -- 缩进线
-    "lukas-reineke/indent-blankline.nvim",
     -- +==================================+
     -- |               UI                 |
     -- +==================================+
@@ -48,28 +47,23 @@ require("lazy").setup({
     -- 主题colorscheme
     {
         "olimorris/onedarkpro.nvim",
-        priority = 900,
+        priority = 1000,
         config = function()
             vim.cmd([[colorscheme onedark]])
         end,
 
     },
-    
     --开始页
     {'glepnir/dashboard-nvim',
         commit = "f7d623457d6621b25a1292b24e366fae40cb79ab",
     },
-
-    -- 函数预览
-    "simrat39/symbols-outline.nvim",
     -- 标签页
     "akinsho/bufferline.nvim",
     -- 底栏
     "nvim-lualine/lualine.nvim",
     -- git标记
-    "lewis6991/gitsigns.nvim",
-    
-    -- +==================================+
+    "lewis6991/gitsigns.nvim";
+   -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
     -- lsp服务器按照插件
@@ -78,13 +72,12 @@ require("lazy").setup({
     },
     -- lsp服务器配置插件
     "neovim/nvim-lspconfig",
-
+    "lukas-reineke/indent-blankline.nvim",
 
     -- +==================================+
     -- |          cmp代码补全             |
     -- +==================================+
     {
-        
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
@@ -96,3 +89,15 @@ require("lazy").setup({
     },
 
 })
+
+
+require("plugins.onedarkpro")
+require("plugins.dashboard")
+require("plugins.Myline")
+require("plugins.nvimtree")
+require("plugins.markdown")
+require("plugins.ultisnips")
+-- lsp琛ュ叏
+require("lsp")
+require("lsp.cmp")
+

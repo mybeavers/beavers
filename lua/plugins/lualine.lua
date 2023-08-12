@@ -38,7 +38,7 @@ local config = {
         normal = { c = { fg = colors.fg, bg = colors.bg } },
         inactive = { c = { fg = colors.fg, bg = colors.bg } },
         },]]
-        theme = vim.g.colorscheme;
+        --theme = vim.g.colorscheme;
 
 
     },
@@ -89,31 +89,32 @@ ins_left {
     function()
         return '▊'
     end,
-    color = function()
-        local mode_color = {
-            n = colors.blue,
-            i = colors.violet,
-            v = colors.green,
-            [''] = colors.blue,
-            V = colors.blue,
-            c = colors.red,
-            no = colors.red,
-            s = colors.orange,
-            S = colors.orange,
-            [''] = colors.orange,
-            ic = colors.yellow,
-            R = colors.violet,
-            Rv = colors.violet,
-            cv = colors.red,
-            ce = colors.red,
-            r = colors.cyan,
-            rm = colors.cyan,
-            ['r?'] = colors.cyan,
-            ['!'] = colors.red,
-            t = colors.red,
-        }
-        return { fg = mode_color[vim.fn.mode()] }
-    end,
+    color = { fg = colors.blue, gui = 'bold' },
+--    color = function()
+--        local mode_color = {
+--            n = colors.blue,
+--            i = colors.violet,
+--            v = colors.green,
+--            [''] = colors.blue,
+--            V = colors.blue,
+--            c = colors.red,
+--            no = colors.red,
+--            s = colors.orange,
+--            S = colors.orange,
+--            [''] = colors.orange,
+--            ic = colors.yellow,
+--            R = colors.violet,
+--            Rv = colors.violet,
+--            cv = colors.red,
+--            ce = colors.red,
+--            r = colors.cyan,
+--            rm = colors.cyan,
+--            ['r?'] = colors.cyan,
+--            ['!'] = colors.red,
+--            t = colors.red,
+--        }
+--        return { fg = mode_color[vim.fn.mode()] }
+--    end,
     padding = { right = 1 },
 
 }
@@ -124,7 +125,7 @@ ins_left {
     function()
         --当前系统图标
         -- return '  ＞◡❛料峭'
-        return '  ❛◡❛料峭'
+        return ' '
     end,
     color = function()
         -- 颜色变化
@@ -150,7 +151,7 @@ ins_left {
             ['!'] = colors.red,
             t = colors.red,
         }
-        return { fg = mode_color[vim.fn.mode()] }
+        return { fg = mode_color[vim.fn.mode()]}
     end,
     padding = { right = 1 },
 }
@@ -190,13 +191,7 @@ ins_left {
     cond = conditions.hide_in_width,
 }
 
--- 光标位置
-ins_left { 'location' }
-
--- 光标位置
-ins_left { 'progress'}
-
-
+ins_left{'%l:%c %P'}
 
 -- 显示代码错误信息
 ins_left {
@@ -246,39 +241,40 @@ ins_right {
     'o:encoding', -- option component same as &encoding in viml
     fmt = string.upper, -- I'm not sure why it's upper case either ;)
     cond = conditions.hide_in_width,
-    color = { fg = colors.violet, gui = 'bold' },
+    color = { fg = colors.yellow, gui = 'bold' },
 }
 
 ins_right {
     function()
         return '▊'
     end,
-    color = function()
-        -- auto change color according to neovims mode
-        local mode_color = {
-            n = colors.blue,
-            i = colors.violet,
-            v = colors.green,
-            [''] = colors.blue,
-            V = colors.blue,
-            c = colors.red,
-            no = colors.red,
-            s = colors.orange,
-            S = colors.orange,
-            [''] = colors.orange,
-            ic = colors.yellow,
-            R = colors.violet,
-            Rv = colors.violet,
-            cv = colors.red,
-            ce = colors.red,
-            r = colors.cyan,
-            rm = colors.cyan,
-            ['r?'] = colors.cyan,
-            ['!'] = colors.red,
-            t = colors.red,
-        }
-        return { fg = mode_color[vim.fn.mode()] }
-    end,
+--    color = function()
+--        -- auto change color according to neovims mode
+--        local mode_color = {
+--            n = colors.blue,
+--            i = colors.violet,
+--            v = colors.green,
+--            [''] = colors.blue,
+--            V = colors.blue,
+--            c = colors.red,
+--            no = colors.red,
+--            s = colors.orange,
+--            S = colors.orange,
+--            [''] = colors.orange,
+--            ic = colors.yellow,
+--            R = colors.violet,
+--            Rv = colors.violet,
+--            cv = colors.red,
+--            ce = colors.red,
+--            r = colors.cyan,
+--            rm = colors.cyan,
+--            ['r?'] = colors.cyan,
+--            ['!'] = colors.red,
+--            t = colors.red,
+--        }
+--        return { fg = mode_color[vim.fn.mode()] }
+--    end,
+    color = { fg = colors.blue, gui = 'bold' },
     padding = { left = 1 },
 }
 

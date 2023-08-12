@@ -22,7 +22,6 @@ map ("n", "vs", ":vs<CR>", opt)
 map ("n", "pl", ":split<CR>", opt)
 
 
-
 -- 2 =======一键退出/保存/保存退出=========
 map ("n", "w", ":silent wall<CR>", opt)
 map ("n", "q", ":q<CR>", opt)
@@ -43,18 +42,18 @@ map("n", "<F24>", ":call RunCode()<CR>", opt)
 
 
 
--- 5 ==============括号补全=================
--- 补全括号和引号
-
+-- 5 ==============加载更多配置=================
+map("n", "<leader>g", ":source /home/mybeavers/.config/nvim/lua/plugins/HeavyInit.lua<CR>", opt)
 -- 6 ===========文件搜索/函数预览==========
 --   ====依赖于telescop和treesitter插件====
-map ("n", "<C-f>", ':Telescop<CR>', opt)
-
+map("n", "to", ":Telescope oldfiles<CR>", opt)
+map("n", "tf", ":Telescope find_files<CR>", opt)
+map("n", "tb", ":Telescope buffers<CR>", opt)
+map("n", "ts", ":Telescope lsp_document_symbols<CR>", opt)
 
 -- 7 ==============标签页切换=============
 map ("n", "1", ":BufferLineCyclePrev<CR>", opt)
-map ("n", "2", ":BufferLineCycleNext<CR>", opt)
-map ("n", "3", ":BufferLinePickClose<CR>", opt)
+map ("n", "2", ":bNext<CR>", opt)
 
 
 -- 8 ===============目录树==================

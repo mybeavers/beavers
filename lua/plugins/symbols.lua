@@ -77,3 +77,5 @@ require("symbols-outline").setup({
         Fragment = { icon = "", hl = "@constant" },
     },
 })
+
+

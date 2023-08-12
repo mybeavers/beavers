@@ -47,7 +47,6 @@ vim.cmd([[
     inoremap { {}<LEFT>
     inoremap " ""<LEFT>
     inoremap ' ''<LEFT>
-    inoremap < <><LEFT>
 ]])
 
 -- 外侧退出括号
