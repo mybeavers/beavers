@@ -103,9 +103,8 @@ function! MyCmpColor()
     highlight! link CmpItemKindProperty CmpItemKindKeyword
     highlight! link CmpItemKindUnit CmpItemKindKeyword
     highlight! User1 guifg=#7f828e
-endfunction
+endfunctio
 
 autocmd ColorScheme * call MyCmpColor()
 ]])
-
 

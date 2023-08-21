@@ -104,3 +104,4 @@ vim.g["omni_sql_no_default_maps"] = 1
 --vim.opt.list = true 显示行号符
 --vim.opt.listchars:append "eol:↴" 设置换行符
 vim.o.statusline = "%1*%=%-7.(%l,%c%V%)%t  "
+

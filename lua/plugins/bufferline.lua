@@ -1,3 +1,4 @@
+
 vim.opt.termguicolors = true
 require("bufferline").setup {
     options = {
@@ -5,7 +6,7 @@ require("bufferline").setup {
             enabled = true,
             delay = 200,
         },
-        -- 使用 nvim 内置lsp
+       -- 使用 nvim 内置lsp
         diagnostics = "nvim_lsp",
        -- 显示bufferline
         always_show_bufferline = true,
@@ -26,6 +27,6 @@ require("bufferline").setup {
         -- 未保存图标 
         --modified_icon = "●",
         modified_icon= "◍",
+    },
 
-    }
 }
