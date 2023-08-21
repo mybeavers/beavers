@@ -44,6 +44,10 @@ map("n", "<F24>", ":call RunCode()<CR>", opt)
 
 -- 5 ==============加载更多配置=================
 map("n", "<leader>g", ":source /home/mybeavers/.config/nvim/lua/plugins/HeavyInit.lua<CR>", opt)
+
+
+
+
 -- 6 ===========文件搜索/函数预览==========
 --   ====依赖于telescop和treesitter插件====
 map("n", "to", ":Telescope oldfiles<CR>", opt)

@@ -63,6 +63,8 @@ require("lazy").setup({
     "nvim-lualine/lualine.nvim",
     -- git标记
     "lewis6991/gitsigns.nvim";
+
+    "lukas-reineke/indent-blankline.nvim",
    -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
@@ -72,7 +74,6 @@ require("lazy").setup({
     },
     -- lsp服务器配置插件
     "neovim/nvim-lspconfig",
-    "lukas-reineke/indent-blankline.nvim",
 
     -- +==================================+
     -- |          cmp代码补全             |
@@ -90,14 +91,17 @@ require("lazy").setup({
 
 })
 
-
 require("plugins.onedarkpro")
 require("plugins.dashboard")
-require("plugins.Myline")
 require("plugins.nvimtree")
 require("plugins.markdown")
-require("plugins.ultisnips")
--- lsp琛ュ叏
+
+-- lsp
 require("lsp")
 require("lsp.cmp")
+
+-- 加载我的代码片段--路径
+vim.cmd('let g:UltiSnipsSnippetDirectories = ["~/.config/nvim/lua/ulits/"]')
+-- 选中触发
+vim.cmd('let g:UltiSnipsExpandTrigger="<space>y"')
 

@@ -90,31 +90,6 @@ ins_left {
         return '▊'
     end,
     color = { fg = colors.blue, gui = 'bold' },
---    color = function()
---        local mode_color = {
---            n = colors.blue,
---            i = colors.violet,
---            v = colors.green,
---            [''] = colors.blue,
---            V = colors.blue,
---            c = colors.red,
---            no = colors.red,
---            s = colors.orange,
---            S = colors.orange,
---            [''] = colors.orange,
---            ic = colors.yellow,
---            R = colors.violet,
---            Rv = colors.violet,
---            cv = colors.red,
---            ce = colors.red,
---            r = colors.cyan,
---            rm = colors.cyan,
---            ['r?'] = colors.cyan,
---            ['!'] = colors.red,
---            t = colors.red,
---        }
---        return { fg = mode_color[vim.fn.mode()] }
---    end,
     padding = { right = 1 },
 
 }
@@ -191,19 +166,18 @@ ins_left {
     cond = conditions.hide_in_width,
 }
 
-ins_left{'%l:%c %P'}
+ins_left{
+    '%l:%c %P',
+    color = {fg = '#7f828e'}
+}
 
 -- 显示代码错误信息
 ins_left {
     'diagnostics',
     sources = { 'nvim_diagnostic' },
     symbols = { error = ' ', warn = ' ', info = ' ' },
-    diagnostics_color = {
-        color_error = { fg = colors.red },
-        color_warn = { fg = colors.yellow },
-        color_info = { fg = colors.cyan },
-    },
-}
+    }
+
 
 
 
@@ -248,32 +222,6 @@ ins_right {
     function()
         return '▊'
     end,
---    color = function()
---        -- auto change color according to neovims mode
---        local mode_color = {
---            n = colors.blue,
---            i = colors.violet,
---            v = colors.green,
---            [''] = colors.blue,
---            V = colors.blue,
---            c = colors.red,
---            no = colors.red,
---            s = colors.orange,
---            S = colors.orange,
---            [''] = colors.orange,
---            ic = colors.yellow,
---            R = colors.violet,
---            Rv = colors.violet,
---            cv = colors.red,
---            ce = colors.red,
---            r = colors.cyan,
---            rm = colors.cyan,
---            ['r?'] = colors.cyan,
---            ['!'] = colors.red,
---            t = colors.red,
---        }
---        return { fg = mode_color[vim.fn.mode()] }
---    end,
     color = { fg = colors.blue, gui = 'bold' },
     padding = { left = 1 },
 }

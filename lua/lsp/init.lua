@@ -4,10 +4,6 @@ require("mason").setup{}
 local opts = { noremap=true, silent=true }
 -- 查看代码诊断信息
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
--- 跳转到上一个错误
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
--- 跳转到下一个错误
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 -- 查看所有错误
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
@@ -15,15 +11,15 @@ local lspconfig = require("lspconfig")
 local function on_attach(client, bufnr) -- set up buffer keymaps, etc.
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
     -- 查看函数声明
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', '<space>d', vim.lsp.buf.declaration, bufopts)
     -- 查看函数实现
     vim.keymap.set('n', '<space>g', vim.lsp.buf.definition, bufopts)
     --重命名函数
     vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, bufopts)
     -- 查看函数手册
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<space>s', vim.lsp.buf.references, bufopts)
     -- 修改建议
-    vim.keymap.set({ 'n', 'v' }, '<space>t', vim.lsp.buf.code_action, opts)
+    vim.keymap.set({ 'n', 'v' }, '<space>c', vim.lsp.buf.code_action, opts)
 end
 
 -- 

@@ -1,32 +1,32 @@
---   פּ ﯟ   some other good icons
 local kind_icons = {
-    Text = "",
-    Method = "",
-    Function = "",
-    Constructor = "",
-    Field = "",
-    Variable = "",
-    Class = "",
-    Interface = "",
-    Module = "",
-    Property = "",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "",
-    Event = "",
-    Operator = "",
-    TypeParameter = "",
+    Text = " Text",
+    Method = " Method",
+    Function = " Function",
+    Constructor = " Constructor",
+    Field = " Field",
+    Variable = " Variable",
+    Class = " Class",
+    Interface = " Interface",
+    Module = "  Module",
+    Property = " Property",
+    Unit = " Unit",
+    Value = " Value",
+    Enum = " Enum",
+    Keyword = " Keyword",
+    Snippet = " Snippet",
+    Color = " Color",
+    File = " File",
+    Reference = " Reference",
+    Folder = "  Folder",
+    EnumMember = "  EnumMember",
+    Constant = " Constant",
+    Struct = "  Struct",
+    Event = " Event",
+    Operator = " Operator",
+    TypeParameter = " TypeParameter",
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
+
+
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -39,105 +39,50 @@ cmp.setup{
             vim.fn["UltiSnips#Anon"](args.body)
         end,
     },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-    },
-    mapping = {
---[[        ["<Tab>"] = cmp.mapping({
-            c = function()
-                if cmp.visible() then
-                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-                else
-                    cmp.complete()
-                end
-            end,
-            i = function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-                else
-                    fallback()
-                end
-            end
-        }),
-]]
-        ["<S-Tab>"] = cmp.mapping({
-            c = function()
-                if cmp.visible() then
-                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-                else
-                    cmp.complete()
-                end
-            end,
-            i = function(fallback)
-                if cmp.visible() then
-                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-                else
-                    fallback()
-                end
-            end
-        }),
-        ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
-        ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
-        ['<C-n>'] = cmp.mapping({
-            c = function()
-                if cmp.visible() then
-                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                else
-                    vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
-                end
-            end,
-            i = function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                else
-                    fallback()
-                end
-            end
-        }),
-        ['<C-p>'] = cmp.mapping({
-            c = function()
-                if cmp.visible() then
-                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-                else
-                    vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
-                end
-            end,
-            i = function(fallback)
-                if cmp.visible() then
-                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-                else
-                    fallback()
-                end
-            end
-        }),
-        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
-        --['<C-e>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
-        --['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
-        ['<CR>'] = cmp.mapping({
-            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-            c = function(fallback)
-                if cmp.visible() then
-                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true})
-                else
-                    fallback()
-                end
-            end
-        }),
-    },
 
+    -- 映射
+    mapping = cmp.mapping.preset.insert({
+        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+        ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+        ["S-<Tab>"] = cmp.mapping(function(fallback)
+            -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+            if cmp.visible() then
+                local entry = cmp.get_selected_entry()
+                if not entry then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                else
+                    cmp.confirm()
+                end
+            else
+                fallback()
+            end
+        end, {"i","s","c",}),
+    }),
+
+    -- 窗口
+    window = {
+        --completion = cmp.config.window.bordered(),
+        --documentation = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered({ 
+            scrollbar = false,
+            winhighlight = "Normal:MyCmpNormal",
+        }),
+        completion = cmp.config.window.bordered({
+            winhighlight = "Normal:MyCmpNormal,CursorLine:MyCmpSel",
+            scrollbar = false,
+        }),
+    },
+    
+
+    
     formatting = {
         fields = { "kind", "abbr", "menu" },
+
         format = function(entry, vim_item)
-            -- Kind icons
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            vim_item.menu = ({
-                nvim_lsp = "[LSP]",
-                ultisnips = "[Snippet]",
-                buffer = "[Buffer]",
-                path = "[Path]",
-            })[entry.source.name]
+            local strings = vim.split(string.format("%s ", kind_icons[vim_item.kind]), " ")
+            vim_item.kind = strings[1]
+            vim_item.menu = strings[2]
             return vim_item
         end,
     },
@@ -146,36 +91,10 @@ cmp.setup{
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'ultisnips' },
-    }, {
-            { name = 'buffer' },
-            { name = 'path' },
-        })
+    },
+    {
+        { name = 'buffer' },
+        { name = 'path' },
+    })
 }
 
--- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-        { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-            { name = 'buffer' },
-        })
-})
---[[
--- Use buffer source foj `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-    completion = { autocomplete = false },
-    sources = {
-        { name = 'buffer' }
-    }
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-    completion = { autocomplete = false },
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-            { name = 'cmdline' }
-        })
-})
-]]

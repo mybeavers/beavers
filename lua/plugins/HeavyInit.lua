@@ -1,6 +1,14 @@
+vim.o.number = true
 require("plugins.bufferline")
 require("plugins.lualine")
-require("plugins.ultisnips")
-require("plugins.gitsigns")
-vim.o.number = true
 
+require('gitsigns').setup({
+  signs = {
+    add          = { text = '│' },
+    change       = { text = '│' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+})
