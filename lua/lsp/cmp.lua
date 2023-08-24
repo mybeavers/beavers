@@ -17,7 +17,7 @@ local kind_icons = {
     Color = " Color",
     File = " File",
     Reference = " Reference",
-    Folder = "  Folder",
+    Folder = " Folder",
     EnumMember = "  EnumMember",
     Constant = " Constant",
     Struct = "  Struct",
@@ -61,9 +61,7 @@ cmp.setup{
 
     -- 窗口
     window = {
-        --completion = cmp.config.window.bordered(),
-        --documentation = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered({ 
+        documentation = cmp.config.window.bordered({
             scrollbar = false,
             winhighlight = "Normal:MyCmpNormal",
         }),
@@ -72,9 +70,8 @@ cmp.setup{
             scrollbar = false,
         }),
     },
-    
 
-    
+    --显示顺序: 图标 补全字符 类型
     formatting = {
         fields = { "kind", "abbr", "menu" },
 
@@ -90,11 +87,10 @@ cmp.setup{
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'ultisnips' },
-    },
-    {
+        },
+        {
         { name = 'buffer' },
         { name = 'path' },
     })
 }
 
- 

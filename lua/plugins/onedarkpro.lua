@@ -4,7 +4,7 @@ vim.cmd[[colorscheme onedark]]
 require("onedarkpro").setup({
     colors = {
         onelight = {
-            --bg= "#fdf6e3",
+            bg= "#fdf6e3",
         },
 
     },
