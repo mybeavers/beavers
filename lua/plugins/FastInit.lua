@@ -91,7 +91,6 @@ require("lazy").setup({
 
 })
 
-require("plugins.onedarkpro")
 require("plugins.dashboard")
 require("plugins.nvimtree")
 require("plugins.markdown")

@@ -69,42 +69,17 @@ vim.cmd([[
     vnoremap <silent> 2 :s/\/\//<CR>
 ]])
 
--- 语法高亮
+-- 创建javase项目目录
 vim.cmd([[
-function! JavaHighlightLspTypes()
-  highlight @lsp.type.modifier.java guifg=#C678DD           "关键字
-  highlight @lsp.type.class.java guifg=#E5C07B              "类
-  highlight @lsp.type.property.java guifg=#E06C75           "变量
-  highlight @lsp.type.method.java guifg=#61AFEF             "方法
-  highlight @lsp.type.annotationMember.java guifg=#61AFEF   "注解方法
-  highlight @lsp.type.enumMember.java guifg=#D19A66         "枚举常量
-endfunction
-
-autocmd ColorScheme * call JavaHighlightLspTypes()
+    command MvnJavaSE :execute "!cp -r ~/.config/templates/javaSE/* ./" 
 ]])
 
+-- 创建javaweb项目目录
+vim.cmd([[
+    command MvnJavaMVC :execute "!cp -r ~/.config/templates/javaMVC/* ./"
+]])
 
-vim.cmd([[ 
-function! MyCmpColor()
-    " gray
-    highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-    " blue
-    highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-    highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch
-    " light blue
-    highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-    highlight! link CmpItemKindInterface CmpItemKindVariable
-    highlight! link CmpItemKindText CmpItemKindVariable
-    " pink
-    highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-    highlight! link CmpItemKindMethod CmpItemKindFunction
-    " front
-    highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-    highlight! link CmpItemKindProperty CmpItemKindKeyword
-    highlight! link CmpItemKindUnit CmpItemKindKeyword
-    highlight! User1 guifg=#7f828e
-endfunctio
-
-autocmd ColorScheme * call MyCmpColor()
+vim.cmd([[
+    command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpringBoot/* ./"
 ]])
 

@@ -19,12 +19,13 @@ local opt = {noremap = true, silent = true }
 -- 1 =============一键分割窗口============= 
 map ("n", "vs", ":vs<CR>", opt)
 map ("n", "pl", ":split<CR>", opt)
-
-
+map ("n", "<F7>", ":10split term://$SHELL<CR>", opt)
+vim.cmd([[ 
+:tnoremap <Esc> <C-\><C-n> 
+]])
 -- 2 =======一键退出/保存/保存退出=========
 map ("n", "w", ":silent wall<CR>", opt)
 map ("n", "q", ":q<CR>", opt)
-
 
 
 -- 3 ===========一键保存退出=================
@@ -42,7 +43,7 @@ map("n", "<F24>", ":call RunCode()<CR>", opt)
 
 
 -- 5 ==============加载更多配置=================
-map("n", "<leader>g", ":source /home/mybeavers/.config/nvim/lua/plugins/HeavyInit.lua<CR>", opt)
+map("n", "<A-=>", ":source /home/mybeavers/.config/nvim/lua/plugins/HeavyInit.lua<CR>", opt)
 
 
 
@@ -67,6 +68,7 @@ map("i", "<C-b>", "<ESC>:NvimTreeToggle<CR>", opt)
 -- 9 ==============函数预览================
 map("n", "<C-s>", ":SymbolsOutline<CR>", opt)
 map("i", "<C-s>", "<ESC>:SymbolsOutline<CR>", opt)
+
 
 -- 10 =============主题切换================
 vim.api.nvim_set_keymap("n", "0", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", {noremap = true, silent = true})
@@ -117,4 +119,5 @@ vim.cmd([[
 
     endfunction
 ]])
+
 

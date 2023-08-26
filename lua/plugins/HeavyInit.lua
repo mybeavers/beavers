@@ -9,6 +9,8 @@ vim.o.number=true -- 开启行号
 -- ---------------------------------
 require("plugins.bufferline")
 require("plugins.lualine")
+require("plugins.onedarkpro")
+
 require('gitsigns').setup({
   signs = {
     add          = { text = '│' },

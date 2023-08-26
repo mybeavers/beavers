@@ -82,10 +82,3 @@ vim.o.langmenu="zh_CN.UTF-8"
 vim.o.helplang="cn"
 vim.o.encoding="utf8"
 vim.o.fileencodings="utf8,ucs-bom,gbk,cp936,gb2312,gb18030"
-
-
-
--------------------------------- 
---          状态栏
---------------------------------
-vim.o.statusline = "%1*%=%-7.(%l,%c%V%)%t  "
