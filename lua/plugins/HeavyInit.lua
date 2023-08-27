@@ -7,9 +7,13 @@ vim.o.number=true -- 开启行号
 -- ---------------------------------
 --          配置加载
 -- ---------------------------------
-require("plugins.bufferline")
-require("plugins.lualine")
-require("plugins.onedarkpro")
+require("plugins.config.bufferline")
+require("plugins.config.lualine")
+require("plugins.config.onedarkpro")
+
+-- ---------------------------------
+--          gitsigns配置
+-- ---------------------------------
 
 require('gitsigns').setup({
   signs = {

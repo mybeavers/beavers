@@ -39,8 +39,9 @@ map("n", "<F22>", ":call Wq_txt()<CR>", opt)
 map("i", "<F24>", "<ESC>:call RunCode()<CR>", opt)
 map("n", "<F24>", ":call RunCode()<CR>", opt)
 
-
-
+-- 5 ============目录树======================
+map('i', '<C-b>', '<ESC>:Ntree<CR>', opt)
+map('n', '<C-b>', ':Ntree<CR>', opt)
 
 -- 5 ==============加载更多配置=================
 map("n", "<A-=>", ":source /home/mybeavers/.config/nvim/lua/plugins/HeavyInit.lua<CR>", opt)
@@ -48,30 +49,10 @@ map("n", "<A-=>", ":source /home/mybeavers/.config/nvim/lua/plugins/HeavyInit.lu
 
 
 
--- 6 ===========文件搜索/函数预览==========
---   ====依赖于telescop和treesitter插件====
-map("n", "to", ":Telescope oldfiles<CR>", opt)
-map("n", "tf", ":Telescope find_files<CR>", opt)
-map("n", "tb", ":Telescope buffers<CR>", opt)
-map("n", "ts", ":Telescope lsp_document_symbols<CR>", opt)
-
 -- 7 ==============标签页切换=============
-map ("n", "1", ":BufferLineCyclePrev<CR>", opt)
+map('n', '1', ':blast<CR>', opt)
 map ("n", "2", ":bNext<CR>", opt)
 
-
--- 8 ===============目录树==================
-map("n", "<C-b>", ":NvimTreeToggle<CR>", opt)
-map("i", "<C-b>", "<ESC>:NvimTreeToggle<CR>", opt)
-
-
--- 9 ==============函数预览================
-map("n", "<C-s>", ":SymbolsOutline<CR>", opt)
-map("i", "<C-s>", "<ESC>:SymbolsOutline<CR>", opt)
-
-
--- 10 =============主题切换================
-vim.api.nvim_set_keymap("n", "0", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", {noremap = true, silent = true})
 -- +====================================+
 -- |            快捷键函数              |
 -- +====================================+

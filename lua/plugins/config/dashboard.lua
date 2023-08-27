@@ -6,13 +6,6 @@ db.custom_center = {
     {icon = "    ", desc = 'colorscheme', action = 'Telescope colorscheme',},
 
 }
---[[
-{icon = "  ", desc = 'Recently lastest session    ', shortcut = "Leader s l", action = ""},
-icon = "  ",
-icon = "  "
-icon = "  ",
-]]
-
 
 db.custom_header = {
     '    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠤⠖⠚⢉⣩⣭⡭⠛⠓⠲⠦⣄⡀⠀⠀⠀⠀⠀⠀⠀  ',
@@ -37,18 +30,3 @@ db.custom_header = {
     '    ⣇⠀⢠⠀⠀⢳⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡎⣆⠀⠀⠀⠀⠀⠘  ',
     '                                    ',
 }
-
---[[
-db.custom_header = {
-
- '          ▀████▀▄▄              ▄█ ',
-    '            █▀    ▀▀▄▄▄▄▄    ▄▄▀▀█ ',
-    '    ▄        █          ▀▀▀▀▄  ▄▀  ',
-    '   ▄▀ ▀▄      ▀▄              ▀▄▀  ',
-    '  ▄▀    █     █▀   ▄█▀▄      ▄█    ',
-    '  ▀▄     ▀▄  █     ▀██▀     ██▄█   ',
-    '   ▀▄    ▄▀ █   ▄██▄   ▄  ▄  ▀▀ █  ',
-    '    █  ▄▀  █    ▀██▀    ▀▀ ▀▀  ▄▀  ',
-    '   █   █  █      ▄▄           ▄▀   ',
-}
-]]

@@ -1,11 +1,10 @@
---require("nvim-lsp-installer").setup{}
-
 require("mason").setup{}
 local opts = { noremap=true, silent=true }
 -- 查看代码诊断信息
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 -- 查看所有错误
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
 
 local lspconfig = require("lspconfig")
 local function on_attach(client, bufnr) -- set up buffer keymaps, etc.
@@ -65,4 +64,4 @@ lspconfig.jdtls.setup({
     },
 })
 
-require("lsp.lspconfig").setup()
+require("plugins.config.LspConfig").setup()

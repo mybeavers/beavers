@@ -44,20 +44,19 @@ cmp.setup{
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
         ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
-
-        --        ["9"] = cmp.mapping(function(fallback)
---            -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
---            if cmp.visible() then
---                local entry = cmp.get_selected_entry()
---                if not entry then
---                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
---                else
---                    cmp.confirm()
---                end
---            else
---                fallback()
---            end
---        end, {"i","s","c",}),
+        ["<leader>"] = cmp.mapping(function(fallback)
+            -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+            if cmp.visible() then
+                local entry = cmp.get_selected_entry()
+                if not entry then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                else
+                    cmp.confirm()
+                end
+            else
+                fallback()
+            end
+        end, {"i","s","c",}),
     }),
 
     -- 窗口

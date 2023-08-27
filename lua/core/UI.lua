@@ -84,7 +84,24 @@ vim.api.nvim_set_hl(0, 'User9', {fg=colors.red})
 
 
 ----------------------------------------
---          Java高亮显示组
+--          MyOneDark Theme
+----------------------------------------
+vim.cmd('highlight clear') -- clear all highlight
+
+vim.cmd([[
+    if exists('syntax on') 
+        syntax reset
+]])
+
+vim.o.background='dark'
+vim.cmd('let g:colors_name="MyOneDark"')
+
+vim.api.nvim_set_hl(0, 'VertSplit', {fg=colors.magenta, bg=colors.magenta})
+
+vim.cmd('color habamax')
+
+----------------------------------------
+--         My java highlight group
 ----------------------------------------
 vim.api.nvim_create_autocmd("FileType", {
     pattern = 'java',
@@ -126,6 +143,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
         vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { bg='NONE', fg=colors.LightGray})
         vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { link='CmpItemKindKeyword' })
         vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link='CmpItemKindKeyword' })
+
+        -- 选中栏
+        vim.api.nvim_set_hl(0, 'MyCmpSel', {bg=colors.SoftBlue, fg=colors.black})
     end,
     nested = true,
 })
+

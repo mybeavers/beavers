@@ -1,4 +1,6 @@
+--------------------------------------------------
 -- 将wsl中的nvim复制内容同步到windows粘贴板
+--------------------------------------------------
 if vim.fn.has('wsl') then
     vim.cmd [[
         augroup Yank
@@ -8,7 +10,10 @@ if vim.fn.has('wsl') then
     ]]
 end
 
+
+--------------------------------------------------
 -- 自动保存
+--------------------------------------------------
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
     pattern = { "*" },
     command = "silent! wall",
@@ -16,7 +21,9 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 })
 
 
+--------------------------------------------------
 -- 恢复光标位置
+--------------------------------------------------
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = "*",
     callback = function()
@@ -27,14 +34,11 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    command = "highlight! MyCmpSel guibg=#61AFEF guifg=#000000",
-    nested = true,
-})
 
 
-
+--------------------------------------------------
+-- 关闭目录
+--------------------------------------------------
 
 vim.api.nvim_create_user_command("MakeDirectory", function()
     ---@diagnostic disable-next-line: missing-parameter
@@ -47,7 +51,11 @@ vim.api.nvim_create_user_command("MakeDirectory", function()
     end
 end, { desc = "Create directory if it doesn't exist" })
 
+
+
+--------------------------------------------------
 -- 自动补齐字符
+--------------------------------------------------
 vim.cmd([[
     inoremap ( ()<LEFT>
     inoremap [ []<LEFT>
@@ -56,30 +64,33 @@ vim.cmd([[
     inoremap ' ''<LEFT>
 ]])
 
+
+
+--------------------------------------------------
 -- 外侧退出括号
+--------------------------------------------------
 vim.cmd([[
     inoremap <expr> ) getline('.')[col('.')-1] == ')' ? "\<Right>" : ")"
     inoremap <expr> ] getline('.')[col('.')-1] == ']' ? "\<Right>" : "]"
     inoremap <expr> } getline('.')[col('.')-1] == '}' ? "\<Right>" : "}"
 ]])
 
+
+
+--------------------------------------------------
 -- 快速注释
+--------------------------------------------------
 vim.cmd([[ 
     vnoremap <silent> 1 :s/^/\/\//<CR>
     vnoremap <silent> 2 :s/\/\//<CR>
 ]])
 
--- 创建javase项目目录
-vim.cmd([[
-    command MvnJavaSE :execute "!cp -r ~/.config/templates/javaSE/* ./" 
-]])
 
--- 创建javaweb项目目录
-vim.cmd([[
-    command MvnJavaMVC :execute "!cp -r ~/.config/templates/javaMVC/* ./"
-]])
 
-vim.cmd([[
-    command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpringBoot/* ./"
-]])
+--------------------------------------------------
+-- 创建Java Maven项目目录
+--------------------------------------------------
+vim.cmd('command MvnJavaSE :execute "!cp -r ~/.config/templates/javaSE/* ./"')
+vim.cmd('command MvnJavaMVC :execute "!cp -r ~/.config/templates/javaMVC/* ./"')
+vim.cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpringBoot/* ./"')
 
