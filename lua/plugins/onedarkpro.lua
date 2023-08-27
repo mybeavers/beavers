@@ -48,13 +48,6 @@ require("onedarkpro").setup({
         TelescopePreviewNormal = { bg = "${telescope_preview}" },
         TelescopePreviewBorder = { fg = "${telescope_preview}", bg = "${telescope_preview}" },
     },
-   -- colors = {
-   --     onelight = {
-   --         bg= "#fdf6e3",
-    --    },
-
-    --},
-
     options = {
         --支持透明主題
     },

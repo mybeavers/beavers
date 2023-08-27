@@ -1,7 +1,7 @@
-require('core.set')
-require('core.key')
-require("core.au")
-require("core.command")
+require('core.Basic')
+require('core.Keymaps')
+require("core.Autocmd")
+require("core.UI")
 
 require("plugins.FastInit")
 -- icons: 

@@ -80,7 +80,9 @@ vim.api.nvim_set_hl(0, 'User9', {fg=colors.red})
 --    end,
 --    nested=true,
 --})
---
+
+
+
 ----------------------------------------
 --          Java高亮显示组
 ----------------------------------------
@@ -127,6 +129,3 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end,
     nested = true,
 })
-
-
-

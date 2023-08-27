@@ -1,14 +1,9 @@
 -- Configure lsp information display style
+-- 
 local M = {}
 
 M.setup = function()
     -- replace the lsp info symbol
-    --  local signs = {
-    --    { name = "DiagnosticSignError", text = "" },
-    --    { name = "DiagnosticSignWarn", text = "" },
-    --    { name = "DiagnosticSignHint", text = "" },
-    --    { name = "DiagnosticSignInfo", text = "" },
-    --  }
     local signs = {
         { name = "DiagnosticSignError", text = "┃" },
         { name = "DiagnosticSignWarn", text = "┃" },
