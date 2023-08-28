@@ -13,24 +13,38 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
 
+local map = vim.api.nvim_set_keymap
+local opt = {noremap = true, silent = true }
+
 require("lazy").setup({
     -- +==================================+
     -- |               功能               |
     -- +==================================+
+    -- 目录树
     {
         "nvim-tree/nvim-tree.lua",
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
+        config = function ()
+            map("n", "<C-b>", ":NvimTreeToggle<CR>", opt)
+            map("i", "<C-b>", "<ESC>:NvimTreeToggle<CR>", opt)
+        end,
 
     },
-    -- 文件搜索
 
+    -- 文件搜索
    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim"
         },
+        config=function ()
+            map("n", "to", ":Telescope oldfiles<CR>", opt)
+            map("n", "tf", ":Telescope find_files<CR>", opt)
+            map("n", "tb", ":Telescope buffers<CR>", opt)
+            map("n", "ts", ":Telescope lsp_document_symbols<CR>", opt)
+        end,
     },
 
     -- markdown预览
@@ -43,11 +57,11 @@ require("lazy").setup({
             vim.g["mkdp_open_to_the_world"] = 0 -- 默认监听127.0.0.1
         end,
     },
-    -- 缩进线
+
+
     -- +==================================+
     -- |               UI                 |
     -- +==================================+
-
     -- 主题colorscheme
     {
         "olimorris/onedarkpro.nvim",
@@ -62,13 +76,17 @@ require("lazy").setup({
         commit = "f7d623457d6621b25a1292b24e366fae40cb79ab",
     },
     -- 标签页
-    "akinsho/bufferline.nvim",
+    {
+        "akinsho/bufferline.nvim",
+        config = function ()
+            map ("n", "1", ":BufferLineCyclePrev<CR>", opt)
+        end,
+    },
     -- 底栏
     "nvim-lualine/lualine.nvim",
     -- git标记
     "lewis6991/gitsigns.nvim",
 
-    --"lukas-reineke/indent-blankline.nvim",
    -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
@@ -94,4 +112,3 @@ require("lazy").setup({
     },
 
 })
-

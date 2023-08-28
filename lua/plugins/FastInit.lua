@@ -1,4 +1,3 @@
-require("plugins.Keymaps")
 require('plugins.config.Lazy')
 require("plugins.config.dashboard")
 require("plugins.config.nvimtree")
@@ -16,5 +15,5 @@ require('plugins.config.CmpNvim')
 vim.cmd('let g:UltiSnipsSnippetDirectories = ["~/.local/share/nvim/UltiSnips/"]')
 -- 选中触发
 vim.cmd('let g:UltiSnipsExpandTrigger="<leader>y"')
-vim.cmd('let g:UltiSnipsExpandTrigger="<tab>"') 
+vim.cmd('let g:UltiSnipsExpandTrigger="<tab>"')
 

@@ -29,6 +29,9 @@ require('gitsigns').setup({
 })
 
 
+-- ---------------------------------
+--          根据时间加载主题
+-- ---------------------------------
 local hour = tonumber(os.date("%H"))
 if hour >= 16 or hour < 10 then
     vim.cmd("color onedark")
