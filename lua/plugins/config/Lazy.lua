@@ -66,9 +66,9 @@ require("lazy").setup({
     -- 底栏
     "nvim-lualine/lualine.nvim",
     -- git标记
-    "lewis6991/gitsigns.nvim";
+    "lewis6991/gitsigns.nvim",
 
-    "lukas-reineke/indent-blankline.nvim",
+    --"lukas-reineke/indent-blankline.nvim",
    -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+

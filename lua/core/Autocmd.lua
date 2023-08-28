@@ -1,3 +1,4 @@
+local autocmd = vim.api.nvim_create_autocmd
 --------------------------------------------------
 -- 将wsl中的nvim复制内容同步到windows粘贴板
 --------------------------------------------------
@@ -14,8 +15,8 @@ end
 --------------------------------------------------
 -- 自动保存
 --------------------------------------------------
-vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-    pattern = { "*" },
+autocmd({ "InsertLeave", "TextChanged" }, {
+    pattern = "*",
     command = "silent! wall",
     nested = true,
 })
@@ -24,7 +25,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 --------------------------------------------------
 -- 恢复光标位置
 --------------------------------------------------
-vim.api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
     pattern = "*",
     callback = function()
         if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") then
@@ -32,6 +33,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
             vim.cmd("silent! foldopen")
         end
     end,
+    nested=true
 })
 
 

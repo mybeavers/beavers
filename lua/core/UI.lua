@@ -1,4 +1,7 @@
-----------------------------------------
+local api = vim.api
+local highlight = vim.api.nvim_set_hl
+local autocmd = vim.api.nvim_create_autocmd
+-------------------------------------
 --          ColorGroups
 ----------------------------------------
 local colors = {
@@ -7,7 +10,7 @@ local colors = {
     green                       = '#98be65',    -- 绿色
     yellow                      = '#ECBE7B',    -- 黄色
     cyan                        = '#008080',    -- 青色
-    orange                      = '#FF8800',    -- 橙色
+    orange                      = '#FF8800',    -- 橙色#9CDCFE
     black                       = '#000000',    -- 黑色
     withe                       = '#ffffff',    -- 白色
     violet                      = '#a9a1e1',    -- 紫罗兰色
@@ -20,6 +23,9 @@ local colors = {
     VerySoftBlue                = '#9CDCFE',    -- 非常柔和的蓝色
     LightGray                   = '#D4D4D4',    -- 浅灰色
     DarkGrayishBlue             = '#7f828e',    -- 深灰蓝色
+    ModerateCyan                = '#56b6c2',    -- 适度的青色
+    SoftViolet                  = '#b490ca',    -- 柔和的紫色
+    SoftGreen                   = '#A1E1A9',    -- 柔和的绿色
 }
 
 
@@ -27,21 +33,25 @@ local colors = {
 -----------------------------------------
 --          statusline 底栏
 -----------------------------------------
-vim.api.nvim_set_hl(0, 'User1', {fg=colors.black, bg=colors.blue})
-vim.api.nvim_set_hl(0, 'User2', {fg=colors.DarkGrayishBlue})
-vim.api.nvim_set_hl(0, 'User3', {fg=colors.black, bg=colors.green})
-vim.api.nvim_set_hl(0, 'User8', {fg=colors.black, bg=colors.violet})
-vim.api.nvim_set_hl(0, 'User0', {fg=colors.black, bg=colors.red})
+highlight(0, 'User1', {fg=colors.SoftRed})
+highlight(0, 'User2', {fg=colors.green})
+highlight(0, 'User3', {fg=colors.violet})
+highlight(0, 'User4', {fg= colors.SoftBlue})
 
-vim.api.nvim_set_hl(0, 'User4', {fg=colors.SoftBlue})
-vim.api.nvim_set_hl(0, 'User5', {fg=colors.green})
-vim.api.nvim_set_hl(0, 'User7', {fg=colors.violet})
-vim.api.nvim_set_hl(0, 'User9', {fg=colors.red})
+highlight(0, 'User5', {fg=colors.black, bg=colors.blue})
+highlight(0, 'User6', {fg=colors.black, bg=colors.green})
+highlight(0, 'User7', {fg=colors.black, bg=colors.violet})
+highlight(0, 'User8', {fg=colors.black, bg=colors.SoftRed})
 
- vim.o.statusline = "%2*%=%-7.(%l,%c%V%)%t  "
-----------------------------------------
+
+highlight(0, 'User9', {fg=colors.DarkGrayishBlue})
+
+vim.o.statusline = '%9*%=%-7.(%l,%c%V%)%t  '
+
+--------------------------------------
 --  根据模式变换颜色 > 多功能版statusline
------------------------------------------
+---------------------------------------
+--
 --vim.cmd([[ 
 --function! StoreNewMode(event) abort
 --  let g:my_new_mode = a:event.new_mode
@@ -57,63 +67,51 @@ vim.api.nvim_set_hl(0, 'User9', {fg=colors.red})
 --    pattern = '*',
 --    callback = function ()
 --        if vim.g.my_new_mode == 'n' then --命令模式
---            vim.o.statusline = "%2*%=%-7.(%l,%c%V%)%4*%1*%t%4*  "
---            --vim.o.statusline = "%2*%=%-7.(%l,%c%V%)%4*%t  "
+--            vim.o.statusline = "%9*%=%-7.(%l,%c%V%)%4*%5*%t%4* "
 --        end
 --        if vim.g.my_new_mode == 'i' then --插入模式
---            vim.o.statusline = "%2*%=%-7.(%l,%c%V%)%7*%8*%t%7*  "
---            --vim.o.statusline = "%2*%=%-7.(%l,%c%V%)%7*%t  "
+--            vim.o.statusline = "%9*%=%-7.(%l,%c%V%)%3*%7*%t%3* "
 --        end
 --        if vim.g.my_new_mode == 'v' then --选中模式
---            vim.o.statusline = "%2*%=%-7.(%l,%c%V%)%5*%3*%t%5*  "
---            --vim.o.statusline = "%2*%=%-7.(%l,%c%V%)%5*%t  "
+--            vim.o.statusline = "%9*%=%-7.(%l,%c%V%)%2*%6*%t%2* "
 --        end
---        
---        
 --        if vim.g.my_new_mode == 'c' then --底栏命令
---            --vim.o.statusline = "%2*%=%-7.(%l,%c%V%)%9*%0*%t%9*  "
---            
---            
---            
---            vim.o.statusline = "%2*%=%-7.(%l,%c%V%)%9*%t  "
+--            vim.o.statusline = "%9*%=%-7.(%l,%c%V%)%1*%8*%t%1* "
 --        end
 --    end,
 --    nested=true,
---})
-
-
-
+--  })
+--
+--
 ----------------------------------------
---          MyOneDark Theme
-----------------------------------------
-vim.cmd('highlight clear') -- clear all highlight
+--          TODO字符高亮
+---------------------------------------- 
+autocmd({"BufEnter","ColorScheme"}, {
+    pattern = '*',
+    callback=function ()
+        vim.cmd('highlight clear DiagnosticUnderlineInfo') -- 清除java中的TODO高亮设置
+        vim.cmd('syn match myequal "="')                   -- 正则匹配等于号
+        highlight(0, 'myequal', {fg=colors.ModerateCyan})
+        highlight(0,'TODO', {fg = colors.black, bg=colors.SoftBlue})
+    end,
+    nested=true
+})
 
-vim.cmd([[
-    if exists('syntax on') 
-        syntax reset
-]])
-
-vim.o.background='dark'
-vim.cmd('let g:colors_name="MyOneDark"')
-
-vim.api.nvim_set_hl(0, 'VertSplit', {fg=colors.magenta, bg=colors.magenta})
-
-vim.cmd('color habamax')
 
 ----------------------------------------
 --         My java highlight group
 ----------------------------------------
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = 'java',
+autocmd({"FileType", "ColorScheme"}, {
+    pattern = '*',
     callback = function ()
-        vim.api.nvim_set_hl(0, 'javaType', {fg = colors.magenta})                             -- 数据类型
-        vim.api.nvim_set_hl(0, 'javaClassDecl', {link='javaType'})                            -- 实现
-        vim.api.nvim_set_hl(0, '@lsp.type.modifier.java', {link='javaType'})                  -- 关键字
-        vim.api.nvim_set_hl(0, '@lsp.type.property.java', {fg = colors.SoftRed})              -- 变量
-        vim.api.nvim_set_hl(0, '@lsp.type.class.java', {fg = colors.SoftOrange})              -- 类
-        vim.api.nvim_set_hl(0, '@lsp.type.method.java', {fg = colors.SoftBlue})               -- 方法
-        vim.api.nvim_set_hl(0, '@lsp.type.annotationMember.java', {fg = colors.SoftBlue})     -- 注解方法
-        vim.api.nvim_set_hl(0, '@lsp.type.enumMember.java', {fg = colors.ModerateOrange})     -- 枚举常量
+        highlight(0, 'javaType', {fg = colors.magenta})                             -- 数据类型
+        highlight(0, 'javaClassDecl', {link='javaType'})                            -- 实现
+        highlight(0, '@lsp.type.modifier.java', {link='javaType'})                  -- 关键字
+        highlight(0, '@lsp.type.property.java', {fg = colors.SoftRed})              -- 变量
+        highlight(0, '@lsp.type.class.java', {fg = colors.SoftOrange})              -- 类
+        highlight(0, '@lsp.type.method.java', {fg = colors.SoftBlue})               -- 方法
+        highlight(0, '@lsp.type.annotationMember.java', {fg = colors.SoftBlue})     -- 注解方法
+        highlight(0, '@lsp.type.enumMember.java', {fg = colors.ModerateOrange})     -- 枚举常量
     end,
     nested = true,
 
@@ -122,31 +120,45 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 ----------------------------------------
---          Cmp高亮显示组
+--          Cmp highlight group
 ----------------------------------------
-vim.api.nvim_create_autocmd("VimEnter", {
+autocmd({"vimEnter", "ColorScheme"}, {
     pattern = "*",
     callback = function ()
         -- gray
-        vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg='NONE', strikethrough=true, fg= '#808080' })
+        highlight(0, 'CmpItemAbbrDeprecated', { bg='NONE', strikethrough=true, fg= '#808080' })
         -- blue
-        vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg='NONE', fg= '#569CD6' })
-        vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link='CmpIntemAbbrMatch' })
+        highlight(0, 'CmpItemAbbrMatch', { bg='NONE', fg= '#569CD6' })
+        highlight(0, 'CmpItemAbbrMatchFuzzy', { link='CmpIntemAbbrMatch' })
         -- light blue
-        vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { bg='NONE', fg=colors.VerySoftBlue})
-        vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { link='CmpItemKindVariable' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindText', { link='CmpItemKindVariable' })
+        highlight(0, 'CmpItemKindVariable', { bg='NONE', fg=colors.VerySoftBlue})
+        highlight(0, 'CmpItemKindInterface', { link='CmpItemKindVariable' })
+        highlight(0, 'CmpItemKindText', { link='CmpItemKindVariable' })
         -- pink
-        vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { bg='NONE', fg=colors.SlightlyDesaturatedMagenta})
-        vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { link='CmpItemKindFunction' })
+        highlight(0, 'CmpItemKindFunction', { bg='NONE', fg=colors.SlightlyDesaturatedMagenta})
+        highlight(0, 'CmpItemKindMethod', { link='CmpItemKindFunction' })
         -- front
-        vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { bg='NONE', fg=colors.LightGray})
-        vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { link='CmpItemKindKeyword' })
-        vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link='CmpItemKindKeyword' })
+        highlight(0, 'CmpItemKindKeyword', { bg='NONE', fg=colors.LightGray})
+        highlight(0, 'CmpItemKindProperty', { link='CmpItemKindKeyword' })
+        highlight(0, 'CmpItemKindUnit', { link='CmpItemKindKeyword' })
 
-        -- 选中栏
-        vim.api.nvim_set_hl(0, 'MyCmpSel', {bg=colors.SoftBlue, fg=colors.black})
+        -- cmp bg
+        highlight(0, 'MyCmpSel', {bg=colors.SoftBlue, fg=colors.black})
+
     end,
     nested = true,
+})
+
+
+--------------------------------------
+ --Telescope highlight group
+--------------------------------------
+autocmd({"BufEnter", "ColorScheme"}, {
+     pattern = "*",
+     callback = function ()
+        highlight(0, 'TelescopePromptTitle', {bg=colors.SoftViolet, fg=colors.black}) --左下title
+        highlight(0, 'TelescopePreviewTitle', {bg=colors.SoftGreen, fg=colors.black}) --右上title 
+     end,
+    nested= true
 })
 
