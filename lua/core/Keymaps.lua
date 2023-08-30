@@ -57,10 +57,24 @@ map('n', '1', ':bprevious<CR>', opt)
 map ("n", "2", ":bNext<CR>", opt)
 
 
+-- 8  ==============主题切换=============
+map('n', 'g', "<cmd>lua Choosecolortheme()<CR>", opt)
+
 
 -- +====================================+
 -- |            快捷键函数              |
 -- +====================================+
+count = 0;
+function Choosecolortheme()
+    local colorthemes = {'onelight', 'retrobox', 'habamax', 'retrobox', 'onedark'};
+    count = count + 1;
+    if count > #colorthemes then
+        count = 1;
+    end
+    vim.cmd("color "..colorthemes[count]);
+end
+
+
 
 
 --一键保存退出函数
@@ -105,5 +119,3 @@ vim.cmd([[
 
     endfunction
 ]])
-
-

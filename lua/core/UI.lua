@@ -81,7 +81,6 @@ vim.o.statusline = '%9*%=%-7.(%l,%c%V%)%t  '
 --    nested=true,
 --  })
 
-
 ----------------------------------------
 --          TODO 字符高亮
 ---------------------------------------- 
@@ -101,8 +100,6 @@ autocmd({"BufEnter","ColorScheme"}, {
     end,
     nested=true
 })
-
-
 
 ----------------------------------------
 --         My java highlight group
