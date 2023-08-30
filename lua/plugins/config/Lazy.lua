@@ -72,14 +72,17 @@ require("lazy").setup({
 
     },
     --开始页
-    {'glepnir/dashboard-nvim',
-        commit = "f7d623457d6621b25a1292b24e366fae40cb79ab",
-    },
+    {
+
+        'glepnir/dashboard-nvim',
+            commit = "f7d623457d6621b25a1292b24e366fae40cb79ab",
+
+        },
     -- 标签页
     {
         "akinsho/bufferline.nvim",
         config = function ()
-            map ("n", "1", ":BufferLineCyclePrev<CR>", opt)
+            map ("n", "0", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", opt)
         end,
     },
     -- 底栏
@@ -87,7 +90,7 @@ require("lazy").setup({
     -- git标记
     "lewis6991/gitsigns.nvim",
 
-   -- +==================================+
+    -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
     -- lsp服务器按照插件

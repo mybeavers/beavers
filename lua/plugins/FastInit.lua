@@ -1,7 +1,7 @@
 require('plugins.config.Lazy')
 require("plugins.config.dashboard")
 require("plugins.config.nvimtree")
-
+--require("plugins.NUI")
 
 ----------------------------------
 --          LSP

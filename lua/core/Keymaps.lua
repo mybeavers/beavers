@@ -20,9 +20,12 @@ local opt = {noremap = true, silent = true }
 map ("n", "vs", ":vs<CR>", opt)
 map ("n", "pl", ":split<CR>", opt)
 map ("n", "<F7>", ":10split term://$SHELL<CR>", opt)
+
 vim.cmd([[ 
-:tnoremap <Esc> <C-\><C-n> 
+    :tnoremap <Esc> <C-\><C-n> 
 ]])
+
+
 -- 2 =======一键退出/保存/保存退出=========
 map ("n", "w", ":silent wall<CR>", opt)
 map ("n", "q", ":q<CR>", opt)
@@ -50,8 +53,10 @@ map("n", "<A-=>", ":source /home/mybeavers/.config/nvim/lua/plugins/HeavyInit.lu
 
 
 -- 7 ==============标签页切换=============
-map('n', '1', ':blast<CR>', opt)
+map('n', '1', ':bprevious<CR>', opt)
 map ("n", "2", ":bNext<CR>", opt)
+
+
 
 -- +====================================+
 -- |            快捷键函数              |

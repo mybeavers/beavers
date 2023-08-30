@@ -3,14 +3,15 @@ local highlight = vim.api.nvim_set_hl
 local autocmd = vim.api.nvim_create_autocmd
 -------------------------------------
 --          ColorGroups
-----------------------------------------
+---------------------------------------
+
 local colors = {
     red                         = '#e06c75',    -- 红色
     blue                        = '#51afef',    -- 蓝色
     green                       = '#98be65',    -- 绿色
     yellow                      = '#ECBE7B',    -- 黄色
     cyan                        = '#008080',    -- 青色
-    orange                      = '#FF8800',    -- 橙色#9CDCFE
+    orange                      = '#FF8800',    -- 橙色
     black                       = '#000000',    -- 黑色
     withe                       = '#ffffff',    -- 白色
     violet                      = '#a9a1e1',    -- 紫罗兰色
@@ -23,35 +24,33 @@ local colors = {
     VerySoftBlue                = '#9CDCFE',    -- 非常柔和的蓝色
     LightGray                   = '#D4D4D4',    -- 浅灰色
     DarkGrayishBlue             = '#7f828e',    -- 深灰蓝色
+    DarkGrayishBlue2            = '#abb2bf',
     ModerateCyan                = '#56b6c2',    -- 适度的青色
     SoftViolet                  = '#b490ca',    -- 柔和的紫色
     SoftGreen                   = '#A1E1A9',    -- 柔和的绿色
 }
 
-
-
 -----------------------------------------
 --          statusline 底栏
 -----------------------------------------
-highlight(0, 'User1', {fg=colors.SoftRed})
-highlight(0, 'User2', {fg=colors.green})
-highlight(0, 'User3', {fg=colors.violet})
-highlight(0, 'User4', {fg= colors.SoftBlue})
+vim.api.nvim_set_hl(0, 'User1', {fg=colors.SoftRed})
+vim.api.nvim_set_hl(0, 'User2', {fg=colors.green})
+vim.api.nvim_set_hl(0, 'User3', {fg=colors.violet})
+vim.api.nvim_set_hl(0, 'User4', {fg= colors.SoftBlue})
 
-highlight(0, 'User5', {fg=colors.black, bg=colors.blue})
-highlight(0, 'User6', {fg=colors.black, bg=colors.green})
-highlight(0, 'User7', {fg=colors.black, bg=colors.violet})
-highlight(0, 'User8', {fg=colors.black, bg=colors.SoftRed})
+vim.api.nvim_set_hl(0, 'User5', {fg=colors.black, bg=colors.blue})
+vim.api.nvim_set_hl(0, 'User6', {fg=colors.black, bg=colors.green})
+vim.api.nvim_set_hl(0, 'User7', {fg=colors.black, bg=colors.violet})
+vim.api.nvim_set_hl(0, 'User8', {fg=colors.black, bg=colors.SoftRed})
 
 
-highlight(0, 'User9', {fg=colors.DarkGrayishBlue})
+vim.api.nvim_set_hl(0, 'User9', {fg=colors.DarkGrayishBlue})
 
 vim.o.statusline = '%9*%=%-7.(%l,%c%V%)%t  '
-
 --------------------------------------
 --  根据模式变换颜色 > 多功能版statusline
 ---------------------------------------
---
+
 --vim.cmd([[ 
 --function! StoreNewMode(event) abort
 --  let g:my_new_mode = a:event.new_mode
@@ -63,7 +62,7 @@ vim.o.statusline = '%9*%=%-7.(%l,%c%V%)%t  '
 --
 --
 ---- 根据当前模式改变statusline 
---vim.api.nvim_create_autocmd('ModeChanged', {
+--autocmd('ModeChanged', {
 --    pattern = '*',
 --    callback = function ()
 --        if vim.g.my_new_mode == 'n' then --命令模式
@@ -84,18 +83,25 @@ vim.o.statusline = '%9*%=%-7.(%l,%c%V%)%t  '
 
 
 ----------------------------------------
---          TODO字符高亮
+--          TODO 字符高亮
 ---------------------------------------- 
+--  TODO:  
+--  FIX 
+--  FIX 
+--  NOTE 
 autocmd({"BufEnter","ColorScheme"}, {
     pattern = '*',
     callback=function ()
         vim.cmd('highlight clear DiagnosticUnderlineInfo') -- 清除java中的TODO高亮设置
-        vim.cmd('syn match myequal "="')                   -- 正则匹配等于号
-        highlight(0, 'myequal', {fg=colors.ModerateCyan})
+        vim.cmd('2match MyFIX / FIX /')
+        vim.cmd('1match MyNOTE / NOTE /')
         highlight(0,'TODO', {fg = colors.black, bg=colors.SoftBlue})
+        highlight(0, 'MyFIX', {fg=colors.black, bg=colors.yellow})
+        highlight(0, 'MyNOTE', {fg=colors.black, bg=colors.green})
     end,
     nested=true
 })
+
 
 
 ----------------------------------------
@@ -144,10 +150,10 @@ autocmd({"vimEnter", "ColorScheme"}, {
 
         -- cmp bg
         highlight(0, 'MyCmpSel', {bg=colors.SoftBlue, fg=colors.black})
-
     end,
     nested = true,
 })
+
 
 
 
@@ -165,7 +171,4 @@ autocmd({"BufEnter", "ColorScheme"}, {
 
 
 
---------------------------------------
--- ColorTheme
---------------------------------------
-vim.cmd('color habamax')
+

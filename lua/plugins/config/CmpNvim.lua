@@ -62,16 +62,14 @@ cmp.setup{
     -- 窗口
     window = {
         documentation = cmp.config.window.bordered({
-            scrollbar = false,
-            winhighlight = "Normal:MyCmpNormal",
+            winhighlight = "Normal:MyCmpNormal"--",FloatBorder:MyCmpFloatBorder",
         }),
         completion = cmp.config.window.bordered({
-            winhighlight = "Normal:MyCmpNormal,CursorLine:MyCmpSel",
-            scrollbar = false,
+            winhighlight = "Normal:MyCmpNormal,CursorLine:MyCmpSel"--",FloatBorder:MyCmpFloatBorder",
         }),
     },
 
-    --显示顺序: 图标 补全字符 类型
+    --显示顺序: 图标 补全字符 类
     formatting = {
         fields = { "kind", "abbr", "menu" },
 
@@ -93,4 +91,5 @@ cmp.setup{
         { name = 'path' },
     })
 }
+
 
