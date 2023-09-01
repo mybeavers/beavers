@@ -58,7 +58,7 @@ map ("n", "2", ":bNext<CR>", opt)
 
 
 -- 8  ==============主题切换=============
-map('n', 'g', "<cmd>lua Choosecolortheme()<CR>", opt)
+map('n', '-', "<cmd>lua Choosecolortheme()<CR>", opt)
 
 
 -- +====================================+
@@ -72,6 +72,7 @@ function Choosecolortheme()
         count = 1;
     end
     vim.cmd("color "..colorthemes[count]);
+    vim.cmd('highlight! CursorLine guibg=Normal')
 end
 
 

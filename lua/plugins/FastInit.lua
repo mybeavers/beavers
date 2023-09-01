@@ -19,16 +19,4 @@ vim.cmd('let g:UltiSnipsExpandTrigger="<tab>"')
 
 
 
-----------------------------------
---          更换主题
--- -------------------------------
-local count = 0;
-local function ChooseColorTheme()
-    local ColorThemes = {'onelight', 'retrobox', 'habamax', 'retrobox', 'quiet', 'onedark'};
-    count = count + 1;
-    if count > #ColorThemes then
-        count = 0;
-    end
-    vim.cmd("color "..ColorThemes[count]);
-end
 
