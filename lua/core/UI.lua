@@ -2,7 +2,7 @@ local api = vim.api
 local highlight = vim.api.nvim_set_hl
 local autocmd = vim.api.nvim_create_autocmd
 -------------------------------------
---          ColorGroups
+--  NOTE  ColorGroups
 ---------------------------------------
 
 local colors = {
@@ -31,7 +31,7 @@ local colors = {
 }
 
 -----------------------------------------
---          statusline 底栏
+--  NOTE     statusline 底栏
 -----------------------------------------
 vim.api.nvim_set_hl(0, 'User1', {fg=colors.SoftRed})
 vim.api.nvim_set_hl(0, 'User2', {fg=colors.green})
@@ -48,7 +48,7 @@ vim.api.nvim_set_hl(0, 'User9', {fg=colors.DarkGrayishBlue})
 
 vim.o.statusline = '%9*%=%-7.(%l,%c%V%)%t  '
 --------------------------------------
---  根据模式变换颜色 > 多功能版statusline
+-- NOTE 根据模式变换颜色 > 多功能版statusline
 ---------------------------------------
 
 --vim.cmd([[ 
@@ -84,10 +84,6 @@ vim.o.statusline = '%9*%=%-7.(%l,%c%V%)%t  '
 ----------------------------------------
 --          TODO 字符高亮
 ---------------------------------------- 
---  TODO:  
---  FIX 
---  FIX 
---  NOTE 
 autocmd({"BufEnter","ColorScheme"}, {
     pattern = '*',
     callback=function ()
@@ -102,7 +98,7 @@ autocmd({"BufEnter","ColorScheme"}, {
 })
 
 ----------------------------------------
---         My java highlight group
+--  NOTE  My java highlight group
 ----------------------------------------
 autocmd({"FileType", "ColorScheme"}, {
     pattern = '*',
@@ -155,7 +151,7 @@ autocmd({"vimEnter", "ColorScheme"}, {
 
 
 --------------------------------------
- --Telescope highlight group
+ -- NOTE Telescope highlight group
 --------------------------------------
 autocmd({"BufEnter", "ColorScheme"}, {
      pattern = "*",
