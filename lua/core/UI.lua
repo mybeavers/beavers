@@ -5,7 +5,7 @@ local autocmd = vim.api.nvim_create_autocmd
 --  NOTE  ColorGroups
 ---------------------------------------
 
-local colors = {
+colors = {
     red                         = '#e06c75',    -- 红色
     blue                        = '#51afef',    -- 蓝色
     green                       = '#98be65',    -- 绿色

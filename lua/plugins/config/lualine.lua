@@ -1,18 +1,6 @@
 local lualine = require('lualine')
 
-local colors = {
-    bg       = '#202328',
-    fg       = '#bbc2cf',
-    yellow   = '#ECBE7B',
-    cyan     = '#008080',
-    darkblue = '#081633',
-    green    = '#98be65',
-    orange   = '#FF8800',
-    violet   = '#a9a1e1',
-    magenta  = '#c678dd',
-    blue     = '#51afef',
-    red      = '#e06c75',
-}
+
 
 local conditions = {
     buffer_not_empty = function()
@@ -33,15 +21,7 @@ local config = {
     options = {
         component_separators = '',
         section_separators = '',
-        --[[
-        theme = {
-        normal = { c = { fg = colors.fg, bg = colors.bg } },
-        inactive = { c = { fg = colors.fg, bg = colors.bg } },
-        },]]
-        --theme = vim.g.colorscheme;
-
-
-    },
+     },
 
     sections = {
         lualine_a = {
@@ -85,6 +65,14 @@ end
 
 
 
+local mode_color = {
+            n = colors.blue,
+            i = colors.violet,
+            v = colors.green,
+            c = colors.red,
+}
+
+
 ins_left {
     function()
         return '▊'
@@ -96,36 +84,11 @@ ins_left {
 
 -- 图标蓝色代表插入,红色代表命令,选择模式是绿
 ins_left {
-    -- mode component
     function()
-        --当前系统图标
-        -- return '  ＞◡❛料峭'
         return ' '
     end,
     color = function()
         -- 颜色变化
-        local mode_color = {
-            n = colors.blue,
-            i = colors.violet,
-            v = colors.green,
-            [''] = colors.blue,
-            V = colors.blue,
-            c = colors.red,
-            no = colors.red,
-            s = colors.orange,
-            S = colors.orange,
-            [''] = colors.orange,
-            ic = colors.yellow,
-            R = colors.violet,
-            Rv = colors.violet,
-            cv = colors.red,
-            ce = colors.red,
-            r = colors.cyan,
-            rm = colors.cyan,
-            ['r?'] = colors.cyan,
-            ['!'] = colors.red,
-            t = colors.red,
-        }
         return { fg = mode_color[vim.fn.mode()]}
     end,
     padding = { right = 1 },
@@ -139,28 +102,6 @@ ins_left {
     end,
     color = function()
         -- auto change color according to neovims mode
-        local mode_color = {
-            n = colors.blue,
-            i = colors.violet,
-            v = colors.green,
-            [''] = colors.blue,
-            V = colors.blue,
-            c = colors.red,
-            --no = colors.red,
-            s = colors.orange,
-            S = colors.orange,
-            [''] = colors.orange,
-            ic = colors.yellow,
-            R = colors.violet,
-            Rv = colors.violet,
-            --cv = colors.red,
-            --ce = colors.red,
-            r = colors.cyan,
-            rm = colors.cyan,
-            ['r?'] = colors.cyan,
-            ['!'] = colors.red,
-            t = colors.red,
-        }
         return { fg = mode_color[vim.fn.mode()] }
     end,
     cond = conditions.hide_in_width,

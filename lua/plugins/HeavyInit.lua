@@ -10,7 +10,6 @@ vim.o.number=true -- 开启行号
 require("plugins.config.bufferline")
 require("plugins.config.lualine")
 require('plugins.IndentLine').setup({char='│',}) -- 说明: 此缩进线功能全部截取自: nvimdev/indentmini.nvim 插件
-require('plugins.config.gitsigns')
 
 
 
@@ -27,4 +26,18 @@ end
 
 
 
+require('gitsigns').setup({
+    signs = {
+        add          = { text = '│' },
+        change       = { text = '│' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
+        untracked    = { text = '┆' },
+    },
 
+   -- 修改行号颜色, 作为标记
+    numhl = true,         -- 当前行号是否修改
+    linehl = false,       -- 当前行颜色是否修改
+    signcolumn = false,
+})

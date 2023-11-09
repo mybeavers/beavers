@@ -4,7 +4,6 @@ require("core.Autocmd")
 require("core.UI")
 
 
-
 require("plugins.FastInit")
 -- icons: 
     --"＞◡❛", " " ," ", " ", " ", " ", " ", " ", " ", ''
