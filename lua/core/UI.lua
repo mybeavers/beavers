@@ -1,34 +1,59 @@
 local api = vim.api
 local highlight = vim.api.nvim_set_hl
 local autocmd = vim.api.nvim_create_autocmd
+
 -------------------------------------
---  NOTE  ColorGroups
+--  NOTE  My color groups
 ---------------------------------------
 
 colors = {
-    red                         = '#e06c75',    -- 红色
-    blue                        = '#51afef',    -- 蓝色
-    green                       = '#98be65',    -- 绿色
-    yellow                      = '#ECBE7B',    -- 黄色
-    cyan                        = '#008080',    -- 青色
-    orange                      = '#FF8800',    -- 橙色
     black                       = '#000000',    -- 黑色
     withe                       = '#ffffff',    -- 白色
-    violet                      = '#a9a1e1',    -- 紫罗兰色
+
+
+    red                         = '#e06c75',    -- 红色
+    orange                      = '#FF8800',    -- 橙色
+    yellow                      = '#ECBE7B',    -- 黄色
+    green                       = '#98be65',    -- 绿色
+    cyan                        = '#008080',    -- 青色
+    blue                        = '#51afef',    -- 蓝色
+    purple                      = '#800080',    -- 紫色
+
+
+    DarkRed                     = '#8b0000',    -- 暗红色
+    DarkOrange                  = '#ff8c00',    -- 暗橙色
+    DarkYellow                  = '#ffff00',    -- 暗黄色
+    DarkGreen                   = '#013220',    -- 暗绿色
+    DarkCyan                    = '#008b8b',    -- 暗青色
+    DarkBlue                    = '#00008b',    -- 暗蓝色
+    DarkPurple                  = '#800080',    -- 暗紫色
+
+
+    LightRed                     = '#ff0000',    -- 亮红色
+    LightOrange                  = '#ffa500',    -- 亮橙色
+    LightYellow                  = '#ffffed',    -- 亮黄色
+    LightGreen                   = '#00ff00',    -- 亮绿色
+    LightCyan                    = '#00ffff',    -- 亮青色
+    LightBlue                    = '#0000ff',    -- 亮蓝色
+    LightPurple                  = '#800080',    -- 亮紫色
+
+
     SoftRed                     = '#E06C75',    -- 柔和的红色
     magenta                     = '#c678dd',    -- 柔和的品红色
     SlightlyDesaturatedMagenta  = '#C586C0',    -- 略微不饱和的洋红色
     SoftOrange                  = '#E5C07B',    -- 柔和的橙色
     ModerateOrange              = '#D19A66',    -- 适度的橙色
+    SoftGreen                   = '#A1E1A9',    -- 柔和的绿色
     SoftBlue                    = '#61AFEF',    -- 柔和的蓝色
     VerySoftBlue                = '#9CDCFE',    -- 非常柔和的蓝色
     LightGray                   = '#D4D4D4',    -- 浅灰色
     DarkGrayishBlue             = '#7f828e',    -- 深灰蓝色
-    DarkGrayishBlue2            = '#abb2bf',
+    DarkGrayishBlue2            = '#abb2bf',    -- 深灰蓝色2
     ModerateCyan                = '#56b6c2',    -- 适度的青色
+    violet                      = '#a9a1e1',    -- 紫罗兰色
     SoftViolet                  = '#b490ca',    -- 柔和的紫色
-    SoftGreen                   = '#A1E1A9',    -- 柔和的绿色
 }
+
 
 -----------------------------------------
 --  NOTE     statusline 底栏
@@ -161,7 +186,5 @@ autocmd({"BufEnter", "ColorScheme"}, {
      end,
     nested= true
 })
-
-
 
 
