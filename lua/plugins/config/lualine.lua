@@ -66,10 +66,10 @@ end
 
 
 local mode_color = {
-            n = colors.blue,
-            i = colors.violet,
-            v = colors.green,
-            c = colors.red,
+            n = CoreUIColorGroup.blue,
+            i = CoreUIColorGroup.violet,
+            v = CoreUIColorGroup.green,
+            c = CoreUIColorGroup.red,
 }
 
 
@@ -77,7 +77,7 @@ ins_left {
     function()
         return '▊'
     end,
-    color = { fg = colors.blue, gui = 'bold' },
+    color = { fg = CoreUIColorGroup.blue, gui = 'bold' },
     padding = { right = 1 },
 
 }
@@ -130,9 +130,9 @@ ins_right {
     -- Is it me or the symbol for modified us really weird
     symbols = { added = ' ', modified =" ", removed = ' ' },
     diff_color = {
-        added = { fg = colors.green },
-        modified = { fg = colors.orange },
-        removed = { fg = colors.red },
+        added = { fg = CoreUIColorGroup.green },
+        modified = { fg = CoreUIColorGroup.orange },
+        removed = { fg = CoreUIColorGroup.red },
     },
     cond = conditions.hide_in_width,
 }
@@ -146,7 +146,7 @@ ins_right {
     'branch',
     icon = '',
     cond = conditions.hide_in_width,
-    color = { fg = colors.violet, gui = 'bold' },
+    color = { fg = CoreUIColorGroup.violet, gui = 'bold' },
 }
 
 
@@ -156,14 +156,14 @@ ins_right {
     'o:encoding', -- option component same as &encoding in viml
     fmt = string.upper, -- I'm not sure why it's upper case either ;)
     cond = conditions.hide_in_width,
-    color = { fg = colors.yellow, gui = 'bold' },
+    color = { fg = CoreUIColorGroup.yellow, gui = 'bold' },
 }
 
 ins_right {
     function()
         return '▊'
     end,
-    color = { fg = colors.blue, gui = 'bold' },
+    color = { fg = CoreUIColorGroup.blue, gui = 'bold' },
     padding = { left = 1 },
 }
 

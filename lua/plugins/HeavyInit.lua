@@ -26,6 +26,7 @@ end
 
 
 
+-- gitsigns标记配置
 require('gitsigns').setup({
     signs = {
         add          = { text = '│' },
@@ -41,3 +42,7 @@ require('gitsigns').setup({
     linehl = false,       -- 当前行颜色是否修改
     signcolumn = false,
 })
+local highlight = vim.api.nvim_set_hl
+highlight(0, 'GitSignsAdd', {fg=CoreUIColorGroup.green})
+highlight(0, 'GitSignsDelete', {fg=CoreUIColorGroup.red})
+highlight(0, 'GitSignsChange',{fg=CoreUIColorGroup.orange})

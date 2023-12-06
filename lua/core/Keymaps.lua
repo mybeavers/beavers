@@ -77,7 +77,6 @@ end
 
 
 
-
 --一键保存退出函数
 vim.cmd([[
     function! Wq_txt()
@@ -88,7 +87,6 @@ vim.cmd([[
         execute 'q'
     endfunction
 ]])
-
 
 -- 一键编译运行函数
 vim.cmd([[ 

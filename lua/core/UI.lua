@@ -1,12 +1,13 @@
 local api = vim.api
+local cmd = vim.cmd
 local highlight = vim.api.nvim_set_hl
 local autocmd = vim.api.nvim_create_autocmd
 
 -------------------------------------
---  NOTE  My color groups
+--  NOTE  My color group
 ---------------------------------------
 
-colors = {
+CoreUIColorGroup = {
     black                       = '#000000',    -- 黑色
     withe                       = '#ffffff',    -- 白色
 
@@ -39,8 +40,8 @@ colors = {
 
 
     SoftRed                     = '#E06C75',    -- 柔和的红色
-    magenta                     = '#c678dd',    -- 柔和的品红色
-    SlightlyDesaturatedMagenta  = '#C586C0',    -- 略微不饱和的洋红色
+    magenta                     = '#c678dd',    -- 紫红色
+    SlightlyDesaturatedMagenta  = '#C586C0',    -- 略微不饱和的紫红色
     SoftOrange                  = '#E5C07B',    -- 柔和的橙色
     ModerateOrange              = '#D19A66',    -- 适度的橙色
     SoftGreen                   = '#A1E1A9',    -- 柔和的绿色
@@ -58,18 +59,18 @@ colors = {
 -----------------------------------------
 --  NOTE     statusline 底栏
 -----------------------------------------
-vim.api.nvim_set_hl(0, 'User1', {fg=colors.SoftRed})
-vim.api.nvim_set_hl(0, 'User2', {fg=colors.green})
-vim.api.nvim_set_hl(0, 'User3', {fg=colors.violet})
-vim.api.nvim_set_hl(0, 'User4', {fg= colors.SoftBlue})
+api.nvim_set_hl(0, 'User1', {fg=CoreUIColorGroup.SoftRed})
+api.nvim_set_hl(0, 'User2', {fg=CoreUIColorGroup.green})
+api.nvim_set_hl(0, 'User3', {fg=CoreUIColorGroup.violet})
+api.nvim_set_hl(0, 'User4', {fg= CoreUIColorGroup.SoftBlue})
 
-vim.api.nvim_set_hl(0, 'User5', {fg=colors.black, bg=colors.blue})
-vim.api.nvim_set_hl(0, 'User6', {fg=colors.black, bg=colors.green})
-vim.api.nvim_set_hl(0, 'User7', {fg=colors.black, bg=colors.violet})
-vim.api.nvim_set_hl(0, 'User8', {fg=colors.black, bg=colors.SoftRed})
+api.nvim_set_hl(0, 'User5', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.blue})
+api.nvim_set_hl(0, 'User6', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.green})
+api.nvim_set_hl(0, 'User7', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.violet})
+api.nvim_set_hl(0, 'User8', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.SoftRed})
 
 
-vim.api.nvim_set_hl(0, 'User9', {fg=colors.DarkGrayishBlue})
+api.nvim_set_hl(0, 'User9', {fg=CoreUIColorGroup.DarkGrayishBlue})
 
 vim.o.statusline = '%9*%=%-7.(%l,%c%V%)%t  '
 --------------------------------------
@@ -112,35 +113,55 @@ vim.o.statusline = '%9*%=%-7.(%l,%c%V%)%t  '
 autocmd({"BufEnter","ColorScheme"}, {
     pattern = '*',
     callback=function ()
-        vim.cmd('highlight clear DiagnosticUnderlineInfo') -- 清除java中的TODO高亮设置
-        vim.cmd('2match MyFIX / FIX /')
-        vim.cmd('1match MyNOTE / NOTE /')
-        highlight(0,'TODO', {fg = colors.black, bg=colors.SoftBlue})
-        highlight(0, 'MyFIX', {fg=colors.black, bg=colors.yellow})
-        highlight(0, 'MyNOTE', {fg=colors.black, bg=colors.green})
+        cmd('highlight clear DiagnosticUnderlineInfo') -- 清除java中的TODO高亮设置
+        cmd('2match MyFIX / FIX /')
+        cmd('1match MyNOTE / NOTE /')
+        highlight(0,'TODO', {fg = CoreUIColorGroup.black, bg=CoreUIColorGroup.SoftBlue})
+        highlight(0, 'MyFIX', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.yellow})
+        highlight(0, 'MyNOTE', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.green})
     end,
     nested=true
 })
 
-----------------------------------------
+-- --------------------------------------
 --  NOTE  My java highlight group
-----------------------------------------
+-- --------------------------------------
+
 autocmd({"FileType", "ColorScheme"}, {
-    pattern = '*',
+    pattern = 'java',
     callback = function ()
-        highlight(0, 'javaType', {fg = colors.magenta})                             -- 数据类型
-        highlight(0, 'javaClassDecl', {link='javaType'})                            -- 实现
-        highlight(0, '@lsp.type.modifier.java', {link='javaType'})                  -- 关键字
-        highlight(0, '@lsp.type.property.java', {fg = colors.SoftRed})              -- 变量
-        highlight(0, '@lsp.type.class.java', {fg = colors.SoftOrange})              -- 类
-        highlight(0, '@lsp.type.method.java', {fg = colors.SoftBlue})               -- 方法
-        highlight(0, '@lsp.type.annotationMember.java', {fg = colors.SoftBlue})     -- 注解方法
-        highlight(0, '@lsp.type.enumMember.java', {fg = colors.ModerateOrange})     -- 枚举常量
+        highlight(0, 'javaType', {fg = CoreUIColorGroup.magenta})                           -- 数据类型
+        highlight(0, '@lsp.type.modifier.java', {link='javaType'})                          -- 关键字
+        highlight(0, '@lsp.type.method.java', {fg = CoreUIColorGroup.SoftBlue})             -- 方法/函数
+        highlight(0, '@lsp.type.property.java', {fg = CoreUIColorGroup.SoftRed})            -- 变量
+        highlight(0, '@lsp.type.class.java', {fg = CoreUIColorGroup.SoftOrange})            -- 类
+        highlight(0, 'javaClassDecl', {link='javaType'})                                    -- 实现
+        highlight(0, '@lsp.type.annotationMember.java', {fg = CoreUIColorGroup.SoftBlue})   -- 注解方法
+        highlight(0, '@lsp.type.enumMember.java', {fg = CoreUIColorGroup.ModerateOrange})   -- 枚举常量
     end,
     nested = true,
 
 })
 
+
+
+-- --------------------------------------
+--  NOTE  My C highlight group
+-- --------------------------------------
+
+autocmd({"FileType", "ColorScheme"}, {
+    pattern = 'c',
+    callback = function ()
+        highlight(0, 'cIncluded', {fg = CoreUIColorGroup.SoftOrange})                       -- 头文件
+        highlight(0, '@function.builtin', {fg=CoreUIColorGroup.SoftBlue})                   -- 库函数
+
+        highlight(0, 'cType', {fg = CoreUIColorGroup.magenta})                              -- 数据类型
+        highlight(0, '@lsp.type.variable.c', {fg=CoreUIColorGroup.SoftRed})                 -- 变量
+        highlight(0, 'cStatement', {fg=CoreUIColorGroup.magenta})                            -- 关键字
+        highlight(0, '@lsp.type.function.c', {link='@function.builtin'})                    -- 函数
+    end,
+    nested = true,
+})
 
 
 ----------------------------------------
@@ -155,19 +176,19 @@ autocmd({"vimEnter", "ColorScheme"}, {
         highlight(0, 'CmpItemAbbrMatch', { bg='NONE', fg= '#569CD6' })
         highlight(0, 'CmpItemAbbrMatchFuzzy', { link='CmpIntemAbbrMatch' })
         -- light blue
-        highlight(0, 'CmpItemKindVariable', { bg='NONE', fg=colors.VerySoftBlue})
+        highlight(0, 'CmpItemKindVariable', { bg='NONE', fg=CoreUIColorGroup.VerySoftBlue})
         highlight(0, 'CmpItemKindInterface', { link='CmpItemKindVariable' })
         highlight(0, 'CmpItemKindText', { link='CmpItemKindVariable' })
         -- pink
-        highlight(0, 'CmpItemKindFunction', { bg='NONE', fg=colors.SlightlyDesaturatedMagenta})
+        highlight(0, 'CmpItemKindFunction', { bg='NONE', fg=CoreUIColorGroup.SlightlyDesaturatedMagenta})
         highlight(0, 'CmpItemKindMethod', { link='CmpItemKindFunction' })
         -- front
-        highlight(0, 'CmpItemKindKeyword', { bg='NONE', fg=colors.LightGray})
+        highlight(0, 'CmpItemKindKeyword', { bg='NONE', fg=CoreUIColorGroup.LightGray})
         highlight(0, 'CmpItemKindProperty', { link='CmpItemKindKeyword' })
         highlight(0, 'CmpItemKindUnit', { link='CmpItemKindKeyword' })
 
         -- cmp bg
-        highlight(0, 'MyCmpSel', {bg=colors.SoftBlue, fg=colors.black})
+        highlight(0, 'MyCmpSel', {bg=CoreUIColorGroup.SoftBlue, fg=CoreUIColorGroup.black})
     end,
     nested = true,
 })
@@ -181,8 +202,8 @@ autocmd({"vimEnter", "ColorScheme"}, {
 autocmd({"BufEnter", "ColorScheme"}, {
      pattern = "*",
      callback = function ()
-        highlight(0, 'TelescopePromptTitle', {bg=colors.SoftViolet, fg=colors.black}) --左下title
-        highlight(0, 'TelescopePreviewTitle', {bg=colors.SoftGreen, fg=colors.black}) --右上title 
+        highlight(0, 'TelescopePromptTitle', {bg=CoreUIColorGroup.SoftViolet, fg=CoreUIColorGroup.black}) --左下title
+        highlight(0, 'TelescopePreviewTitle', {bg=CoreUIColorGroup.SoftGreen, fg=CoreUIColorGroup.black}) --右上title 
      end,
     nested= true
 })
