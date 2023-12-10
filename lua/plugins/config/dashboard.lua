@@ -1,14 +1,9 @@
-local firstPage = require("dashboard")
+db = require('dashboard')
 
-
-firstPage.custom_center = {
-    {icon = "    ", desc = 'find files ', action = 'Telescope find_files' ,},
-    {icon = "    ", desc = 'oldfiles   ', action = 'Telescope oldfiles'   ,},
-    {icon = "    ", desc = 'colorscheme', action = 'Telescope colorscheme',},
-
-}
-
-firstPage.custom_header = {
+db.setup({
+  theme = 'doom',
+  config = {
+    header = {
     '    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠤⠖⠚⢉⣩⣭⡭⠛⠓⠲⠦⣄⡀⠀⠀⠀⠀⠀⠀⠀  ',
     '    ⠀⠀⠀⠀⠀⠀⢀⡴⠋⠁⠀⠀⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠳⢦⡀⠀⠀⠀⠀  ',
     '    ⠀⠀⠀⠀⢀⡴⠃⢀⡴⢳⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣆⠀⠀⠀  ',
@@ -30,7 +25,40 @@ firstPage.custom_header = {
     '    ⡇⠀⠇⠀⠀⡇⡸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠮⢧⣀⣻⢂⠀⠀⠀⠀⠀⠀⢧  ',
     '    ⣇⠀⢠⠀⠀⢳⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡎⣆⠀⠀⠀⠀⠀⠘  ',
     '                                    ',
-}
-
-
---vim.cmd('Dashboard')
+    },
+    center = {
+      {
+        icon = "    ",
+        icon_hl = 'Statement',
+        desc = 'find files ',
+        desc_hl = 'Statement',
+        --key = 'b',
+        --keymap = 'ff',
+        --key_hl = 'Number',
+        key_format = ' %s', -- remove default surrounding `[]`
+        action = 'Telescope find_files'
+      },
+      {
+        icon = "    ",
+        desc = 'oldfiles  ',
+        icon_hl = 'Statement',
+        desc_hl = 'Statement',
+        --key = 'f',
+        --keymap = 'SPC f d',
+        key_format = ' %s', -- remove default surrounding `[]`
+        action = 'Telescope oldfiles'
+      },
+      {
+          icon = "    ",
+          icon_hl = 'Statement',
+          desc = 'colorscheme',
+          desc_hl = 'Statement',
+          --key = 'f',
+          --keymap = 'SPC f d',
+          key_format = ' %s', -- remove default surrounding `[]`
+          action = 'Telescope colorscheme'
+      },
+    },
+    footer = {"    Have fun with Neovim"}  --your footer
+  }
+})

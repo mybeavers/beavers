@@ -2,7 +2,7 @@
 -- 基础配置 [插件管理器/开始页/目录树]
 -- ----------------------------------------
 require('plugins.config.Lazy')
-require("plugins.config.dashboard")
+require('plugins.config.dashboard')
 require("plugins.config.nvimtree")
 
 ----------------------------------

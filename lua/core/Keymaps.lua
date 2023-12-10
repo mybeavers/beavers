@@ -45,7 +45,7 @@ map ("n", "2", ":bNext<CR>", opt)
 
 
 -- 主题切换
-map('n', '-', "<cmd>lua Choosecolortheme()<CR>", opt)
+map('n', '-', "<cmd>lua ChooseColorTheme()<CR>", opt)
 
 
 -- TermToggle
