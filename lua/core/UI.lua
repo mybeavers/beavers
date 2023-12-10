@@ -140,7 +140,6 @@ autocmd({"FileType", "ColorScheme"}, {
         highlight(0, '@lsp.type.enumMember.java', {fg = CoreUIColorGroup.ModerateOrange})   -- 枚举常量
     end,
     nested = true,
-
 })
 
 

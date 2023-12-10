@@ -44,7 +44,6 @@ autocmd("BufReadPost", {
 --------------------------------------------------
 -- 关闭目录
 --------------------------------------------------
-
 vim.api.nvim_create_user_command("MakeDirectory", function()
     ---@diagnostic disable-next-line: missing-parameter
     local path = vim.fn.expand("%")
