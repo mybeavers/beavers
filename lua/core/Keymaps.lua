@@ -19,10 +19,11 @@ local opt = {noremap = true, silent = true }
 -- 1 =============一键分割窗口============= 
 map ("n", "vs", ":vs<CR>", opt)
 map ("n", "pl", ":split<CR>", opt)
-map ("n", "<F7>", ":10split term://$SHELL<CR>", opt)
+map('n', '<F5>', ':lua TermToggle()<CR>', opt)
+map('t', '<F5>', '<Esc> <C-\\><C-n>', opt)
 
 vim.cmd([[ 
-    :tnoremap <Esc> <C-\><C-n> 
+    :tnoremap <Esc> <C-\><C-n>:bd!<CR>
 ]])
 
 
@@ -64,17 +65,16 @@ map('n', '-', "<cmd>lua Choosecolortheme()<CR>", opt)
 -- +====================================+
 -- |            快捷键函数              |
 -- +====================================+
-count = 0;
-function Choosecolortheme()
+chooseColorthemeCount = 0;
+function ChooseColorTheme()
     local colorthemes = {'onelight', 'retrobox', 'habamax', 'retrobox', 'onedark'};
-    count = count + 1;
-    if count > #colorthemes then
-        count = 1;
+    chooseColorthemeCount = chooseColorthemeCount + 1;
+    if chooseColorthemeCount > #colorthemes then
+        chooseColorthemeCount = 1;
     end
-    vim.cmd("color "..colorthemes[count]);
+    vim.cmd("color "..colorthemes[chooseColorthemeCount]);
     vim.cmd('highlight! CursorLine guibg=Normal')
 end
-
 
 
 --一键保存退出函数
@@ -118,3 +118,17 @@ vim.cmd([[
 
     endfunction
 ]])
+
+-- 定义一个lua函数，用来切换打开或关闭一个终端
+function TermToggle()
+  -- 获取当前的缓冲区类型
+  local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
+  -- 如果当前的缓冲区是终端，就强制删除它
+  if buftype == 'terminal' then
+    vim.cmd('bd!')
+  -- 否则，就在新的水平分割窗口中打开一个终端
+  else
+    vim.cmd(':10split term://$SHELL')
+  end
+end
+
