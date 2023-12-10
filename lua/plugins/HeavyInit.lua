@@ -37,7 +37,6 @@ require('gitsigns').setup({
         untracked    = { text = '┆' },
     },
 
-   -- 修改行号颜色, 作为标记
     numhl = true,         -- 当前行号是否修改
     linehl = false,       -- 当前行颜色是否修改
     signcolumn = false,
@@ -46,3 +45,9 @@ local highlight = vim.api.nvim_set_hl
 highlight(0, 'GitSignsAdd', {fg=CoreUIColorGroup.green})
 highlight(0, 'GitSignsDelete', {fg=CoreUIColorGroup.red})
 highlight(0, 'GitSignsChange',{fg=CoreUIColorGroup.orange})
+
+
+vim.cmd([[ 
+let g:terminal_color_1 = '#ff0000'
+let g:terminal_color_2 = 'green'
+]])

@@ -67,7 +67,7 @@ require("lazy").setup({
         "olimorris/onedarkpro.nvim",
         priority = 1000,
         config = function()
-            vim.cmd([[colorscheme onedark]])
+            vim.cmd("colorscheme onedark")
         end,
 
     },
@@ -75,9 +75,9 @@ require("lazy").setup({
     {
 
         'glepnir/dashboard-nvim',
-            commit = "f7d623457d6621b25a1292b24e366fae40cb79ab",
+        commit = "f7d623457d6621b25a1292b24e366fae40cb79ab",
+    },
 
-        },
     -- 标签页
     {
         "akinsho/bufferline.nvim",
@@ -95,24 +95,28 @@ require("lazy").setup({
     -- +==================================+
     -- lsp服务器按照插件
     {"williamboman/mason.nvim",
-        build = ":MasonUpdate",
-    },
-    -- lsp服务器配置插件
+    build = ":MasonUpdate",
+    event = 'VimEnter',
+},
+-- lsp服务器配置插件
+{
     "neovim/nvim-lspconfig",
+    event = "VimEnter",
+},
 
 
-    -- +==================================+
-    -- |          cmp代码补全             |
-    -- +==================================+
-    {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "SirVer/ultisnips",
-            "quangnguyen30192/cmp-nvim-ultisnips",
-        },
+-- +==================================+
+-- |          cmp代码补全             |
+-- +==================================+
+{
+    "hrsh7th/nvim-cmp",
+    event = "VimEnter",
+    dependencies = {
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "SirVer/ultisnips",
+        "quangnguyen30192/cmp-nvim-ultisnips",
     },
+},
 
 })

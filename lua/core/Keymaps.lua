@@ -16,55 +16,47 @@ local opt = {noremap = true, silent = true }
 --+====================================+
 
 
--- 1 =============一键分割窗口============= 
+-- 一键分割窗口
 map ("n", "vs", ":vs<CR>", opt)
 map ("n", "pl", ":split<CR>", opt)
-map('n', '<F5>', ':lua TermToggle()<CR>', opt)
-map('t', '<F5>', '<Esc> <C-\\><C-n>', opt)
-
-vim.cmd([[ 
-    :tnoremap <Esc> <C-\><C-n>:bd!<CR>
-]])
 
 
--- 2 =======一键退出/保存/保存退出=========
-map ("n", "w", ":silent wall<CR>", opt)
-map ("n", "q", ":q<CR>", opt)
+-- 一键保存退出
+map("n", "<ESC>", ":lua SaveAllFiles()<CR>", opt)
+map('n', "q", ":bd<CR>", opt)
+
+-- 一键编译运行
+map("i", "<F24>", "<ESC>:lua RunCode()<CR>", opt)
+map("n", "<F24>", ":lua RunCode()<CR>", opt)
 
 
--- 3 ===========一键保存退出=================
-map("i", "<F22>", "<ESC>:call Wq_txt()<CR>", opt)
-map("n", "<F22>", ":call Wq_txt()<CR>", opt)
-
-
-
--- 4 ============一键编译运行================
-
-map("i", "<F24>", "<ESC>:call RunCode()<CR>", opt)
-map("n", "<F24>", ":call RunCode()<CR>", opt)
-
--- 5 ============目录树======================
+-- 目录树
 map('i', '<C-b>', '<ESC>:Ntree<CR>', opt)
 map('n', '<C-b>', ':Ntree<CR>', opt)
 
--- 5 ==============加载更多配置=================
+
+-- 加载更多配置
 map("n", "<A-=>", ":source /home/mybeavers/.config/nvim/lua/plugins/HeavyInit.lua<CR>", opt)
 
 
-
-
--- 7 ==============标签页切换=============
+-- 标签页切换
 map('n', '1', ':bprevious<CR>', opt)
 map ("n", "2", ":bNext<CR>", opt)
 
 
--- 8  ==============主题切换=============
+-- 主题切换
 map('n', '-', "<cmd>lua Choosecolortheme()<CR>", opt)
+
+
+-- TermToggle
+map('n', '<F5>', ':lua TermToggle()<CR>', opt)
+map('t', '<F5>', '<Esc> <C-\\><C-n>', opt)
 
 
 -- +====================================+
 -- |            快捷键函数              |
 -- +====================================+
+
 chooseColorthemeCount = 0;
 function ChooseColorTheme()
     local colorthemes = {'onelight', 'retrobox', 'habamax', 'retrobox', 'onedark'};
@@ -77,58 +69,48 @@ function ChooseColorTheme()
 end
 
 
---一键保存退出函数
-vim.cmd([[
-    function! Wq_txt()
-        execute 'silent wall'
-        if &filetype == 'markdown'
-            execute 'MarkdownPreviewStop'
-        endif
-        execute 'q'
-    endfunction
-]])
-
--- 一键编译运行函数
-vim.cmd([[ 
-    function! RunCode()
-        execute 'w'
-
-        if &filetype == 'java'
-            if !isdirectory('.build')
-                execute "!mkdir .build"
-            endif
-            execute "!javac % && java %< && mv %:h/*.class  ./.build/ "
-        endif
 
 
-        if &filetype == 'c'
-            if !isdirectory('.build')
-                execute "!mkdir .build"
-            endif
-            execute "!gcc % -o .build/%< && time ./.build/%<"
-        endif
+function SaveAllFiles()
+    vim.cmd('silent wall')
+    if vim.bo.filetype == 'markdown' then
+        vim.cmd('MarkdownPreviewStop')
+    end
+    vim.cmd('q')
+end
 
-        if &filetype == 'python'
-            execute "term python3 %"
-        endif
 
-        if &filetype == "markdown"
-            execute "MarkdownPreview"
-        endif
 
-    endfunction
-]])
 
--- 定义一个lua函数，用来切换打开或关闭一个终端
+function RunCode()
+    vim.cmd('w')
+
+    if not vim.fn.isdirectory('.build') then
+        vim.fn.mkdir('.build')
+    end
+
+    if vim.bo.filetype == 'java' then
+        vim.cmd('!javac % && java %< && mv %:h/*.class ./.build/')
+
+    elseif vim.bo.filetype == 'c' then
+       vim.cmd('!gcc % -o .build/%< && time ./.build/%<')
+
+    elseif vim.bo.filetype == 'python' then
+        vim.cmd('!python3 %')
+
+    elseif vim.bo.filetype == 'markdown' then
+        vim.cmd('MarkdownPreview')
+    end
+end
+
+
+
+
 function TermToggle()
-  -- 获取当前的缓冲区类型
   local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
-  -- 如果当前的缓冲区是终端，就强制删除它
   if buftype == 'terminal' then
     vim.cmd('bd!')
-  -- 否则，就在新的水平分割窗口中打开一个终端
   else
     vim.cmd(':10split term://$SHELL')
   end
 end
-

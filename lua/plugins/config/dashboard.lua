@@ -1,13 +1,14 @@
-local db = require("dashboard")
+local firstPage = require("dashboard")
 
-db.custom_center = {
+
+firstPage.custom_center = {
     {icon = "    ", desc = 'find files ', action = 'Telescope find_files' ,},
     {icon = "    ", desc = 'oldfiles   ', action = 'Telescope oldfiles'   ,},
     {icon = "    ", desc = 'colorscheme', action = 'Telescope colorscheme',},
 
 }
 
-db.custom_header = {
+firstPage.custom_header = {
     '    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠤⠖⠚⢉⣩⣭⡭⠛⠓⠲⠦⣄⡀⠀⠀⠀⠀⠀⠀⠀  ',
     '    ⠀⠀⠀⠀⠀⠀⢀⡴⠋⠁⠀⠀⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠳⢦⡀⠀⠀⠀⠀  ',
     '    ⠀⠀⠀⠀⢀⡴⠃⢀⡴⢳⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣆⠀⠀⠀  ',
@@ -32,3 +33,4 @@ db.custom_header = {
 }
 
 
+--vim.cmd('Dashboard')
