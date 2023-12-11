@@ -22,7 +22,3 @@ vim.cmd('let g:UltiSnipsSnippetDirectories = ["~/.local/share/nvim/UltiSnips/"]'
 vim.cmd('let g:UltiSnipsExpandTrigger="<leader>y"')
 vim.cmd('let g:UltiSnipsExpandTrigger="<tab>"')
 
-
-
-
-

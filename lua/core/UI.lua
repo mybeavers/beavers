@@ -201,7 +201,7 @@ autocmd({"vimEnter", "ColorScheme"}, {
 autocmd({"BufEnter", "ColorScheme"}, {
      pattern = "*",
      callback = function ()
-        highlight(0, 'TelescopePromptTitle', {bg=CoreUIColorGroup.SoftViolet, fg=CoreUIColorGroup.black}) --左下title
+        highlight(0, 'TelescopePromptTitle', {bg=CoreUIColorGroup.SoftOrange, fg=CoreUIColorGroup.black}) --左下title
         highlight(0, 'TelescopePreviewTitle', {bg=CoreUIColorGroup.SoftGreen, fg=CoreUIColorGroup.black}) --右上title 
      end,
     nested= true
