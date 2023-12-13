@@ -7,8 +7,8 @@ vim.o.number=true -- 开启行号
 -- -------------------------------------------------------------
 --          配置加载 [状态栏/底栏/缩进线/git显示]
 -- -------------------------------------------------------------
-require("plugins.config.bufferline")
-require("plugins.config.lualine")
+require("plugins.bufferline")
+require("plugins.lualine")
 require('plugins.IndentLine').setup({char='│',}) -- 说明: 此缩进线功能全部截取自: nvimdev/indentmini.nvim 插件
 
 
@@ -45,4 +45,6 @@ local highlight = vim.api.nvim_set_hl
 highlight(0, 'GitSignsAdd', {fg=CoreUIColorGroup.green})
 highlight(0, 'GitSignsDelete', {fg=CoreUIColorGroup.red})
 highlight(0, 'GitSignsChange',{fg=CoreUIColorGroup.orange})
+
+
 

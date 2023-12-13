@@ -5,7 +5,8 @@ require("plugins.nvimtree")
 
 
 --  LSP 
-require("plugins.Mason")
+require("plugins.CmpNvim")
+require("plugins.LspInit")
 
 
 -- 加载我的代码片段--路径

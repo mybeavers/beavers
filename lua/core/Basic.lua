@@ -21,7 +21,6 @@ vim.o.pumheight = 10							-- 插入模式下弹出式菜单的高度
 vim.o.laststatus = 3							-- 分割window时状态栏不变
 -- vim.o.mouse = "a"							-- 启用鼠标
 
-
 ---------------------------------
 --          代码缩进和排版           
 ---------------------------------
@@ -85,8 +84,6 @@ vim.o.helplang="cn"
 vim.o.encoding="utf8"
 vim.o.fileencodings="utf8,ucs-bom,gbk,cp936,gb2312,gb18030"
 
-
-
 -- --------------------------------------------------------------------------------------
 --                                      其他设置
 -- --------------------------------------------------------------------------------------
@@ -125,32 +122,6 @@ autocmd("BufReadPost", {
     nested=true
 })
 
-
--- 自动补齐字符
-vim.cmd([[
-    inoremap ( ()<LEFT>
-    inoremap [ []<LEFT>
-    inoremap { {}<LEFT>
-    inoremap " ""<LEFT>
-    inoremap ' ''<LEFT>
-]])
-
-
-
--- 外侧退出括号
-vim.cmd([[
-    inoremap <expr> ) getline('.')[col('.')-1] == ')' ? "\<Right>" : ")"
-    inoremap <expr> ] getline('.')[col('.')-1] == ']' ? "\<Right>" : "]"
-    inoremap <expr> } getline('.')[col('.')-1] == '}' ? "\<Right>" : "}"
-]])
-
-
-
--- 快速注释
-vim.cmd([[ 
-    vnoremap <silent> 1 :s/^/\/\//<CR>
-    vnoremap <silent> 2 :s/\/\//<CR>
-]])
 
 
 

@@ -1,5 +1,7 @@
-require("mason").setup{}
 local opts = { noremap=true, silent=true }
+
+require("mason").setup{}
+
 -- 查看代码诊断信息
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 -- 查看所有错误
@@ -66,4 +68,3 @@ lspconfig.jdtls.setup({
 
 
 require("plugins.LspConfig").setup()
-require("plugins.CmpNvim")
