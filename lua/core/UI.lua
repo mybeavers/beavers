@@ -123,45 +123,6 @@ autocmd({"BufEnter","ColorScheme"}, {
     nested=true
 })
 
--- --------------------------------------
---  NOTE  My java highlight group
--- --------------------------------------
-
-autocmd({"FileType", "ColorScheme"}, {
-    pattern = 'java',
-    callback = function ()
-        highlight(0, 'javaType', {fg = CoreUIColorGroup.magenta})                           -- 数据类型
-        highlight(0, '@lsp.type.modifier.java', {link='javaType'})                          -- 关键字
-        highlight(0, '@lsp.type.method.java', {fg = CoreUIColorGroup.SoftBlue})             -- 方法/函数
-        highlight(0, '@lsp.type.property.java', {fg = CoreUIColorGroup.SoftRed})            -- 变量
-        highlight(0, '@lsp.type.class.java', {fg = CoreUIColorGroup.SoftOrange})            -- 类
-        highlight(0, 'javaClassDecl', {link='javaType'})                                    -- 实现
-        highlight(0, '@lsp.type.annotationMember.java', {fg = CoreUIColorGroup.SoftBlue})   -- 注解方法
-        highlight(0, '@lsp.type.enumMember.java', {fg = CoreUIColorGroup.ModerateOrange})   -- 枚举常量
-    end,
-    nested = true,
-})
-
-
-
--- --------------------------------------
---  NOTE  My C highlight group
--- --------------------------------------
-
-autocmd({"FileType", "ColorScheme"}, {
-    pattern = 'c',
-    callback = function ()
-        highlight(0, 'cIncluded', {fg = CoreUIColorGroup.SoftOrange})                       -- 头文件
-        highlight(0, '@function.builtin', {fg=CoreUIColorGroup.SoftBlue})                   -- 库函数
-
-        highlight(0, 'cType', {fg = CoreUIColorGroup.magenta})                              -- 数据类型
-        highlight(0, '@lsp.type.variable.c', {fg=CoreUIColorGroup.SoftRed})                 -- 变量
-        highlight(0, 'cStatement', {fg=CoreUIColorGroup.magenta})                            -- 关键字
-        highlight(0, '@lsp.type.function.c', {link='@function.builtin'})                    -- 函数
-    end,
-    nested = true,
-})
-
 
 ----------------------------------------
 --          Cmp highlight group
@@ -208,3 +169,58 @@ autocmd({"BufEnter", "ColorScheme"}, {
 })
 
 
+
+
+-- --------------------------------------
+--  NOTE  My java highlight group
+-- --------------------------------------
+
+autocmd({"FileType", "ColorScheme"}, {
+    pattern = 'java',
+    callback = function ()
+        highlight(0, 'javaType', {fg = CoreUIColorGroup.magenta})                           -- 数据类型
+        highlight(0, '@lsp.type.modifier.java', {link='javaType'})                          -- 关键字
+        highlight(0, '@lsp.type.method.java', {fg = CoreUIColorGroup.SoftBlue})             -- 方法/函数
+        highlight(0, '@lsp.type.property.java', {fg = CoreUIColorGroup.SoftRed})            -- 变量
+        highlight(0, '@lsp.type.class.java', {fg = CoreUIColorGroup.SoftOrange})            -- 类
+        highlight(0, 'javaClassDecl', {link='javaType'})                                    -- 实现
+        highlight(0, '@lsp.type.annotationMember.java', {fg = CoreUIColorGroup.SoftBlue})   -- 注解方法
+        highlight(0, '@lsp.type.enumMember.java', {fg = CoreUIColorGroup.ModerateOrange})   -- 枚举常量
+    end,
+    nested = true,
+})
+
+
+
+-- --------------------------------------
+--  NOTE  My C highlight group
+-- --------------------------------------
+
+autocmd({"FileType", "ColorScheme"}, {
+    pattern = 'c',
+    callback = function ()
+        highlight(0, 'cIncluded', {fg = CoreUIColorGroup.SoftOrange})                       -- 头文件
+        highlight(0, '@function.builtin', {fg=CoreUIColorGroup.SoftBlue})                   -- 库函数
+
+        highlight(0, 'cType', {fg = CoreUIColorGroup.magenta})                              -- 数据类型
+        highlight(0, '@lsp.type.variable.c', {fg=CoreUIColorGroup.SoftRed})                 -- 变量
+        highlight(0, 'cStatement', {fg=CoreUIColorGroup.magenta})                            -- 关键字
+        highlight(0, '@lsp.type.function.c', {link='@function.builtin'})                    -- 函数
+    end,
+    nested = true,
+})
+
+
+
+
+-- --------------------------------------
+--  NOTE  My py highlight group
+-- --------------------------------------
+ autocmd({"FileType", "ColorScheme"}, {
+      pattern = 'python',
+      callback = function ()
+          highlight(0, 'pythonAttribute', {fg = CoreUIColorGroup.SoftBlue})                       -- 头>          highlight(0, '@function.builtin', {fg=CoreUIColorGroup.SoftBlue})                   -- 库>
+      end,
+    nested = true,
+
+})

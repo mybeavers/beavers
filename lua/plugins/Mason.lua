@@ -63,4 +63,7 @@ lspconfig.jdtls.setup({
     },
 })
 
-require("plugins.config.LspConfig").setup()
+
+
+require("plugins.LspConfig").setup()
+require("plugins.CmpNvim")
