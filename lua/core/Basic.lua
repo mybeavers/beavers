@@ -1,4 +1,3 @@
-local autocmd = vim.api.nvim_create_autocmd
 
 ---------------------------------
 --          通用设置
@@ -83,51 +82,4 @@ vim.o.langmenu="zh_CN.UTF-8"
 vim.o.helplang="cn"
 vim.o.encoding="utf8"
 vim.o.fileencodings="utf8,ucs-bom,gbk,cp936,gb2312,gb18030"
-
--- --------------------------------------------------------------------------------------
---                                      其他设置
--- --------------------------------------------------------------------------------------
--- 将wsl中的nvim复制内容同步到windows粘贴板
-if vim.fn.has('wsl') then
-    vim.cmd [[
-        augroup Yank
-        autocmd!
-        autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
-        augroup END
-    ]]
-end
-
-
---------------------------------------------------
--- 自动保存
---------------------------------------------------
-autocmd({ "InsertLeave", "TextChanged" }, {
-    pattern = "*",
-    command = "silent! wall",
-    nested = true,
-})
-
-
---------------------------------------------------
--- 恢复光标位置
---------------------------------------------------
-autocmd("BufReadPost", {
-    pattern = "*",
-    callback = function()
-        if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") then
-            vim.fn.setpos(".", vim.fn.getpos("'\""))
-            vim.cmd("silent! foldopen")
-        end
-    end,
-    nested=true
-})
-
-
-
-
-
--- 创建Java Maven项目目录
-vim.cmd('command MvnJavaSE :execute "!cp -r ~/.config/templates/javaSE/* ./"')
-vim.cmd('command MvnJavaMVC :execute "!cp -r ~/.config/templates/javaMVC/* ./"')
-vim.cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpringBoot/* ./"')
 

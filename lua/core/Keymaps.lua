@@ -1,3 +1,4 @@
+require("core.Utils")
 MyKeymap = vim.api.nvim_set_keymap
 MyKeymapOpt = {noremap = true, silent = true }
 
@@ -49,10 +50,7 @@ MyKeymap("n", "<A-2>", ":bNext<CR>", MyKeymapOpt)       -- 跳转到下一个buf
 
 
 -- 快速注释
-MyKeymap('v', '1', ':lua AddComment()<CR>', MyKeymapOpt)
-MyKeymap('v', '2', ':lua DeleteComment()<CR>', MyKeymapOpt)
-
-
+MyKeymap('v','3',':lua CommentToggle()<CR>', MyKeymapOpt)
 
 -- 主题切换
 MyKeymap('n', '-', "<cmd>lua ChooseColorTheme()<CR>", MyKeymapOpt)
@@ -83,89 +81,3 @@ vim.cmd([[
 MyKeymap("n", "<A-=>", ":source /home/mybeavers/.config/nvim/lua/HeavyInit.lua<CR>", MyKeymapOpt)
 
 
-
--- +====================================+
--- |            快捷键函数              |
--- +====================================+
-local chooseColorthemeCount = 0;
-function ChooseColorTheme()
-    local colorthemes = {'onelight', 'retrobox', 'habamax', 'retrobox', 'onedark'};
-    chooseColorthemeCount = chooseColorthemeCount + 1;
-    if chooseColorthemeCount > #colorthemes then
-        chooseColorthemeCount = 1;
-    end
-    vim.cmd("color "..colorthemes[chooseColorthemeCount]);
-    vim.cmd('highlight! CursorLine guibg=Normal')
-end
-
-
-
-
-function SaveAllFiles()
-    vim.cmd('silent wall')
-    if vim.bo.filetype == 'markdown' then
-        vim.cmd('MarkdownPreviewStop')
-    end
-    vim.cmd('q')
-end
-
-
-
-
-function RunCode()
-    vim.cmd('w')
-
-    if not vim.fn.isdirectory('.build') then
-        vim.fn.mkdir('.build')
-    end
-
-    if vim.bo.filetype == 'java' then
-        vim.cmd('!javac % && java %< && mv %:h/*.class ./.build/')
-
-    elseif vim.bo.filetype == 'c' then
-       vim.cmd('!gcc % -o .build/%< && time ./.build/%<')
-
-    elseif vim.bo.filetype == 'python' then
-        vim.cmd('!python3 %')
-
-    elseif vim.bo.filetype == 'markdown' then
-        vim.cmd('MarkdownPreview')
-    end
-end
-
-
-
-
-function TermToggle()
-  local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
-  if buftype == 'terminal' then
-    vim.cmd('bd!')
-  else
-    vim.cmd(':10split term://$SHELL')
-  end
-end
-
-
-function AddComment()
-    if vim.bo.filetype == 'java' then
-        vim.cmd(":'<,'>s/^/\\/\\//")
-    elseif vim.bo.filetype == 'lua' then
-        vim.cmd(":'<,'>s/^/--")
-    elseif vim.bo.filetype == 'python' then
-        vim.cmd(":'<,'>s/^/#")
-    elseif vim.bo.filetype == 'c' then
-        vim.cmd(":'<,'>s/^/\\/\\//")
-    end
-end
-
-function DeleteComment()
-    if vim.bo.filetype == 'java' then
-        vim.cmd(":'<,'>s/\\/\\///")
-    elseif vim.bo.filetype == 'c' then
-        vim.cmd(":'<,'>s/\\/\\///")
-    elseif vim.bo.filetype == 'lua' then
-        vim.cmd(":'<,'>s/--/")
-    elseif vim.bo.filetype == 'python' then
-        vim.cmd(":'<,'>s/#/")
-    end
-end
