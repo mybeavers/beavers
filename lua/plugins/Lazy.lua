@@ -80,7 +80,7 @@ require("lazy").setup({
         {
             "akinsho/bufferline.nvim",
             config = function ()
-                MyKeymap ("n", "0", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", MyKeymapOpt)
+                MyKeymap ("n", "<A-0>", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", MyKeymapOpt)
             end,
         },
         -- 底栏

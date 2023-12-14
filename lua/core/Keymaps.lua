@@ -9,13 +9,16 @@ MyKeymapOpt = {noremap = true, silent = true }
 -- <leader> 代表: \
 -- =        格式化代码,只能格式缩进
 
+-- 光标跳转: 
+--      1/2
 -- LSP快捷键: 
 --      <space>+字母键
 -- Telescope查找快捷键: 
 --      <leader>+字母键
 
 
---+====================================+ |            快捷键                  |
+--+====================================+
+--|            快捷键                  |
 --+====================================+
 
 
@@ -38,13 +41,18 @@ MyKeymap('i', '<C-b>', '<ESC>:Ntree<CR>', MyKeymapOpt)
 MyKeymap('n', '<C-b>', ':Ntree<CR>', MyKeymapOpt)
 
 
--- 标签页切换
-MyKeymap('n', '1', ':bprevious<CR>', MyKeymapOpt)
-MyKeymap("n", "2", ":bNext<CR>", MyKeymapOpt)
+-- 光标快速跳转快捷键 -> 1/2
+MyKeymap('n', '1', '<S-{>', MyKeymapOpt)                -- 光标跳转到上一个段落
+MyKeymap('n', '2', '<S-}>', MyKeymapOpt)                -- 光标跳转下一个段落
+MyKeymap('n', '<A-1>', ':bprevious<CR>', MyKeymapOpt)   -- 跳转到上一个buffer
+MyKeymap("n", "<A-2>", ":bNext<CR>", MyKeymapOpt)       -- 跳转到下一个buffer
 
--- 快速移动
-MyKeymap('n', '3', ':10k<CR>', MyKeymapOpt)
-MyKeymap('n', '4', ':10j<CR>', MyKeymapOpt)
+
+-- 快速注释
+MyKeymap('v', '1', ':lua AddComment()<CR>', MyKeymapOpt)
+MyKeymap('v', '2', ':lua DeleteComment()<CR>', MyKeymapOpt)
+
+
 
 -- 主题切换
 MyKeymap('n', '-', "<cmd>lua ChooseColorTheme()<CR>", MyKeymapOpt)
@@ -63,16 +71,11 @@ MyKeymap('i', '"', '""<Left>', MyKeymapOpt)
 MyKeymap('i', "'", "''<Left>", MyKeymapOpt)
 
 
--- 快速注释
-MyKeymap('v', '1', ':lua AddComment()<CR>', MyKeymapOpt)
-MyKeymap('v', '2', ':lua DeleteComment()<CR>', MyKeymapOpt)
-
-
 -- 外侧退出括号
 vim.cmd([[
-inoremap <expr> ) getline('.')[col('.')-1] == ')' ? "\<Right>" : ")"
-inoremap <expr> ] getline('.')[col('.')-1] == ']' ? "\<Right>" : "]"
-inoremap <expr> } getline('.')[col('.')-1] == '}' ? "\<Right>" : "}"
+    inoremap <expr> ) getline('.')[col('.')-1] == ')' ? "\<Right>" : ")"
+    inoremap <expr> ] getline('.')[col('.')-1] == ']' ? "\<Right>" : "]"
+    inoremap <expr> } getline('.')[col('.')-1] == '}' ? "\<Right>" : "}"
 ]])
 
 
