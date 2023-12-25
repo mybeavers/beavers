@@ -72,7 +72,7 @@ api.nvim_set_hl(0, 'User8', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.Soft
 
 api.nvim_set_hl(0, 'User9', {fg=CoreUIColorGroup.DarkGrayishBlue})
 
-vim.o.statusline = '%9*%=%-7.(%l,%c%V%)%t  '
+vim.o.statusline = '%9*%=%-7.(%l,%c%V%) %t  '
 --------------------------------------
 -- NOTE 根据模式变换颜色 > 多功能版statusline
 ---------------------------------------
@@ -224,5 +224,3 @@ autocmd({"FileType", "ColorScheme"}, {
     nested = true,
 
 })
-
-
