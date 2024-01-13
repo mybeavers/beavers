@@ -14,9 +14,7 @@ if vim.fn.has('wsl') then
 end
 
 
---------------------------------------------------
 -- 自动保存
---------------------------------------------------
 autocmd({ "InsertLeave", "TextChanged" }, {
     pattern = "*",
     command = "silent! wall",
@@ -24,9 +22,7 @@ autocmd({ "InsertLeave", "TextChanged" }, {
 })
 
 
---------------------------------------------------
 -- 恢复光标位置
---------------------------------------------------
 autocmd("BufReadPost", {
     pattern = "*",
     callback = function()
@@ -38,17 +34,6 @@ autocmd("BufReadPost", {
     nested=true
 })
 
-
--- 代码折叠设置
---autocmd({"VimEnter","FileType"}, {
---    pattern = '*',
---    callback = function ()
---        vim.cmd(":set foldlevel=6")
---        vim.cmd("set foldmethod=indent")
---    end,
---    nested=true
---})
---
 
 
 -- 目录关闭

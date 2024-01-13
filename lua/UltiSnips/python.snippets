@@ -1,0 +1,24 @@
+snippet #! "#!/usr/bin/..." b
+##!/usr/bin/python3
+
+$0
+endsnippet
+
+snippet sort "冒泡排序" b
+
+def sort(array):
+	for i in range(len(array) - 1):
+		if(array[i] > array[i+1]):
+			tmp = array[i]
+			array[i]   = array[i+1]
+			array[i+1] = tmp
+$0
+endsnippet
+
+
+snippet for "for i in range" b
+for i in range($0):
+endsnippet
+
+
+

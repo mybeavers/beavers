@@ -1,0 +1,72 @@
+snippet /// "/** */" b
+/**
+ * $0 ${VISUAL}
+ */
+endsnippet
+
+# 类
+snippet classv "class" b
+/**
+ * @author ＞◡❛料峭
+ * `date +"%Y-%m-%d %k:%m"`
+*/
+
+
+public class `!p snip.rv ="{0}".format(snip.basename)` {
+	
+	$0
+} 
+endsnippet 
+
+
+# main 方法
+snippet main "public start void main(String[] args) {}" b
+public static void main(String[] args) {
+	$0
+}
+endsnippet
+
+
+
+
+# for模板
+snippet forv "for" b
+for (int i = 0; i < ${1:args.length}; i++) {
+	${VISUAL}
+}
+endsnippet
+
+
+# if模板
+snippet ifv "if" b
+if (${1:condition}) {
+    ${VISUAL}
+}
+endsnippet
+
+
+# try模板
+snippet tryv "try-catch" b
+try{
+	${VISUAL}
+} catch (Exception e) {
+	System.out.println(e);
+}
+endsnippet
+
+
+# while模板
+snippet whilev "while" b
+while(true$0) {
+	${VISUAL}
+}
+endsnippet
+
+
+# method
+snippet md "public void method(){}" b
+public void $0(){
+	
+}
+endsnippet
+
