@@ -3,7 +3,8 @@ local autocmd = vim.api.nvim_create_autocmd
 -- ///////////////////////////////////////////////////////////////////////
 --                            自动程序
 -- //////////////////////////////////////////////////////////////////////
--- 将wsl中的nvim复制内容同步到windows粘贴板
+
+-- 将wsl中的nvim复制内容复制到windows粘贴板
 if vim.fn.has('wsl') then
     vim.cmd [[
         augroup Yank
@@ -66,7 +67,7 @@ vim.cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpri
 -- 主题切换
 local chooseColorthemeCount = 0;
 function ChooseColorTheme()
-    local colorthemes = {'onelight', 'retrobox', 'habamax', 'retrobox', 'onedark'};
+    local colorthemes = {'onelight', 'habamax', 'onedark'}; --retrobox
     chooseColorthemeCount = chooseColorthemeCount + 1;
     if chooseColorthemeCount > #colorthemes then
         chooseColorthemeCount = 1;

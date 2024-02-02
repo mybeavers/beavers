@@ -1,6 +1,7 @@
 snippet <b1> "空行" b
 <br> 
 
+
 $0
 endsnippet
 
@@ -20,14 +21,13 @@ snippet <hr> "分割线" b
 
 
 
-
 $0 
 endsnippet
 
 snippet | "表格" b
 |1			|2			|3			|
 |---		|---		|---		|
-$0
+|$0
 endsnippet
 
 
@@ -36,18 +36,21 @@ snippet filename "当前文件名" b
 $0
 endsnippet
 
-snippet image "image" b
 
-<img src="$0" alt="image">
+snippet image "插入图片" b
+
+![]($0)
 
 endsnippet
+
+snippet link "链接" b
+
+[$0]()
+
+endsnippet
+
 
 snippet 0 "空格" b
 &nbsp; &nbsp; $0
 endsnippet
 
-snippet <a> "comment" b
-
-<a href="$0"> </a>
-
-endsnippet

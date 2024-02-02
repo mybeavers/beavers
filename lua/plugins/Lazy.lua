@@ -69,8 +69,8 @@ require("lazy").setup({
             config = function()
                 vim.cmd("colorscheme onedark")
             end,
-
         },
+
         {
             'nvimdev/dashboard-nvim',
             event = 'VimEnter',

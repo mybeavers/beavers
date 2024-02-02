@@ -181,7 +181,8 @@ autocmd({"FileType", "ColorScheme"}, {
         highlight(0, 'javaType', {fg = CoreUIColorGroup.magenta})                           -- 数据类型
         highlight(0, '@lsp.type.modifier.java', {link='javaType'})                          -- 关键字
         highlight(0, '@lsp.type.method.java', {fg = CoreUIColorGroup.SoftBlue})             -- 方法/函数
-        highlight(0, '@lsp.type.property.java', {fg = CoreUIColorGroup.SoftRed})            -- 变量
+        highlight(0, '@lsp.type.property.java', {fg = CoreUIColorGroup.SoftRed}) --变量
+        highlight(0, '@lsp.type.parameter.java', {fg = CoreUIColorGroup.SoftRed})-- 变量
         highlight(0, '@lsp.type.class.java', {fg = CoreUIColorGroup.SoftOrange})            -- 类
         highlight(0, 'javaClassDecl', {link='javaType'})                                    -- 实现
         highlight(0, '@lsp.type.annotationMember.java', {fg = CoreUIColorGroup.SoftBlue})   -- 注解方法
