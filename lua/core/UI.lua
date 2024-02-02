@@ -225,3 +225,7 @@ autocmd({"FileType", "ColorScheme"}, {
     nested = true,
 
 })
+ 
+highlight(0, 'GitSignsAdd', {fg=CoreUIColorGroup.SoftGreen})
+highlight(0, 'GitSignsDelete', {fg=CoreUIColorGroup.SoftRed})
+highlight(0, 'GitSignsChange',{fg=CoreUIColorGroup.SoftOrange})
