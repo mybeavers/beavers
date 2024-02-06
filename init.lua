@@ -17,6 +17,7 @@ vim.cmd('let g:UltiSnipsSnippetDirectories = ["./lua/UltiSnips/"]')
 vim.cmd('let g:UltiSnipsExpandTrigger="<leader>y"')
 vim.cmd('let g:UltiSnipsExpandTrigger="<tab>"')
 
+
 -- icons: 
 --"＞◡❛", " " ," ", " ", " ", " ", " ", " ", " ", ''
 --"",""," ,"ﰊ","", "", "", "", ""

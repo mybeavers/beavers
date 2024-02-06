@@ -26,20 +26,9 @@ db.setup({
     '    ⣇⠀⢠⠀⠀⢳⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡎⣆⠀⠀⠀⠀⠀⠘  ',
     '                                    ',
     },center = {
-      {
-        icon = "    ",
-        icon_hl = 'Statement',
-        desc = 'find files ',
-        desc_hl = 'Statement',
-        --key = 'b',
-        --keymap = 'ff',
-        --key_hl = 'Number',
-        key_format = ' %s', -- remove default surrounding `[]`
-        action = 'Telescope find_files'
-      },
-      {
+    {
         icon = "    ",
-        desc = 'oldfiles  ',
+        desc = 'Old Files  ',
         icon_hl = 'Statement',
         desc_hl = 'Statement',
         --key = 'f',
@@ -47,10 +36,22 @@ db.setup({
         key_format = ' %s', -- remove default surrounding `[]`
         action = 'Telescope oldfiles'
       },
+
       {
+        icon = "    ",
+        icon_hl = 'Statement',
+        desc = 'Find Files ',
+        desc_hl = 'Statement',
+        --key = 'b',
+        --keymap = 'ff',
+        --key_hl = 'Number',
+        key_format = ' %s', -- remove default surrounding `[]`
+        action = 'Telescope find_files'
+      },
+            {
           icon = "    ",
           icon_hl = 'Statement',
-          desc = 'colorscheme',
+          desc = 'Color Scheme',
           desc_hl = 'Statement',
           --key = 'f',
           --keymap = 'SPC f d',
