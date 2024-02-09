@@ -9,10 +9,10 @@ require("bufferline").setup {
         diagnostics = "nvim_lsp",
        -- 显示bufferline
         always_show_bufferline = true,
-        show_close_icon = false,
-        buffer_close_icon = "",
+        show_close_icon = true,
+        buffer_close_icon = "✗",
         --separator_style = "slant" | "thick" | "thin" | {"any", "any"},
-        separator_style="thin",
+        separator_style="thick",
         -- 左边超过显示图标 
         left_trunc_marker = "",
         -- 右边超过显示图标
@@ -27,5 +27,4 @@ require("bufferline").setup {
         --modified_icon = "●",
         modified_icon= "◍",
     },
-
 }

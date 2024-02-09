@@ -68,16 +68,38 @@ vim.cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpri
 -- 主题切换
 local chooseColorthemeCount = 0;
 function ChooseColorTheme()
-    local colorthemes = {'onelight', 'habamax', 'onedark'}; --retrobox
+    local colorthemes = {'onelight', 'retrobox', 'onedark', 'retrobox', "vim"}; --retrobox
     chooseColorthemeCount = chooseColorthemeCount + 1;
     if chooseColorthemeCount > #colorthemes then
         chooseColorthemeCount = 1;
     end
+
     vim.cmd("color "..colorthemes[chooseColorthemeCount]);
-    vim.cmd('highlight! CursorLine guibg=Normal')
+
+    if chooseColorthemeCount == 5 then 
+        vim.cmd("highlight! SignColumn guibg=bg")
+    end
+
+    if chooseColorthemeCount == 1 or chooseColorthemeCount ==3 then
+        vim.cmd('highlight! CursorLine guibg=Normal')
+        vim.api.nvim_set_hl(0, 'javaType', {fg = CoreUIColorGroup.magenta})                           -- 数据类型
+        vim.api.nvim_set_hl(0, '@lsp.type.modifier.java', {link='javaType'})                          -- 关键字
+        vim.api.nvim_set_hl(0, '@lsp.type.method.java', {fg = CoreUIColorGroup.SoftBlue})             -- 方法/函数
+        vim.api.nvim_set_hl(0, '@lsp.type.property.java', {fg = CoreUIColorGroup.SoftRed}) --变量
+        vim.api.nvim_set_hl(0, '@lsp.type.parameter.java', {fg = CoreUIColorGroup.SoftRed})-- 变量
+        vim.api.nvim_set_hl(0, '@lsp.type.class.java', {fg = CoreUIColorGroup.SoftOrange})            -- 类
+        vim.api.nvim_set_hl(0, 'javaClassDecl', {link='javaType'})                                    -- 实现
+        vim.api.nvim_set_hl(0, '@lsp.type.annotationMember.java', {fg = CoreUIColorGroup.SoftBlue})   -- 注解方法
+        vim.api.nvim_set_hl(0, '@lsp.type.enumMember.java', {fg = CoreUIColorGroup.ModerateOrange})   -- 枚举常量
+    end
+
+    if chooseColorthemeCount == 5 then
+        vim.api.nvim_set_hl(0, '@lsp.type.modifier.java', {link = "Special"})   -- 枚举常量
+        vim.api.nvim_set_hl(0, '@lsp.type.class.java', {link = "javaOperator"})   -- 枚举常量
+-- Special
+
+    end
 end
-
-
 
 -- 自动保存所以已经打开的文件
 function SaveAllFiles()

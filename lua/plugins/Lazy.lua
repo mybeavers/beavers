@@ -42,7 +42,7 @@ require("lazy").setup({
             MyKeymap("n", "<leader>t", ":Telescope<CR>", MyKeymapOpt)
             MyKeymap("n", "<leader>o", ":Telescope oldfiles<CR>", MyKeymapOpt)
             MyKeymap("n", "<leader>f", ":Telescope find_files<CR>", MyKeymapOpt)
-            MyKeymap("n", "<leader>b", ":Telescope buffers<CR>", MyKeymapOpt)
+            MyKeymap("n", "3", ":Telescope buffers<CR>", MyKeymapOpt)
             MyKeymap("n", "<leader>s", ":Telescope lsp_document_symbols<CR>", MyKeymapOpt)
         end,
     },

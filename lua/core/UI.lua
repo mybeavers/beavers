@@ -175,7 +175,7 @@ autocmd({"BufEnter", "ColorScheme"}, {
 --  NOTE  My java highlight group
 -- --------------------------------------
 
-autocmd({"FileType", "ColorScheme"}, {
+autocmd({"FileType", "InsertLeave", "TextChanged" }, {
     pattern = 'java',
     callback = function ()
         highlight(0, 'javaType', {fg = CoreUIColorGroup.magenta})                           -- 数据类型
@@ -196,7 +196,7 @@ autocmd({"FileType", "ColorScheme"}, {
 --  NOTE  My C highlight group
 -- --------------------------------------
 
-autocmd({"FileType", "ColorScheme"}, {
+autocmd({"ColorScheme"}, {
     pattern = 'c',
     callback = function ()
         highlight(0, 'cIncluded', {fg = CoreUIColorGroup.SoftOrange})                       -- 头文件
@@ -216,7 +216,7 @@ autocmd({"FileType", "ColorScheme"}, {
 -- --------------------------------------
 --  NOTE  My py highlight group
 -- --------------------------------------
- autocmd({"FileType", "ColorScheme"}, {
+ autocmd({"ColorScheme"}, {
       pattern = 'python',
       callback = function ()
           highlight(0, 'pythonAttribute', {fg = CoreUIColorGroup.SoftBlue})                       -- 头>          highlight(0, '@function.builtin', {fg=CoreUIColorGroup.SoftBlue})                   -- 库>
@@ -224,7 +224,10 @@ autocmd({"FileType", "ColorScheme"}, {
     nested = true,
 
 })
- 
+
+
+
+
 highlight(0, 'GitSignsAdd', {fg=CoreUIColorGroup.SoftGreen})
 highlight(0, 'GitSignsDelete', {fg=CoreUIColorGroup.SoftRed})
 highlight(0, 'GitSignsChange',{fg=CoreUIColorGroup.SoftOrange})
