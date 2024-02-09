@@ -58,10 +58,6 @@ vim.cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpri
 
 
 
-
-
-
-
 -- ///////////////////////////////////////////////////////////////////////
 --                                  Keymap快捷键函数              
 -- //////////////////////////////////////////////////////////////////////
@@ -76,7 +72,7 @@ function ChooseColorTheme()
 
     vim.cmd("color "..colorthemes[chooseColorthemeCount]);
 
-    if chooseColorthemeCount == 5 then 
+    if chooseColorthemeCount == 5 then
         vim.cmd("highlight! SignColumn guibg=bg")
     end
 
@@ -96,7 +92,12 @@ function ChooseColorTheme()
     if chooseColorthemeCount == 5 then
         vim.api.nvim_set_hl(0, '@lsp.type.modifier.java', {link = "Special"})   -- 枚举常量
         vim.api.nvim_set_hl(0, '@lsp.type.class.java', {link = "javaOperator"})   -- 枚举常量
--- Special
+
+        vim.api.nvim_set_hl(0, 'markdownH4', {link="Special"})
+        vim.api.nvim_set_hl(0, 'markdownH5', {link="Special"})
+        vim.api.nvim_set_hl(0, 'markdownBold', {link="htmlTag"})
+        vim.api.nvim_set_hl(0, 'markdownItalic', {link="Constant"})
+        -- Special
 
     end
 end
