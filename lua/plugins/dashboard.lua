@@ -31,8 +31,6 @@ db.setup({
         desc = 'Old Files  ',
         icon_hl = 'Statement',
         desc_hl = 'Statement',
-        --key = 'f',
-        --keymap = 'SPC f d',
         key_format = ' %s', -- remove default surrounding `[]`
         action = 'Telescope oldfiles'
       },
@@ -53,8 +51,6 @@ db.setup({
           icon_hl = 'Statement',
           desc = 'Color Scheme',
           desc_hl = 'Statement',
-          --key = 'f',
-          --keymap = 'SPC f d',
           key_format = ' %s', -- remove default surrounding `[]`
           action = 'Telescope colorscheme'
       },
