@@ -1,7 +1,3 @@
-require("core.Utils")
-
-MyKeymap = vim.api.nvim_set_keymap
-MyKeymapOpt = {noremap = true, silent = true }
 
 
 -- 映射按键语法

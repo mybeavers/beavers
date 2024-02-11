@@ -1,5 +1,9 @@
-local autocmd = vim.api.nvim_create_autocmd
-
+MyKeymap = vim.api.nvim_set_keymap
+MyKeymapOpt = {noremap = true, silent = true }
+api = vim.api
+cmd = vim.cmd
+highlight = vim.api.nvim_set_hl
+autocmd = vim.api.nvim_create_autocmd
 
 -- ///////////////////////////////////////////////////////////////////////
 --                            自动程序
@@ -7,7 +11,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- 将wsl中的nvim复制内容复制到windows粘贴板
 if vim.fn.has('wsl') then
-    vim.cmd [[
+    cmd [[
         augroup Yank
         autocmd!
         autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
@@ -30,7 +34,7 @@ autocmd("BufReadPost", {
     callback = function()
         if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") then
             vim.fn.setpos(".", vim.fn.getpos("'\""))
-            vim.cmd("silent! foldopen")
+            cmd("silent! foldopen")
         end
     end,
     nested=true
@@ -51,87 +55,65 @@ vim.api.nvim_create_user_command("MakeDirectory", function()
 end, { desc = "Create directory if it doesn't exist" })
 
 
+
 -- 创建Java Maven项目目录
-vim.cmd('command MvnJavaSE :execute "!cp -r ~/.config/templates/javaSE/* ./"')
-vim.cmd('command MvnJavaMVC :execute "!cp -r ~/.config/templates/javaMVC/* ./"')
-vim.cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpringBoot/* ./"')
+cmd('command MvnJavaSE :execute "!cp -r ~/.config/templates/javaSE/* ./"')
+cmd('command MvnJavaMVC :execute "!cp -r ~/.config/templates/javaMVC/* ./"')
+cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpringBoot/* ./"')
 
 
 
--- ///////////////////////////////////////////////////////////////////////
 --                                  Keymap快捷键函数              
--- //////////////////////////////////////////////////////////////////////
 -- 主题切换
-local chooseColorthemeCount = 0;
+local keyCount = 0;
 function ChooseColorTheme()
-    local colorthemes = {'onelight', 'retrobox', 'onedark', 'retrobox', "vim"}; --retrobox
-    chooseColorthemeCount = chooseColorthemeCount + 1;
-    if chooseColorthemeCount > #colorthemes then
-        chooseColorthemeCount = 1;
-    end
+    local colorthemes = {'onelight', 'retrobox', 'onedark', 'retrobox', "vim"}
 
-    vim.cmd("color "..colorthemes[chooseColorthemeCount]);
+    keyCount = keyCount + 1;
+    if keyCount > #colorthemes then keyCount = 1 end
 
-    if chooseColorthemeCount == 5 then
-        vim.cmd("highlight! SignColumn guibg=bg")
-    end
+    cmd("color "..colorthemes[keyCount]);
 
-    if chooseColorthemeCount == 1 or chooseColorthemeCount ==3 then
-        vim.cmd('highlight! CursorLine guibg=Normal')
-        vim.api.nvim_set_hl(0, 'javaType', {fg = CoreUIColorGroup.magenta})                           -- 数据类型
-        vim.api.nvim_set_hl(0, '@lsp.type.modifier.java', {link='javaType'})                          -- 关键字
-        vim.api.nvim_set_hl(0, '@lsp.type.method.java', {fg = CoreUIColorGroup.SoftBlue})             -- 方法/函数
-        vim.api.nvim_set_hl(0, '@lsp.type.property.java', {fg = CoreUIColorGroup.SoftRed}) --变量
-        vim.api.nvim_set_hl(0, '@lsp.type.parameter.java', {fg = CoreUIColorGroup.SoftRed})-- 变量
-        vim.api.nvim_set_hl(0, '@lsp.type.class.java', {fg = CoreUIColorGroup.SoftOrange})            -- 类
-        vim.api.nvim_set_hl(0, 'javaClassDecl', {link='javaType'})                                    -- 实现
-        vim.api.nvim_set_hl(0, '@lsp.type.annotationMember.java', {fg = CoreUIColorGroup.SoftBlue})   -- 注解方法
-        vim.api.nvim_set_hl(0, '@lsp.type.enumMember.java', {fg = CoreUIColorGroup.ModerateOrange})   -- 枚举常量
-    end
-
-    if chooseColorthemeCount == 5 then
-        vim.api.nvim_set_hl(0, '@lsp.type.modifier.java', {link = "Special"})   -- 枚举常量
-        vim.api.nvim_set_hl(0, '@lsp.type.class.java', {link = "javaOperator"})   -- 枚举常量
-
-        vim.api.nvim_set_hl(0, 'markdownH4', {link="Special"})
-        vim.api.nvim_set_hl(0, 'markdownH5', {link="Special"})
-        vim.api.nvim_set_hl(0, 'markdownBold', {link="htmlTag"})
-        vim.api.nvim_set_hl(0, 'markdownItalic', {link="Constant"})
-        -- Special
-
+    if (keyCount == 1 or keyCount ==3) then
+        OnedarkPlus()
+    elseif (keyCount == 2 or keyCount == 4) then
+        RetroboxPlus()
+    else
+        VimPlus()
     end
 end
 
+
 -- 自动保存所以已经打开的文件
 function SaveAllFiles()
-    vim.cmd('silent wall')
+    cmd('silent wall')
     if vim.bo.filetype == 'markdown' then
-        vim.cmd('MarkdownPreviewStop')
+        cmd('MarkdownPreviewStop')
     end
-    vim.cmd('q')
+    cmd('q')
 end
 
 
 
 -- 一键运行程序: c/java/python
 function RunCode()
-    vim.cmd('w')
+    cmd('w')
 
     if not vim.fn.isdirectory('.build') then
         vim.fn.mkdir('.build')
     end
 
     if vim.bo.filetype == 'java' then
-        vim.cmd('!javac % && java %< && mv %:h/*.class ./.build/')
+        cmd('!javac % && java %< && mv %:h/*.class ./.build/')
 
     elseif vim.bo.filetype == 'c' then
-       vim.cmd('!gcc % -o .build/%< && time ./.build/%<')
+       cmd('!gcc % -o .build/%< && time ./.build/%<')
 
     elseif vim.bo.filetype == 'python' then
-        vim.cmd('!python3 %')
+        cmd('!python3 %')
 
     elseif vim.bo.filetype == 'markdown' then
-        vim.cmd('MarkdownPreview')
+        cmd('MarkdownPreview')
     end
 end
 
@@ -141,9 +123,9 @@ end
 function TermToggle()
   local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
   if buftype == 'terminal' then
-    vim.cmd('bd!')
+    cmd('bd!')
   else
-    vim.cmd(':10split term://$SHELL')
+    cmd(':10split term://$SHELL')
   end
 end
 
@@ -158,21 +140,48 @@ function CommentToggle()
     if cursorLineString == "" then print("nil") return end
 
     if filetype == 'lua' and cursorLineFirstChar ~= '-' then
-        vim.cmd(":'<,'>s/^/--")
+        cmd(":'<,'>s/^/--")
     elseif filetype == 'lua' and cursorLineFirstChar == '-' then
-        vim.cmd(":'<,'>s/--/")
+        cmd(":'<,'>s/--/")
     elseif (filetype == 'java' or filetype == 'c') and cursorLineFirstChar ~= '/' then
-        vim.cmd(":'<,'>s/^/\\/\\//")
+        cmd(":'<,'>s/^/\\/\\//")
     elseif (filetype == 'java' or filetype == 'c') and cursorLineFirstChar == '/' then
-        vim.cmd(":'<,'>s/\\/\\///")
+        cmd(":'<,'>s/\\/\\///")
     elseif filetype == 'python' and cursorLineFirstChar ~= '#' then
-        vim.cmd(":'<,'>s/^/#")
+        cmd(":'<,'>s/^/#")
     elseif filetype == 'python' and cursorLineFirstChar == '#' then
-        vim.cmd(":'<,'>s/#/")
+        cmd(":'<,'>s/#/")
     else
         print('error:\t', cursorLineFirstChar)
     end
 
 end
 
+-- 对默认主题的修改增强
+function VimPlus()
+    cmd("highlight! CursorLine guibg=bg")
+    cmd("highlight! SignColumn guibg=bg")
+    highlight(0, '@lsp.type.modifier.java', {link = "Special"})   -- 枚举常量
+    highlight(0, '@lsp.type.class.java', {link = "javaOperator"})   -- 枚举常量
 
+    highlight(0, 'markdownH4', {link="Special"})
+    highlight(0, 'markdownH5', {link="Special"})
+    highlight(0, 'markdownBold', {link="htmlTag"})
+    highlight(0, 'markdownItalic', {link="Constant"})
+end
+
+function OnedarkPlus()
+    highlight(0, 'javaType', {fg = CoreUIColorGroup.magenta})                           -- 数据类型
+    highlight(0, '@lsp.type.modifier.java', {link='javaType'})                          -- 关键字
+    highlight(0, '@lsp.type.method.java', {fg = CoreUIColorGroup.SoftBlue})             -- 方法/函数
+    highlight(0, '@lsp.type.property.java', {fg = CoreUIColorGroup.SoftRed}) --变量
+    highlight(0, '@lsp.type.parameter.java', {fg = CoreUIColorGroup.SoftRed})-- 变量
+    highlight(0, '@lsp.type.class.java', {fg = CoreUIColorGroup.SoftOrange})            -- 类
+    highlight(0, 'javaClassDecl', {link='javaType'})                                    -- 实现
+    highlight(0, '@lsp.type.annotationMember.java', {fg = CoreUIColorGroup.SoftBlue})   -- 注解方法
+    highlight(0, '@lsp.type.enumMember.java', {fg = CoreUIColorGroup.ModerateOrange})   -- 枚举常量
+end
+
+function RetroboxPlus()
+    cmd("highlight! CursorLine guibg=bg")
+end

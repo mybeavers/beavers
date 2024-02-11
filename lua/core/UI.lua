@@ -1,8 +1,3 @@
-local api = vim.api
-local cmd = vim.cmd
-local highlight = vim.api.nvim_set_hl
-local autocmd = vim.api.nvim_create_autocmd
-
 -------------------------------------
 --  NOTE  My color group
 ---------------------------------------

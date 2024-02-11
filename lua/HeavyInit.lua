@@ -28,3 +28,4 @@ require('gitsigns').setup({
     linehl = false,       -- 当前行颜色是否修改
     signcolumn = false,
 })
+
