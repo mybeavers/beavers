@@ -17,7 +17,7 @@ vim.o.updatetime = 300							-- 更新时间
 vim.o.timeoutlen = 100							-- 等待mapping时间
 vim.o.pumheight = 10							-- 插入模式下弹出式菜单的高度
 vim.o.laststatus = 3							-- 分割window时状态栏不变
-vim.o.mouse = "a"					     		-- 启用鼠标
+--vim.o.mouse = "a"					     		-- 启用鼠标
 
 ---------------------------------
 --          代码缩进和排版           
@@ -71,9 +71,6 @@ vim.o.confirm=true								-- 在处理未保存或只读文件的时候，弹出
 vim.o.hidden = true								-- 允许隐藏被修改过的buffer
 
 
-
-
-
 ---------------------------------
 --          字符编码
 ---------------------------------
@@ -102,11 +99,14 @@ require("plugins.CmpNvim")
 require("mason").setup{}
 require("plugins.LspConfig").setup()
 
+
+
 --  根据时间加载主题
 local hour = tonumber(os.date("%H"))
 
-if hour >= 10 and hour < 16 then
+if (hour >= 10) and (hour < 16) then
     vim.cmd("color onelight")
+    
 else
     vim.cmd("color onedark")
 end

@@ -87,12 +87,11 @@ require("lazy").setup({
         "nvim-lualine/lualine.nvim",
         -- git标记
         "lewis6991/gitsigns.nvim",
-
--- +==================================+
--- |          lsp服务器               |
--- +==================================+
--- lsp服务器按照插件
-    {"williamboman/mason.nvim",
+        -- +==================================+
+        -- |          lsp服务器               |
+        -- +==================================+
+        -- lsp服务器按照插件
+        {"williamboman/mason.nvim",
         build = ":MasonUpdate",
         event = 'VimEnter',
     },
@@ -117,6 +116,6 @@ require("lazy").setup({
         },
 
 
-            },
+    },
 })
 

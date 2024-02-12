@@ -53,8 +53,6 @@ CoreUIColorGroup = {
 
 -- icons: 
 --"＞◡❛", " " ," ", " ", " ", " ", " ", " ", " ", '' "",""," ,"ﰊ","", "", "", "", ""
-
-
 -----------------------------------------
 --  NOTE     statusline 底栏
 -----------------------------------------
@@ -112,16 +110,16 @@ vim.o.statusline = '%9*%=%-7.(%l,%c%V%) %t  '
 autocmd({"BufEnter","ColorScheme"}, {
     pattern = '*',
     callback=function ()
-        cmd('highlight clear DiagnosticUnderlineInfo') -- 清除java中的TODO高亮设置
-        cmd('2match MyFIX / FIX /')
+        cmd('highlight clear DiagnosticUnderlineInfo') -- 清除TODO高亮设置
         cmd('1match MyNOTE / NOTE /')
-        highlight(0,'TODO', {fg = CoreUIColorGroup.black, bg=CoreUIColorGroup.SoftBlue})
+        cmd('2match MyTODO / TODO /')
+
+        highlight(0,'MyTODO', {fg = CoreUIColorGroup.black, bg=CoreUIColorGroup.SoftBlue})
         highlight(0, 'MyFIX', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.yellow})
         highlight(0, 'MyNOTE', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.green})
     end,
     nested=true
 })
-
 
 ----------------------------------------
 --          Cmp highlight group
