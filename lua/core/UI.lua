@@ -70,20 +70,9 @@ api.nvim_set_hl(0, 'User8', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.Soft
 api.nvim_set_hl(0, 'User9', {fg=CoreUIColorGroup.DarkGrayishBlue})
 
 vim.o.statusline = '%9*%=%-7.(%l,%c%V%) %t  '
---------------------------------------
--- NOTE 根据模式变换颜色 > 多功能版statusline
----------------------------------------
-
---vim.cmd([[ 
---function! StoreNewMode(event) abort
---  let g:my_new_mode = a:event.new_mode
---endfunction
---
---autocmd ModeChanged * call StoreNewMode(v:event)
---]])
---
---
---
+----------------------------------------
+---- NOTE 根据模式变换颜色 > 多功能版statusline
+-----------------------------------------
 ---- 根据当前模式改变statusline 
 --autocmd('ModeChanged', {
 --    pattern = '*',
@@ -113,12 +102,19 @@ autocmd({"BufEnter","ColorScheme"}, {
         cmd('highlight clear DiagnosticUnderlineInfo') -- 清除TODO高亮设置
         cmd('1match MyNOTE / NOTE /')
         cmd('2match MyTODO / TODO /')
-
+        
         highlight(0,'MyTODO', {fg = CoreUIColorGroup.black, bg=CoreUIColorGroup.SoftBlue})
         highlight(0, 'MyFIX', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.yellow})
         highlight(0, 'MyNOTE', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.green})
     end,
     nested=true
+})
+
+autocmd({"CursorMoved"}, {
+    pattern = '*',
+    callback = function ()
+       cmd("let @/ = ''")
+    end,
 })
 
 ----------------------------------------
