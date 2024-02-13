@@ -98,6 +98,10 @@ require("plugins.nvimtree")
 require("plugins.CmpNvim")
 require("mason").setup{}
 require("plugins.LspConfig").setup()
+-- my code
+vim.cmd('let g:UltiSnipsSnippetDirectories = ["./lua/UltiSnips/"]')
+vim.cmd('let g:UltiSnipsExpandTrigger="<leader>y"')
+vim.cmd('let g:UltiSnipsExpandTrigger="<tab>"')
 
 
 
