@@ -110,12 +110,13 @@ autocmd({"BufEnter","ColorScheme"}, {
     nested=true
 })
 
---autocmd({"CursorMoved"},{ --InsertEnter", "ursorMoved"
---    pattern = '*',
---    callback = function ()
---       cmd("let @/ = ''")
---    end,
---})
+
+autocmd({"InsertEnter"},{ --InsertEnter", "CursorMoved"
+    pattern = '*',
+    callback = function ()
+       cmd("let @/ = ''")
+    end,
+})
 
 ----------------------------------------
 --          Cmp highlight group
