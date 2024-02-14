@@ -87,6 +87,20 @@ require("lazy").setup({
         "nvim-lualine/lualine.nvim",
         -- git标记
         "lewis6991/gitsigns.nvim",
+
+        {
+            "folke/flash.nvim",
+            event = "VeryLazy",
+            opts = {},
+            -- stylua: ignore
+            keys = {
+                { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "flash" },
+                { "s", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "flash treesitter" },
+                { "r", mode = "o", function() require("flash").remote() end, desc = "remote flash" },
+                { "r", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "treesitter search" },
+                { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+            },
+        },
         -- +==================================+
         -- |          lsp服务器               |
         -- +==================================+

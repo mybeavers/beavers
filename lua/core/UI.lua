@@ -102,7 +102,7 @@ autocmd({"BufEnter","ColorScheme"}, {
         cmd('highlight clear DiagnosticUnderlineInfo') -- 清除TODO高亮设置
         cmd('1match MyNOTE / NOTE /')
         cmd('2match MyTODO / TODO /')
-        
+
         highlight(0,'MyTODO', {fg = CoreUIColorGroup.black, bg=CoreUIColorGroup.SoftBlue})
         highlight(0, 'MyFIX', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.yellow})
         highlight(0, 'MyNOTE', {fg=CoreUIColorGroup.black, bg=CoreUIColorGroup.green})
@@ -110,12 +110,12 @@ autocmd({"BufEnter","ColorScheme"}, {
     nested=true
 })
 
-autocmd({"CursorMoved"}, {
-    pattern = '*',
-    callback = function ()
-       cmd("let @/ = ''")
-    end,
-})
+--autocmd({"CursorMoved"},{ --InsertEnter", "ursorMoved"
+--    pattern = '*',
+--    callback = function ()
+--       cmd("let @/ = ''")
+--    end,
+--})
 
 ----------------------------------------
 --          Cmp highlight group

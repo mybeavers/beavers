@@ -42,7 +42,7 @@ vim.o.sidescrolloff = 8							-- 右部距离
 ---------------------------------
 --          搜索设置           
 ---------------------------------
-vim.o.hlsearch = true							-- 高亮显示搜索结果
+vim.o.hlsearch = false							-- 高亮显示搜索结果
 vim.o.incsearch = true							-- 开启实时搜索
 vim.o.ignorecase=true				            -- 搜索时大小写不敏感
 vim.o.smartcase = true							-- 搜索智能匹配大小写
@@ -105,7 +105,7 @@ vim.cmd('let g:UltiSnipsExpandTrigger="<tab>"')
 
 
 
---  根据时间加载主题
+-- 根据时间加载主题
 local hour = tonumber(os.date("%H"))
 
 if (hour >= 10) and (hour < 16) then
