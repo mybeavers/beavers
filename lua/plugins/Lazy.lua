@@ -25,7 +25,7 @@ require("lazy").setup({
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
-        config = function ()
+        config = function()
             MyKeymap("n", "<C-b>", ":NvimTreeToggle<CR>", MyKeymapOpt)
             MyKeymap("i", "<C-b>", "<ESC>:NvimTreeToggle<CR>", MyKeymapOpt)
         end,
@@ -38,7 +38,7 @@ require("lazy").setup({
         dependencies = {
             "nvim-lua/plenary.nvim"
         },
-        config=function ()
+        config = function()
             MyKeymap("n", "<leader>t", ":Telescope<CR>", MyKeymapOpt)
             MyKeymap("n", "<leader>o", ":Telescope oldfiles<CR>", MyKeymapOpt)
             MyKeymap("n", "<leader>f", ":Telescope find_files<CR>", MyKeymapOpt)
@@ -51,48 +51,50 @@ require("lazy").setup({
     {
         "iamcco/markdown-preview.nvim",
         build = function()
-            vim.fn["mkdp#util#install"]() end,
-            config =function ()
-                vim.g["mkdp_path_to_chrome"] = ""   -- 浏览器路径 --本机默认浏览器
-                vim.g["mkdp_open_to_the_world"] = 0 -- 默认监听127.0.0.1
-            end,
-        },
+            vim.fn["mkdp#util#install"]()
+        end,
+        config = function()
+            vim.g["mkdp_path_to_chrome"] = ""       -- 浏览器路径 --本机默认浏览器
+            vim.g["mkdp_open_to_the_world"] = 0     -- 默认监听127.0.0.1
+        end,
+    },
 
 
-        -- +==================================+
-        -- |               UI                 |
-        -- +==================================+
-        -- 主题colorscheme
-        {
-            "olimorris/onedarkpro.nvim",
-            priority = 1000,
-            config = function()
-                vim.cmd("colorscheme onedark")
-            end,
-        },
+    -- +==================================+
+    -- |               UI                 |
+    -- +==================================+
+    -- 主题colorscheme
+    {
+        "olimorris/onedarkpro.nvim",
+        priority = 1000,
+        config = function()
+            vim.cmd("colorscheme onedark")
+        end,
+    },
 
-        {
-            'nvimdev/dashboard-nvim',
-            event = 'VimEnter',
-            dependencies = { {'nvim-tree/nvim-web-devicons'}}
-        },
-        -- 标签页
-        {
-            "akinsho/bufferline.nvim",
-            config = function ()
-                MyKeymap ("n", "<A-0>", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", MyKeymapOpt)
-            end,
-        },
-        -- 底栏
-        "nvim-lualine/lualine.nvim",
-        -- git标记
-        "lewis6991/gitsigns.nvim",
+    {
+        'nvimdev/dashboard-nvim',
+        event = 'VimEnter',
+        dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+    },
+    -- 标签页
+    {
+        "akinsho/bufferline.nvim",
+        config = function()
+            MyKeymap("n", "<A-0>", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", MyKeymapOpt)
+        end,
+    },
+    -- 底栏
+    "nvim-lualine/lualine.nvim",
+    -- git标记
+    "lewis6991/gitsigns.nvim",
 
-        -- +==================================+
-        -- |          lsp服务器               |
-        -- +==================================+
-        -- lsp服务器按照插件
-        {"williamboman/mason.nvim",
+    -- +==================================+
+    -- |          lsp服务器               |
+    -- +==================================+
+    -- lsp服务器按照插件
+    {
+        "williamboman/mason.nvim",
         build = ":MasonUpdate",
         event = 'VimEnter',
     },
@@ -119,4 +121,3 @@ require("lazy").setup({
 
     },
 })
-

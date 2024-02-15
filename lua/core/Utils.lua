@@ -20,6 +20,8 @@ if vim.fn.has('wsl') then
 end
 
 
+
+
 -- 自动保存
 autocmd({ "InsertLeave", "TextChanged" }, {
     pattern = "*",

@@ -18,6 +18,7 @@ vim.o.timeoutlen = 100							-- 等待mapping时间
 vim.o.pumheight = 10							-- 插入模式下弹出式菜单的高度
 vim.o.laststatus = 3							-- 分割window时状态栏不变
 vim.o.mouse = "a"					     		-- 启用鼠标
+--vim.cmd("set clipboard=unnamedplus")
 
 ---------------------------------
 --          代码缩进和排版           
@@ -96,8 +97,8 @@ require("plugins.nvimtree")
 
 --  LSP 
 require("plugins.CmpNvim")
-require("mason").setup{}
-require("plugins.LspConfig").setup()
+require("mason").setup()
+require("plugins.LspConfig")
 -- my code
 vim.cmd('let g:UltiSnipsSnippetDirectories = ["./lua/UltiSnips/"]')
 vim.cmd('let g:UltiSnipsExpandTrigger="<leader>y"')
@@ -110,7 +111,6 @@ local hour = tonumber(os.date("%H"))
 
 if (hour >= 10) and (hour < 16) then
     vim.cmd("color onelight")
-    
 else
     vim.cmd("color onedark")
 end
