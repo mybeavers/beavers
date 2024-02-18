@@ -105,12 +105,4 @@ vim.cmd('let g:UltiSnipsExpandTrigger="<tab>"')
 
 
 
--- 根据时间加载主题
-local hour = tonumber(os.date("%H"))
-
-if (hour >= 10) and (hour < 16) then
-    vim.cmd("color onelight")
-else
-    vim.cmd("color onedark")
-end
 
