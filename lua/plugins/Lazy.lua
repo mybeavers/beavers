@@ -94,7 +94,8 @@ require("lazy").setup({
     -- git标记
     "lewis6991/gitsigns.nvim",
 
-        -- +==================================+
+
+    -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
     -- lsp服务器按照插件
@@ -119,9 +120,9 @@ require("lazy").setup({
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
-            'L3MON4D3/LuaSnip',
+             "SirVer/ultisnips",
+            "quangnguyen30192/cmp-nvim-ultisnips",
         },
-
-
     },
+
 })
