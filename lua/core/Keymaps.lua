@@ -59,14 +59,6 @@ MyKeymap('n', '<F5>', ':lua TermToggle()<CR>', MyKeymapOpt)
 MyKeymap('t', '<F5>', '<Esc> <C-\\><C-n>', MyKeymapOpt)
 
 
--- 括号补全
-MyKeymap('i', '(', '()<Left>', MyKeymapOpt)
-MyKeymap('i', '[', '[]<Left>', MyKeymapOpt)
-MyKeymap('i', '{', '{}<Left>', MyKeymapOpt)
-MyKeymap('i', '"', '""<Left>', MyKeymapOpt)
-MyKeymap('i', "'", "''<Left>", MyKeymapOpt)
-
-
 -- 外侧退出括号
 vim.cmd([[
     inoremap <expr> ) getline('.')[col('.')-1] == ')' ? "\<Right>" : ")"

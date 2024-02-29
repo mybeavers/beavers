@@ -14,7 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 
 
-
 require("lazy").setup({
     -- +==================================+
     -- |               功能               |
@@ -54,11 +53,17 @@ require("lazy").setup({
             vim.fn["mkdp#util#install"]()
         end,
         config = function()
-            vim.g["mkdp_path_to_chrome"] = ""       -- 浏览器路径 --本机默认浏览器
-            vim.g["mkdp_open_to_the_world"] = 0     -- 默认监听127.0.0.1
+            vim.g["mkdp_path_to_chrome"] = ""   -- 浏览器路径 --本机默认浏览器
+            vim.g["mkdp_open_to_the_world"] = 0 -- 默认监听127.0.0.1
         end,
     },
 
+    "MunifTanjim/nui.nvim",
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {}
+    },
 
     -- +==================================+
     -- |               UI                 |
@@ -89,7 +94,7 @@ require("lazy").setup({
     -- git标记
     "lewis6991/gitsigns.nvim",
 
-    -- +==================================+
+        -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
     -- lsp服务器按照插件
@@ -114,8 +119,7 @@ require("lazy").setup({
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
-            "SirVer/ultisnips",
-            "quangnguyen30192/cmp-nvim-ultisnips",
+            'L3MON4D3/LuaSnip',
         },
 
 

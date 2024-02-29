@@ -12,7 +12,6 @@ require('plugins.IndentLine').setup({char='│',}) -- 说明: 此缩进线功能
 
 
 
-
 -- gitsigns标记配置
 require('gitsigns').setup({
     signs = {

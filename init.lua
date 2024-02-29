@@ -7,7 +7,7 @@ vim.o.syntax="enable"							-- 开启语法高亮功能
 vim.o.syntax="on"								-- 自动语法高亮
 vim.o.mouse = ""								-- 禁用鼠标
 vim.o.background="dark"							-- 背景颜色
-vim.wo.cursorline = true						-- 高亮所在行
+vim.wo.cursorline = false						-- 高亮所在行
 vim.wo.signcolumn = "yes"						-- 显示左侧图标指示列
 vim.o.showmode = false							-- 是否在命令行下显示当前模式
 vim.g["omni_sql_no_default_maps"] = 1			-- 取消sql提示
@@ -93,16 +93,7 @@ require('plugins.Lazy')
 require('plugins.dashboard')
 require("plugins.nvimtree")
 
-
 --  LSP 
 require("plugins.CmpNvim")
 require("mason").setup()
 require("plugins.LspConfig")
--- my code
-vim.cmd('let g:UltiSnipsSnippetDirectories = ["./lua/UltiSnips/"]')
-vim.cmd('let g:UltiSnipsExpandTrigger="<leader>y"')
-vim.cmd('let g:UltiSnipsExpandTrigger="<tab>"')
-
-
-
-
