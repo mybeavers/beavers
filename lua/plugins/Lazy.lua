@@ -18,13 +18,14 @@ require("lazy").setup({
     -- +==================================+
     -- |               功能               |
     -- +==================================+
-    -- 目录树
+    -- 目录
     {
         "nvim-tree/nvim-tree.lua",
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
         config = function()
+            require("plugins.nvimtree")
             MyKeymap("n", "<C-b>", ":NvimTreeToggle<CR>", MyKeymapOpt)
             MyKeymap("i", "<C-b>", "<ESC>:NvimTreeToggle<CR>", MyKeymapOpt)
         end,
@@ -58,12 +59,13 @@ require("lazy").setup({
         end,
     },
 
-    "MunifTanjim/nui.nvim",
+    -- 括号自动补齐
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         opts = {}
     },
+
 
     -- +==================================+
     -- |               UI                 |
@@ -77,11 +79,16 @@ require("lazy").setup({
         end,
     },
 
+    -- 主页
     {
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
-        dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+        dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+        config = function ()
+            require("plugins.dashboard")
+        end,
     },
+
     -- 标签页
     {
         "akinsho/bufferline.nvim",
@@ -89,8 +96,10 @@ require("lazy").setup({
             MyKeymap("n", "<A-0>", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", MyKeymapOpt)
         end,
     },
+
     -- 底栏
     "nvim-lualine/lualine.nvim",
+
     -- git标记
     "lewis6991/gitsigns.nvim",
 
@@ -117,12 +126,23 @@ require("lazy").setup({
     {
         "hrsh7th/nvim-cmp",
         event = "VimEnter",
+
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
-             "SirVer/ultisnips",
-            "quangnguyen30192/cmp-nvim-ultisnips",
+            {'L3MON4D3/LuaSnip',
+            config = function ()
+                require("luasnip.loaders.from_snipmate").lazy_load({paths = "../snippets"})
+            end},
+            {'saadparwaiz1/cmp_luasnip',
+            build = "make install_jsregexp"},
         },
+
+        config = function ()
+            require("plugins.CmpNvim")
+            require("mason").setup()
+            require("plugins.LspConfig")
+        end
     },
 
 })

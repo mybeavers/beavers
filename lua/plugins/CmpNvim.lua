@@ -41,7 +41,8 @@ local cmp = require('cmp')
 cmp.setup {
     snippet = {
         expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
+--            vim.fn["UltiSnips#Anon"](args.body)
+            require('luasnip').lsp_expand(args.body)
         end,
     },
     -- 映射
@@ -86,10 +87,14 @@ cmp.setup {
         end,
     },
 
-    sources = cmp.config.sources({
+    sources = cmp.config.sources(
+        {
             { name = 'nvim_lsp' },
-            { name = 'ultisnips' },
+--            { name = 'ultisnips' },
+            { name = 'luasnip'},
         },
+
+
         {
             { name = 'buffer' },
             { name = 'path' },
