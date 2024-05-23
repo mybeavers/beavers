@@ -50,12 +50,12 @@ local lsp_flags = {
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) -- Setup lspconfig.
 
 
-local servers = { "pyright", "clangd", "bashls", "lua_ls" }
+local servers = { "pyright", "clangd", "bashls", "lua_ls" ,"vtsls"}
 
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
-        --on_attach = on_attach,
+        on_attach = on_attach,
         capabilities = capabilities,
         flags = lsp_flags,
     }

@@ -1,0 +1,79 @@
+{
+    "标题H4":{
+        "prefix": "#",
+        "body": [
+            "#### ${1:heard}",
+            "$0"
+        ],
+        "description": "#### 标题 or <H4>标题4</H4>",
+        "scope": "markdown"
+    }, 
+    "标题H5":{
+        "prefix": "#",
+        "body": [
+            "##### $0"
+        ],
+        "description": "##### 标题 or <H5>标题5</H5>",
+        "scope": "markdown"
+    },
+    "<b1>":{
+        "prefix": "<b1>",
+        "body": [
+            "<br>",
+            "  ",
+            "$1"
+           ],
+           "description": "空行1",
+           "scope": "markdown"
+    },
+    "<b2>":{
+        "prefix": "<b2>",
+        "body": [
+            "<br><br>",
+            "",
+            "",
+            "$1"
+        ],
+        "description": "空行2",
+        "scope": "markdown"
+    },
+    "<hr>":{
+        "prefix": "<hr>",
+        "body": [
+            "<br><br><hr>",
+            "",
+            "",
+            "$1"
+        ],
+        "description": "空行1",
+        "scope": "markdown"
+    },
+    "空格":{
+        "prefix": "0",
+        "body": [
+            "&nbsp; &nbsp; $0"
+        ],
+        "description": "空格",
+        "scope": "markdown"
+    },
+    "table":{
+        "prefix": ["|"],
+        "body": [
+            "|${1:column}|${2:column}|${3:column}|",
+            "|---        |---        |---        |",
+            "|${4:itme}  |${5:itme}  |${0:itme}  |"
+        ],
+        "description": "表格",
+        "scope": "markdown"
+    },
+    "fileName":{
+           "prefix": "fileName",
+           "body": [
+                 "## ${TM_FILENAME/(.*)\\.[a-z]+/${1:/upcase}/i}" 
+           ],
+           "description": "文件名称",
+           "scope": "markdown"
+    }
+} 
+
+

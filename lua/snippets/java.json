@@ -1,0 +1,12 @@
+{
+    "method":{
+           "prefix": "method",
+           "body": [
+                "public ${1:void} ${2:method}($3) {$0}"
+           ],
+        "description": "public void method() {...}",
+           "scope": "java"
+       }
+
+    
+}

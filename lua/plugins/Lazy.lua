@@ -84,7 +84,7 @@ require("lazy").setup({
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
         dependencies = { { 'nvim-tree/nvim-web-devicons' } },
-        config = function ()
+        config = function()
             require("plugins.dashboard")
         end,
     },
@@ -130,15 +130,22 @@ require("lazy").setup({
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
-            {'L3MON4D3/LuaSnip',
-            config = function ()
-                require("luasnip.loaders.from_snipmate").lazy_load({paths = "../snippets"})
-            end},
-            {'saadparwaiz1/cmp_luasnip',
-            build = "make install_jsregexp"},
+            {
+                'L3MON4D3/LuaSnip',
+                dependencies = { "rafamadriz/friendly-snippets" },
+                config = function()
+                    require("luasnip.loaders.from_vscode").lazy_load()
+                    require("luasnip.loaders.from_vscode").lazy_load({paths = "~/.config/nvim/lua/snippets" })
+                    require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/.config/nvim/lua/snippets"})
+                end
+            },
+            {
+                'saadparwaiz1/cmp_luasnip',
+                build = "make install_jsregexp"
+            },
         },
 
-        config = function ()
+        config = function()
             require("plugins.CmpNvim")
             require("mason").setup()
             require("plugins.LspConfig")

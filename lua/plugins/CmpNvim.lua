@@ -37,17 +37,16 @@ local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 local cmp = require('cmp')
-
+local luasnip = require('luasnip')
 cmp.setup {
     snippet = {
         expand = function(args)
---            vim.fn["UltiSnips#Anon"](args.body)
             require('luasnip').lsp_expand(args.body)
         end,
     },
     -- 映射
     mapping = cmp.mapping.preset.insert({
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+       -- ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
         ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
         ["$"] = cmp.mapping(function(fallback)
@@ -63,7 +62,40 @@ cmp.setup {
                 fallback()
             end
         end, { "i", "s", "c", }),
-    }),
+        ['<CR>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            if luasnip.expandable() then
+                luasnip.expand()
+            else
+                cmp.confirm({
+                    select = true,
+                })
+            end
+        else
+            fallback()
+        end
+    end),
+
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.locally_jumpable(1) then
+        luasnip.jump(1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.locally_jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+}),
 
     -- 窗口
     window = {
@@ -75,14 +107,15 @@ cmp.setup {
         }),
     },
 
-----显示顺序: 图标 补全字符 类
     formatting = {
-        fields = {"kind", "abbr", "menu" },
-
+   -- 显示顺序: 图标 补全字符 类         
+fields = {"kind", "abbr", "menu" },
+--        fields = { 'abbr', 'kind'},
         format = function(entry, vim_item)
             local strings = vim.split(string.format("%s ", kind_icons[vim_item.kind]), " ")
             vim_item.kind = strings[1]
             vim_item.menu = strings[2]
+--            vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
             return vim_item
         end,
     },
@@ -90,8 +123,7 @@ cmp.setup {
     sources = cmp.config.sources(
         {
             { name = 'nvim_lsp' },
---            { name = 'ultisnips' },
-            { name = 'luasnip'},
+            { name = 'luasnip' },
         },
 
 
@@ -105,6 +137,6 @@ cmp.setup {
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
 cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
 )
