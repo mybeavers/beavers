@@ -1,0 +1,69 @@
+{
+    "latex-line":{
+        "prefix": "latex-line",
+        "body": [
+            "$$0$"
+        ],
+        "description": "行内公式",
+        "scope": "markdown"
+    },
+    "latex-center":{
+        "prefix": "latex-center",
+        "body": [
+            "$$",
+            "$1",
+            "$$"
+        ],
+        "description": "行间公式",
+        "scope": "markdown"
+    },
+    "latex-上下标":{
+        "prefix": "latex-mark",
+        "body": [
+            "A=log_2^3+n^{n-1}"
+        ],
+        "description": "上标: ^  \n下标: _  \n多个值使用: {}",
+        "scope": "markdown"
+    },
+    "latex-分数":{
+        "prefix": "latex-fraction",
+        "body": [
+            "\\frac{${1:1}}{${2:2}}"
+        ],
+        "description": "\\frac{分子}{分母}",
+        "scope": "markdown"
+    },
+    "latex-根号":{
+        "prefix": "latex-sqrt",
+        "body": [
+            "\\sqrt{${1:x}}"
+        ],
+        "description": "平方根: \\sqrt{x} \n立方根: \\sqrt[x]{n}$",
+        "scope": "markdown"
+    },
+    "latex-方程组":{
+        "prefix": "latex-cases",
+        "body": [
+            "\\begin{cases}",
+            "${1:x}\\",
+            "$(2:y}",
+                "\\end{cases}"
+        ],
+        "description": "方程组",
+        "scope": "markdown"
+},
+"latex-空格":{
+    "prefix": "latex-hspace",
+    "body": [
+        "\\hspace{${1:0.5cm}}"
+    ],
+    "description": "空格, { }内表示距离, 单位cm",
+    "scope": "markdown"
+}
+
+   
+   
+
+
+
+}

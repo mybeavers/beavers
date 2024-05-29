@@ -14,13 +14,19 @@
                 ],
                 "path": "./java.json"
 
-            },
+            }, 
             {
                 "language": [
                     "markdown"
                 ],
                 "path": "./markdown.json"
+            }, {
+                "language": [
+                    "markdown"
+                ],
+                "path": "./latex.json"
             }
+
         ]
     }
 }

@@ -22,9 +22,9 @@
             "<br>",
             "  ",
             "$1"
-           ],
-           "description": "空行1",
-           "scope": "markdown"
+        ],
+        "description": "空行1",
+        "scope": "markdown"
     },
     "<b2>":{
         "prefix": "<b2>",
@@ -67,13 +67,13 @@
         "scope": "markdown"
     },
     "fileName":{
-           "prefix": "fileName",
-           "body": [
-                 "## ${TM_FILENAME/(.*)\\.[a-z]+/${1:/upcase}/i}" 
-           ],
-           "description": "文件名称",
-           "scope": "markdown"
-    }
+        "prefix": "fileName",
+        "body": [
+            "## ${TM_FILENAME/(.*)\\.[a-z]+/${1:/upcase}/i}"
+        ],
+        "description": "文件名称",
+        "scope": "markdown"
+    } 
 } 
 
 
