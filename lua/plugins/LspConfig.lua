@@ -50,7 +50,7 @@ local lsp_flags = {
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) -- Setup lspconfig.
 
 
-local servers = { "pyright", "clangd", "bashls", "lua_ls" ,"vtsls"}
+local servers = {"jdtls", "pyright", "clangd", "bashls", "lua_ls" ,"vtsls"}
 
 
 for _, lsp in ipairs(servers) do
@@ -61,26 +61,26 @@ for _, lsp in ipairs(servers) do
     }
 end
 
-local function on_language_status(_, result)
-    -- Ignore nil messages.
-    if result.message == nil then
-        return
-    end
-    local command = vim.api.nvim_command
-    command 'echohl ModeMsg'
-    command(string.format('echo "%s"', result.message))
-    command 'echohl None'
-end
-
-
-lspconfig.jdtls.setup({
-    --on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-    handlers = {
-        ["$/progress"] = vim.schedule_wrap(on_language_status),
-    },
-})
+--local function on_language_status(_, result)
+--    -- Ignore nil messages.
+--    if result.message == nil then
+--        return
+--    end
+--    local command = vim.api.nvim_command
+--    command 'echohl ModeMsg'
+--    command(string.format('echo "%s"', result.message))
+--    command 'echohl None'
+--end
+--
+--
+--lspconfig.jdtls.setup({
+--    --on_attach = on_attach,
+--    capabilities = capabilities,
+--    flags = lsp_flags,
+--    handlers = {
+--        ["$/progress"] = vim.schedule_wrap(on_language_status),
+--    },
+--})
 
 
 

@@ -3,11 +3,11 @@
 -- 映射按键语法
 -- map('模式','按键','映射为XX',opt)
 
--- <space>  代表: 空格
--- <leader> 代表: \
+-- <space>  : 空格
+-- <leader> : \
 -- =        格式化代码,只能格式缩进
 
--- 光标跳转: 
+-- buffer跳转:
 --      1/2
 -- LSP快捷键: 
 --      <space>+字母键
@@ -29,7 +29,7 @@ MyKeymap("n", "pl", ":split<CR>", MyKeymapOpt)
 MyKeymap("n", "<ESC>", ":lua SaveAllFiles()<CR>", MyKeymapOpt)
 MyKeymap('n', "q", ":bd<CR>", MyKeymapOpt)
 
--- 一键编译运行
+-- 一键编译运
 MyKeymap("i", "<F24>", "<ESC>:lua RunCode()<CR>", MyKeymapOpt)
 MyKeymap("n", "<F24>", ":lua RunCode()<CR>", MyKeymapOpt)
 
@@ -69,5 +69,3 @@ vim.cmd([[
 
 -- 加载更多配置
 MyKeymap("n", "<A-=>", ":source /home/mybeavers/.config/nvim/lua/HeavyInit.lua<CR>", MyKeymapOpt)
-
-

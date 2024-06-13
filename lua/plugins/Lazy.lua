@@ -145,11 +145,6 @@ require("lazy").setup({
             },
         },
 
-        config = function()
-            require("plugins.CmpNvim")
-            require("mason").setup()
-            require("plugins.LspConfig")
-        end
     },
 
 })
