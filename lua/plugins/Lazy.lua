@@ -79,6 +79,9 @@ require("lazy").setup({
         end,
     },
 
+    -- UI插件
+    'MunifTanjim/nui.nvim',
+
     -- 主页
     {
         'nvimdev/dashboard-nvim',

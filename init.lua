@@ -1,11 +1,10 @@
 --------------------------------
 --          通用设置
 ---------------------------------
-vim.o.filetype = "on"                 -- 设置开启文件类型侦测
+vim.o.filetype = 'on'                 -- 设置开启文件类型侦测
 vim.o.eb = false                      -- 关闭错误的提示
-vim.o.syntax = "enable"               -- 开启语法高亮功能
-vim.o.syntax = "on"                   -- 自动语法高亮
-vim.o.mouse = ""                      -- 禁用鼠标
+vim.o.syntax = 'enable'               -- 开启语法高亮功能
+vim.o.syntax = 'on'                   -- 自动语法高亮
 vim.o.background = "dark"             -- 背景颜色
 vim.wo.cursorline = false             -- 高亮所在行
 vim.wo.signcolumn = "yes"             -- 显示左侧图标指示列
@@ -18,6 +17,7 @@ vim.o.timeoutlen = 100                -- 等待mapping时间
 vim.o.pumheight = 10                  -- 插入模式下弹出式菜单的高度
 vim.o.laststatus = 3                  -- 分割window时状态栏不变
 vim.o.mouse = "a"                     -- 启用鼠标
+
 
 ---------------------------------
 --          代码缩进和排版
@@ -48,14 +48,13 @@ vim.o.ignorecase = true -- 搜索时大小写不敏感
 vim.o.smartcase = true -- 搜索智能匹配大小写
 
 
-
 ---------------------------------
 --          代码补全
 ---------------------------------
 vim.o.wildmenu = true                        -- vim自身命名行模式智能补全
-vim.o.completeopt = "menuone,preview,noselect" -- 补全时不显示窗口，只显示补全列表
-vim.o.omnifunc = "syntaxcomplete#Complete"   -- 设置全能补全
-vim.o.cpt = "kspell"                         -- 设置补全单词
+vim.o.completeopt = 'menuone,preview,noselect' -- 补全时不显示窗口，只显示补全列表
+vim.o.omnifunc = 'syntaxcomplete#Complete'   -- 设置全能补全
+vim.o.cpt = 'kspell'                         -- 设置补全单词
 vim.o.shortmess = vim.o.shortmess .. 'c'     -- 智能补全
 
 
@@ -86,12 +85,18 @@ vim.o.fileencodings = "utf8,ucs-bom,gbk,cp936,gb2312,gb18030"
 -- -------------------------------
 require('core.Utils') -- 该文件应该先加载以便其他文件调用函数
 require('core.Keymaps')
-require("core.UI")
+require('core.UI')
 
 require('plugins.Lazy')
-require("plugins.CmpNvim")
-require("mason").setup()
-require("plugins.LspConfig")
+require('plugins.CmpNvim')
+require('mason').setup()
+require('plugins.LspConfig')
+
+require('plugins.nui')
+
+-- -------------------------------
+--          新功能
+-- -------------------------------
+-- vim.lsp.inlay_hint.enable() 嵌入提示 NeoVim-0.10.0
 
 
-vim.lsp.inlay_hint.enable()

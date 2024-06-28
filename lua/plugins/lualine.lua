@@ -27,6 +27,7 @@ local config = {
     options = {
         component_separators = '',
         section_separators = '',
+        theme  = "auto",
      },
 
     sections = {
