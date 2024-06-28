@@ -6,7 +6,7 @@
 
 <h4 align = 'center'> Colorscheme </h4>
 
-![colors](./b.png)
+![colors](.image/b.png)
 
 <br> 
 
@@ -14,14 +14,14 @@
 <h4 align = 'center'> LSP </h4>
 
 
-![lsp](./a.png)
+![lsp](.image/a.png)
 
 <br> 
 
 
 <h4 align = 'center'> Markdown </h4>
 
-![markdown](./c.png)
+![markdown](.image/c.png)
 
 
 <br><br><hr>
