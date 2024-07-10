@@ -92,7 +92,6 @@ require('plugins.CmpNvim')
 require('mason').setup()
 require('plugins.LspConfig')
 
-require('plugins.nui')
 
 -- -------------------------------
 --          新功能
