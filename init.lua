@@ -96,6 +96,6 @@ require('plugins.LspConfig')
 -- -------------------------------
 --          新功能
 -- -------------------------------
--- vim.lsp.inlay_hint.enable() 嵌入提示 NeoVim-0.10.0
+vim.lsp.inlay_hint.enable() --嵌入提示 NeoVim-0.10.0
 
 
