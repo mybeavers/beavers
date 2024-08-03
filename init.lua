@@ -83,15 +83,15 @@ vim.o.fileencodings = "utf8,ucs-bom,gbk,cp936,gb2312,gb18030"
 -- -------------------------------
 --          配置加载
 -- -------------------------------
-require('core.Utils') -- 该文件应该先加载以便其他文件调用函数
-require('core.Keymaps')
-require('core.UI')
+require('config.Utils') -- 该文件应该先加载以便其他文件调用函数
+require('config.Keymaps')
+require('config.UI')
 
 require('plugins.Lazy')
 require('plugins.CmpNvim')
 require('mason').setup()
 require('plugins.LspConfig')
-
+require('plugins.nvim-treesitter')
 
 -- -------------------------------
 --          新功能

@@ -31,7 +31,7 @@ require("lazy").setup({
         end,
 
     },
-
+ 'nvim-treesitter/nvim-treesitter',
     -- 文件搜索
     {
         "nvim-telescope/telescope.nvim",
