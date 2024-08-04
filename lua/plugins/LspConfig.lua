@@ -3,7 +3,7 @@
 -- -------------------------------------------
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, MyKeymapOpt) -- 查看代码诊断信息
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, MyKeymapOpt) -- 查看所有错误
-MyKeymap('n', '<space>y', ':lua PrintDiagnostics()<CR>', MyKeymapOpt) -- 复制诊断信息到寄存器
+MyKeymap('n', '<space>y', ':lua PrintDiagnostics()<CR>', MyKeymapOpt)   -- 复制诊断信息到寄存器
 
 
 
@@ -40,103 +40,68 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 
 
--- --------------------------------------------
--- start lsp server
--- --------------------------------------------
-local lsp_flags = {
-    debounce_text_changes = 100,
-}
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) -- Setup lspconfig.
-
-
-local servers = {"jdtls", "pyright", "clangd", "bashls", "lua_ls" ,"vtsls"}
-
-
-for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        flags = lsp_flags,
-    }
-end
-
---local function on_language_status(_, result)
---    -- Ignore nil messages.
---    if result.message == nil then
---        return
---    end
---    local command = vim.api.nvim_command
---    command 'echohl ModeMsg'
---    command(string.format('echo "%s"', result.message))
---    command 'echohl None'
---end
---
---
---lspconfig.jdtls.setup({
---    --on_attach = on_attach,
---    capabilities = capabilities,
---    flags = lsp_flags,
---    handlers = {
---        ["$/progress"] = vim.schedule_wrap(on_language_status),
---    },
---})
-
-
-
-
 
 
 
 -- --------------------------------------------------------
 -- LSP UI
 -- --------------------------------------------------------
--- 更改显示的诊断符号
-local signs = { Error = "┃", Warn = "┃", Hint = "┃", Info = "┃" }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+-- 诊断配置
+vim.diagnostic.config({
+    virtual_text = false, --显示诊断
+    --signs = true,
+    underline = true,
+    update_in_insert = true,
+    severity_sort = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "┃",
+            [vim.diagnostic.severity.WARN] =  "┃",
+            [vim.diagnostic.severity.INFO] =  "┃",
+            [vim.diagnostic.severity.HINT] =  "┃",
+        },
+        linehl = {
+            [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+        },
+        numhl = {
+            [vim.diagnostic.severity.WARN] = 'WarningMsg',
+        },
+    },
+})
+
+
+
+
+
+-- 悬浮样式
+local border = {
+    { "🭽", "FloatBorder" },
+    { "▔", "FloatBorder" },
+    { "🭾", "FloatBorder" },
+    { "▕", "FloatBorder" },
+    { "🭿", "FloatBorder" },
+    { "▁", "FloatBorder" },
+    { "🭼", "FloatBorder" },
+    { "▏", "FloatBorder" },
+}
+
+-- LSP settings (for overriding per client)
+local handlers = {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+}
+
+
+-- To instead override globally
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or border
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
 
--- 自定义诊断的显示方式
-vim.diagnostic.config({
-    virtual_text = true,
-    signs = true,
-    underline = true,
-    update_in_insert = false,
-    severity_sort = false,
-})
 
--- 诊断配置
-vim.diagnostic.config({
-    virtual_text = false,
-    -- show signs
-    signs = {
-        active = signs,
-    },
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-        focusable = false,
-        style = "minimal",
-        border = "rounded",
-        source = "always",
-        header = "",
-        prefix = "",
-    },
-
-})
-
--- set the popup window border
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-})
 
 
 
@@ -159,9 +124,34 @@ function PrintDiagnostics(opts, bufnr, line_nr, client_id)
     end
 
     vim.fn.setreg('@"', Mydiagnostic_message) --复制到寄存器
-    if vim.fn.has('wsl') then --复制到Windows粘贴板
+    if vim.fn.has('wsl') then                 --复制到Windows粘贴板
         vim.cmd([[
         call system('/mnt/c/windows/system32/clip.exe ',@")
     ]])
     end
 end
+
+
+
+
+
+-- --------------------------------------------
+-- start lsp server
+-- --------------------------------------------
+local lsp_flags = {
+    debounce_text_changes = 100,
+}
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) -- Setup lspconfig.
+local servers = { "jdtls", "pyright", "clangd", "bashls", "lua_ls", "vtsls" }
+
+for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = lsp_flags,
+        handlers = handlers
+    }
+
+end
+
+

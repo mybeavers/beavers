@@ -43,6 +43,36 @@ autocmd("BufReadPost", {
 })
 
 
+-- 加载更多功能
+autocmd("BufNew", {
+    pattern = "*",
+    callback = function()
+        local buffer_count = #vim.fn.getbufinfo({ buflisted = 1 })
+        if buffer_count == 3 then
+            vim.o.number = true -- 开启行号
+            
+            require("plugins.bufferline")
+            require("plugins.lualine")
+            require('plugins.IndentLine').setup({ char = '│', }) -- 说明: 此缩进线功能全部截取自: nvimdev/indentmini.nvim 插件
+
+            require('gitsigns').setup({
+                signs = {
+                    add          = { text = '│' },
+                    change       = { text = '│' },
+                    delete       = { text = '_' },
+                    topdelete    = { text = '‾' },
+                    changedelete = { text = '~' },
+                    untracked    = { text = '┆' },
+                },
+
+                numhl = true, -- 当前行号是否修改
+                linehl = false, -- 当前行颜色是否修改
+                signcolumn = false,
+            })
+        end
+    end,
+    nested = true
+})
 
 -- 目录关闭
 vim.api.nvim_create_user_command("MakeDirectory", function()
@@ -123,8 +153,6 @@ function TermToggle()
     end
 end
 
-
-
 -- NOTE  注释的添加与删除
 function CommentToggle()
     local filetype = vim.bo.filetype
@@ -153,15 +181,11 @@ function CommentToggle()
     end
 end
 
-
-
-
-
 -- 对默认主题的修改增强
 function VimPlus()
     cmd("highlight! CursorLine guibg=bg")
     cmd("highlight! SignColumn guibg=bg")
-    highlight(0, '@lsp.type.modifier.java', { link = "Special" }) -- 枚举常量
+    highlight(0, '@lsp.type.modifier.java', { link = "Special" })   -- 枚举常量
     highlight(0, '@lsp.type.class.java', { link = "javaOperator" }) -- 枚举常量
 
     highlight(0, 'markdownH4', { link = "Special" })
@@ -171,13 +195,13 @@ function VimPlus()
 end
 
 function OnedarkPlus()
-    highlight(0, 'javaType', { fg = CoreUIColorGroup.magenta })                       -- 数据类型
-    highlight(0, '@lsp.type.modifier.java', { link = 'javaType' })                    -- 关键字
-    highlight(0, '@lsp.type.method.java', { fg = CoreUIColorGroup.SoftBlue })         -- 方法/函数
-    highlight(0, '@lsp.type.property.java', { fg = CoreUIColorGroup.SoftRed })        --变量
-    highlight(0, '@lsp.type.parameter.java', { fg = CoreUIColorGroup.SoftRed })       -- 变量
-    highlight(0, '@lsp.type.class.java', { fg = CoreUIColorGroup.SoftOrange })        -- 类
-    highlight(0, 'javaClassDecl', { link = 'javaType' })                              -- 实现
+    highlight(0, 'javaType', { fg = CoreUIColorGroup.magenta })                         -- 数据类型
+    highlight(0, '@lsp.type.modifier.java', { link = 'javaType' })                      -- 关键字
+    highlight(0, '@lsp.type.method.java', { fg = CoreUIColorGroup.SoftBlue })           -- 方法/函数
+    highlight(0, '@lsp.type.property.java', { fg = CoreUIColorGroup.SoftRed })          --变量
+    highlight(0, '@lsp.type.parameter.java', { fg = CoreUIColorGroup.SoftRed })         -- 变量
+    highlight(0, '@lsp.type.class.java', { fg = CoreUIColorGroup.SoftOrange })          -- 类
+    highlight(0, 'javaClassDecl', { link = 'javaType' })                                -- 实现
     highlight(0, '@lsp.type.annotationMember.java', { fg = CoreUIColorGroup.SoftBlue }) -- 注解方法
     highlight(0, '@lsp.type.enumMember.java', { fg = CoreUIColorGroup.ModerateOrange }) -- 枚举常量
 end

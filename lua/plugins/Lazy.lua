@@ -15,6 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
+
+
     -- +==================================+
     -- |               功能               |
     -- +==================================+
@@ -31,7 +33,7 @@ require("lazy").setup({
         end,
 
     },
- 'nvim-treesitter/nvim-treesitter',
+    'nvim-treesitter/nvim-treesitter',
     -- 文件搜索
     {
         "nvim-telescope/telescope.nvim",
@@ -80,7 +82,7 @@ require("lazy").setup({
     },
 
 
-    -- 主页
+    --    -- 主页
     {
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
@@ -89,8 +91,9 @@ require("lazy").setup({
             require("plugins.dashboard")
         end,
     },
+  
 
-    -- 标签页
+    --    -- 标签页
     {
         "akinsho/bufferline.nvim",
         config = function()
@@ -98,9 +101,8 @@ require("lazy").setup({
         end,
     },
 
-    -- 底栏
+    --    -- 底栏
     "nvim-lualine/lualine.nvim",
-
     -- git标记
     "lewis6991/gitsigns.nvim",
 
@@ -134,8 +136,8 @@ require("lazy").setup({
             {
                 'L3MON4D3/LuaSnip',
                 config = function()
-                    require("luasnip.loaders.from_vscode").lazy_load({paths = "~/.config/nvim/lua/snippets" })
-                    require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/.config/nvim/lua/snippets"})
+                    require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
+                    require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
                 end
             },
             {
