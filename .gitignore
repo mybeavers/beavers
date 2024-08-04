@@ -1,2 +1,5 @@
 .gitPullAndPush.sh
-
+.gitignore
+.image/
+.luarc.json
+lazy-lock.json
