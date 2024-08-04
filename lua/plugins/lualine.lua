@@ -1,12 +1,4 @@
 local lualine = require('lualine')
---lualine_c_5_terminal
---lualine_c_5_inactive
---lualine_c_5_replace
---lualine_c_5_command
---lualine_c_5_visual
---lualine_c_5_normal
---lualine_c_5_insert
-
 
 local conditions = {
     buffer_not_empty = function()

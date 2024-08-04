@@ -115,10 +115,11 @@ fields = {"kind", "abbr", "menu" },
             local strings = vim.split(string.format("%s ", kind_icons[vim_item.kind]), " ")
             vim_item.kind = strings[1]
             vim_item.menu = strings[2]
---            vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
+--           vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
             return vim_item
         end,
     },
+
 
     sources = cmp.config.sources(
         {
