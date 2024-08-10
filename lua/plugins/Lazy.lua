@@ -22,6 +22,7 @@ require("lazy").setup({
     -- 目录
     {
         "nvim-tree/nvim-tree.lua",
+        event = "VimEnter",
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
@@ -32,10 +33,15 @@ require("lazy").setup({
         end,
 
     },
-    'nvim-treesitter/nvim-treesitter',
-    -- 文件搜索
+
+    {
+        'nvim-treesitter/nvim-treesitter',
+        event = "VimEnter",
+    },
+-- 文件搜索
     {
         "nvim-telescope/telescope.nvim",
+        event = "VimEnter",
         dependencies = {
             "nvim-lua/plenary.nvim"
         },
@@ -48,9 +54,10 @@ require("lazy").setup({
         end,
     },
 
-    -- markdown预览
+-- markdown预览
     {
         "iamcco/markdown-preview.nvim",
+        event = "InsertEnter",
         build = function()
             vim.fn["mkdp#util#install"]()
         end,
@@ -60,7 +67,7 @@ require("lazy").setup({
         end,
     },
 
-    -- 括号自动补齐
+-- 括号自动补齐
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
@@ -75,10 +82,10 @@ require("lazy").setup({
     },
 
 
-    -- +==================================+
-    -- |               UI                 |
-    -- +==================================+
-    -- 主题colorscheme
+-- +==================================+
+-- |               UI                 |
+-- +==================================+
+-- 主题colorscheme
     {
         "olimorris/onedarkpro.nvim",
         priority = 1000,
@@ -89,12 +96,12 @@ require("lazy").setup({
                 }
             })
 
-           vim.cmd("colorscheme onedark")
+            vim.cmd("colorscheme onedark")
         end,
 
     },
 
-    --    -- 主页
+-- 主页
     {
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
@@ -105,46 +112,53 @@ require("lazy").setup({
     },
 
 
-    --    -- 标签页
+-- 标签页
     {
         "akinsho/bufferline.nvim",
+        event = "InsertEnter",
         config = function()
             MyKeymap("n", "3", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", MyKeymapOpt)
         end,
     },
 
-    --    -- 底栏
-    "nvim-lualine/lualine.nvim",
-    -- git标记
-    "lewis6991/gitsigns.nvim",
+-- 底栏
+    {
+        "nvim-lualine/lualine.nvim",
+        event = "InsertEnter",
+    },
+-- git标记
+    {
+        "lewis6991/gitsigns.nvim",
+        event = "InsertEnter",
+    },
 
 
-    -- +==================================+
-    -- |          lsp服务器               |
-    -- +==================================+
-    -- lsp服务器按照插件
+-- +==================================+
+-- |          lsp服务器               |
+-- +==================================+
+-- lsp服务器按照插件
     {
         "williamboman/mason.nvim",
-        build = ":MasonUpdate",
-        event = 'VimEnter',
+        event = "InsertEnter",
     },
-    -- lsp服务器配置插件
+
+-- lsp服务器配置插件
     {
         "neovim/nvim-lspconfig",
-        event = "VimEnter",
+        event = "InsertEnter",
     },
 
- 
-    -- +==================================+
-    -- |          cmp代码补全             |
-    -- +==================================+
+
+-- +==================================+
+-- |          cmp代码补全             |
+-- +==================================+
     {
         "hrsh7th/nvim-cmp",
-        event = "VimEnter",
-
+        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
+
             {
                 'L3MON4D3/LuaSnip',
                 config = function()
@@ -157,7 +171,11 @@ require("lazy").setup({
                 build = "make install_jsregexp"
             },
         },
-
-    },
-
+    
+    config = function()
+        require('plugins.CmpNvim')
+        require('mason').setup()
+        require('plugins.LspConfig')
+    end
+}
 })
