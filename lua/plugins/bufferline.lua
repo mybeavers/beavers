@@ -9,7 +9,7 @@ require("bufferline").setup {
         always_show_bufferline = true,  -- 显示bufferline
         show_close_icon = true,
         buffer_close_icon = "✗",
-        separator_style="thick",        --separator_style = "slant" | "thick" | "thin" | {"any", "any"},
+        separator_style="thin",        --separator_style = "slant" | "thick" | "thin" | {"any", "any"},
         left_trunc_marker = "",        -- 左边超过显示图标
         right_trunc_marker = "",       -- 右边超过显示图标
         max_name_length = 14,           -- 文件名大小

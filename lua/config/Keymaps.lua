@@ -65,5 +65,3 @@ vim.cmd([[
 ]])
 
 
--- 加载更多配置
-MyKeymap("n", "<A-=>", ":source /home/mybeavers/.config/nvim/lua/HeavyInit.lua<CR>", MyKeymapOpt)

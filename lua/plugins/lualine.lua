@@ -74,7 +74,7 @@ local mode_color = {
 
 ins_left {
     function()
-        return '▊'
+        return  '▊'
     end,
     color = { fg = CoreUIColorGroup.blue, gui = 'bold' },
     padding = { right = 1 },
@@ -135,9 +135,6 @@ ins_right {
     },
     cond = conditions.hide_in_width,
 }
-
-
-
 
 
 -- git分支

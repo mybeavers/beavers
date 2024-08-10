@@ -16,7 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-
     -- +==================================+
     -- |               功能               |
     -- +==================================+
@@ -65,7 +64,14 @@ require("lazy").setup({
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
-        opts = {}
+        config = function()
+            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            local cmp = require('cmp')
+            cmp.event:on(
+                'confirm_done',
+                cmp_autopairs.on_confirm_done()
+            )
+        end
     },
 
 
@@ -77,10 +83,16 @@ require("lazy").setup({
         "olimorris/onedarkpro.nvim",
         priority = 1000,
         config = function()
-            vim.cmd("colorscheme onedark")
-        end,
-    },
+            require("onedarkpro").setup({
+                options = {
+                    transparency = true
+                }
+            })
 
+           vim.cmd("colorscheme onedark")
+        end,
+
+    },
 
     --    -- 主页
     {
@@ -91,7 +103,7 @@ require("lazy").setup({
             require("plugins.dashboard")
         end,
     },
-  
+
 
     --    -- 标签页
     {
@@ -122,7 +134,7 @@ require("lazy").setup({
         event = "VimEnter",
     },
 
-
+ 
     -- +==================================+
     -- |          cmp代码补全             |
     -- +==================================+
