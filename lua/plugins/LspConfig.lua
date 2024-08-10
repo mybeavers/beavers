@@ -42,7 +42,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 
 
-
 -- --------------------------------------------------------
 -- LSP UI
 -- --------------------------------------------------------
@@ -56,9 +55,9 @@ vim.diagnostic.config({
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = "┃",
-            [vim.diagnostic.severity.WARN] =  "┃",
-            [vim.diagnostic.severity.INFO] =  "┃",
-            [vim.diagnostic.severity.HINT] =  "┃",
+            [vim.diagnostic.severity.WARN] = "┃",
+            [vim.diagnostic.severity.INFO] = "┃",
+            [vim.diagnostic.severity.HINT] = "┃",
         },
         linehl = {
             [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
@@ -100,11 +99,6 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-
-
-
-
-
 -- 打印诊断信息到消息区域
 function PrintDiagnostics(opts, bufnr, line_nr, client_id)
     bufnr = bufnr or 0
@@ -131,10 +125,6 @@ function PrintDiagnostics(opts, bufnr, line_nr, client_id)
     end
 end
 
-
-
-
-
 -- --------------------------------------------
 -- start lsp server
 -- --------------------------------------------
@@ -151,7 +141,4 @@ for _, lsp in ipairs(servers) do
         flags = lsp_flags,
         handlers = handlers
     }
-
 end
-
-

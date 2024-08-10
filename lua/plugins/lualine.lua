@@ -76,7 +76,12 @@ ins_left {
     function()
         return  '▊'
     end,
-    color = { fg = CoreUIColorGroup.blue, gui = 'bold' },
+--    color = { fg = CoreUIColorGroup.blue, gui = 'bold' },
+    color = function()
+        -- 颜色变化
+        return { fg = mode_color[vim.fn.mode()]}
+    end,
+
     padding = { right = 1 },
 
 }
@@ -159,7 +164,12 @@ ins_right {
     function()
         return '▊'
     end,
-    color = { fg = CoreUIColorGroup.blue, gui = 'bold' },
+--    color = { fg = CoreUIColorGroup.blue, gui = 'bold' },
+    color = function()
+        -- 颜色变化
+        return { fg = mode_color[vim.fn.mode()]}
+    end,
+
     padding = { left = 1 },
 }
 

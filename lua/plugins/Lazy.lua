@@ -54,19 +54,6 @@ require("lazy").setup({
         end,
     },
 
--- markdown预览
-    {
-        "iamcco/markdown-preview.nvim",
-        event = "InsertEnter",
-        build = function()
-            vim.fn["mkdp#util#install"]()
-        end,
-        config = function()
-            vim.g["mkdp_path_to_chrome"] = ""   -- 浏览器路径 --本机默认浏览器
-            vim.g["mkdp_open_to_the_world"] = 0 -- 默认监听127.0.0.1
-        end,
-    },
-
 -- 括号自动补齐
     {
         'windwp/nvim-autopairs',
@@ -179,3 +166,5 @@ require("lazy").setup({
     end
 }
 })
+
+
