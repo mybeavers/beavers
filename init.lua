@@ -88,8 +88,9 @@ require('config.Keymaps')
 require('config.UI')
 require('plugins.Lazy')
 
-
+require('plugins.MiniConfig')
 -- -------------------------------
 --          新功能
 -- -------------------------------
 vim.lsp.inlay_hint.enable() --嵌入提示 NeoVim-0.10.0
+

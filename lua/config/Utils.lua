@@ -5,7 +5,6 @@ cmd = vim.cmd
 highlight = vim.api.nvim_set_hl
 autocmd = vim.api.nvim_create_autocmd
 
-
 -- ///////////////////////////////////////////////////////////////////////
 --                            自动程序
 -- //////////////////////////////////////////////////////////////////////
@@ -50,11 +49,9 @@ autocmd("BufNew", {
         local buffer_count = #vim.fn.getbufinfo({ buflisted = 1 })
         if buffer_count == 3 then
             vim.o.number = true -- 开启行号
-            
-            require("plugins.bufferline")
+            require("plugins.buffer")
             require("plugins.lualine")
-            require('plugins.IndentLine').setup({ char = '│', }) -- 说明: 此缩进线功能全部截取自: nvimdev/indentmini.nvim 插件
-
+            require("mini.indentscope").setup()
             require('gitsigns').setup({
                 signs = {
                     add          = { text = '│' },
@@ -65,7 +62,7 @@ autocmd("BufNew", {
                     untracked    = { text = '┆' },
                 },
 
-                numhl = true, -- 当前行号是否修改
+                numhl = true,   -- 当前行号是否修改
                 linehl = false, -- 当前行颜色是否修改
                 signcolumn = false,
             })

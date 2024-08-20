@@ -38,7 +38,7 @@ require("lazy").setup({
         'nvim-treesitter/nvim-treesitter',
         event = "VimEnter",
     },
--- 文件搜索
+    -- 文件搜索
     {
         "nvim-telescope/telescope.nvim",
         event = "VimEnter",
@@ -54,32 +54,20 @@ require("lazy").setup({
         end,
     },
 
--- 括号自动补齐
-    {
-        'windwp/nvim-autopairs',
-        event = "InsertEnter",
-        config = function()
-            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-            local cmp = require('cmp')
-            cmp.event:on(
-                'confirm_done',
-                cmp_autopairs.on_confirm_done()
-            )
-        end
-    },
+    -- 括号自动补齐
+    'echasnovski/mini.nvim',
 
-
--- +==================================+
--- |               UI                 |
--- +==================================+
--- 主题colorscheme
+    -- +==================================+
+    -- |               UI                 |
+    -- +==================================+
+    -- 主题colorscheme
     {
         "olimorris/onedarkpro.nvim",
         priority = 1000,
         config = function()
             require("onedarkpro").setup({
                 options = {
-                    transparency = true
+                    --                    transparency = true
                 }
             })
 
@@ -88,7 +76,7 @@ require("lazy").setup({
 
     },
 
--- 主页
+    -- 主页
     {
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
@@ -98,50 +86,50 @@ require("lazy").setup({
         end,
     },
 
-
--- 标签页
-    {
-        "akinsho/bufferline.nvim",
-        event = "InsertEnter",
-        config = function()
-            MyKeymap("n", "3", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", MyKeymapOpt)
-        end,
-    },
-
 -- 底栏
     {
         "nvim-lualine/lualine.nvim",
         event = "InsertEnter",
     },
--- git标记
+    -- buffer
+-- 标签页
+        {
+            "akinsho/bufferline.nvim",
+            event = "InsertEnter",
+            config = function()
+                MyKeymap("n", "3", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", MyKeymapOpt)
+            end,
+        },
+
+
+    -- git标记
     {
         "lewis6991/gitsigns.nvim",
         event = "InsertEnter",
     },
 
-
--- +==================================+
--- |          lsp服务器               |
--- +==================================+
--- lsp服务器按照插件
+    -- +==================================+
+    -- |          lsp服务器               |
+    -- +==================================+
+    -- lsp服务器按照插件
     {
         "williamboman/mason.nvim",
         event = "InsertEnter",
     },
 
--- lsp服务器配置插件
+    -- lsp服务器配置插件
     {
         "neovim/nvim-lspconfig",
         event = "InsertEnter",
     },
 
 
--- +==================================+
--- |          cmp代码补全             |
--- +==================================+
+    -- +==================================+
+    -- |          cmp代码补全             |
+    -- +==================================+
     {
         "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
+--        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
@@ -158,13 +146,11 @@ require("lazy").setup({
                 build = "make install_jsregexp"
             },
         },
-    
-    config = function()
-        require('plugins.CmpNvim')
-        require('mason').setup()
-        require('plugins.LspConfig')
-    end
-}
+
+        config = function()
+            require('plugins.CmpNvim')
+            require('mason').setup()
+            require('plugins.LspConfig')
+        end
+    }
 })
-
-
