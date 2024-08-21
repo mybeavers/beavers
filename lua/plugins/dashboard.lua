@@ -39,7 +39,7 @@ db.setup({
             },
 
             {
-                icon = "    ",
+                icon = "    ",
                 icon_hl = 'Statement',
                 desc = 'Find Files ',
                 desc_hl = 'Statement',
@@ -47,7 +47,7 @@ db.setup({
                 action = 'Telescope find_files'
             },
             {
-                icon = "    ",
+                icon = "    ",
                 icon_hl = 'Statement',
                 desc = 'Color Scheme',
                 desc_hl = 'Statement',

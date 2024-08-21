@@ -1,6 +1,6 @@
 {
     "method":{
-           "prefix": "method",
+           "prefix": "md",
            "body": [
                 "public ${1:void} ${2:method}($3) {$0}"
            ],

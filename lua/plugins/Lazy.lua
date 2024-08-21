@@ -90,6 +90,7 @@ require("lazy").setup({
     {
         "nvim-lualine/lualine.nvim",
         event = "InsertEnter",
+        commit= "b431d228b7bbcdaea818bdc3e25b8cdbe861f056"
     },
     -- buffer
 -- 标签页

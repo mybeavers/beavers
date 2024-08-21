@@ -49,7 +49,7 @@ MyKeymap("n", "2", ":bNext<CR>", MyKeymapOpt)           -- 跳转到下一个buf
 MyKeymap('v','3',':lua CommentToggle()<CR>', MyKeymapOpt)
 
 -- 主题切换
-MyKeymap('n', '-', "<cmd>lua ChooseColorTheme()<CR>", MyKeymapOpt)
+MyKeymap('n', '-', "<cmd>lua ThemeToggle()<CR>", MyKeymapOpt)
 
 
 -- TermToggle

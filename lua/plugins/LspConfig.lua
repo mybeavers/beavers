@@ -1,4 +1,4 @@
--- -------------------------------------------
+-- ------------------------------------------
 -- lsp keymap lspconifg
 -- -------------------------------------------
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, MyKeymapOpt) -- 查看代码诊断信息
@@ -55,9 +55,9 @@ vim.diagnostic.config({
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = "┃",
-            [vim.diagnostic.severity.WARN] = "┃",
-            [vim.diagnostic.severity.INFO] = "┃",
-            [vim.diagnostic.severity.HINT] = "┃",
+            [vim.diagnostic.severity.WARN] =  "┃",
+            [vim.diagnostic.severity.INFO] =  "┃",
+            [vim.diagnostic.severity.HINT] =  "┃",
         },
         linehl = {
             [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
@@ -73,17 +73,17 @@ vim.diagnostic.config({
 
 
 -- 悬浮样式
-local border = {
-    { "🭽", "FloatBorder" },
-    { "▔", "FloatBorder" },
-    { "🭾", "FloatBorder" },
-    { "▕", "FloatBorder" },
-    { "🭿", "FloatBorder" },
-    { "▁", "FloatBorder" },
-    { "🭼", "FloatBorder" },
-    { "▏", "FloatBorder" },
-}
-
+--local border = {
+--    { "╭", "FloatBorder" },
+--    { "▔", "FloatBorder" },
+--    { "╮", "FloatBorder" },
+--    { "▕", "FloatBorder" },
+--    { "╯", "FloatBorder" },
+--    { "▁", "FloatBorder" },
+--    { "╰", "FloatBorder" },
+--    { "▏", "FloatBorder" },
+--}
+--
 -- LSP settings (for overriding per client)
 local handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),

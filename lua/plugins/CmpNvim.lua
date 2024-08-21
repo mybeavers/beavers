@@ -1,41 +1,48 @@
 local kind_icons = {
-    Text = " Text",
-    Method = " Method",
-    Function = " Function",
-    Constructor = " Constructor",
-    Field = " Field",
-    Variable = " Variable",
-    Class = " Class",
-    Interface = " Interface",
-    Module = "  Module",
-    Property = " Property",
-    Unit = " Unit",
-    Value = " Value",
-    Enum = " Enum",
-    Keyword = " Keyword",
-    Snippet = " Snippet",
-    Color = " Color",
-    File = " Fi",
-    Reference = " Reference",
-    Folder = " Folder",
-    EnumMember = "  EnumMember",
-    Constant = " Constant",
-    Struct = "  Struct",
-    Event = " Event",
-    Operator = " Operator",
-    TypeParameter = " TypeParameter",
-    Tag = "",
-    Array = "[]",
-    Boolean = "",
-    Number = "",
-
+    Namespace = "󰌗 ,Namespace",
+    Text = "󰉿 ,Text",
+    Method = "󰆧 ,Method",
+    Function = "󰆧 ,Function",
+    Constructor = " ,Constructor",
+    Field = "󰜢 ,Field",
+    Variable = "󰀫 ,Variable",
+    Class = "󰠱 ,Class",
+    Interface = " ,Interface",
+    Module = " ,Method",
+    Property = "󰜢 ,Property",
+    Unit = "󰑭 ,Unit",
+    Value = "󰎠 ,Value",
+    Enum = " ,Enum",
+    Keyword = "󰌋 ,Keyword",
+    Snippet = " ,Snippet",
+    Color = "󰏘 ,Color",
+    File = "󰈚 ,File",
+    Reference = "󰈇 ,Reference",
+    Folder = "󰉋 ,Folder",
+    EnumMember = " ,EnumMember",
+    Constant = "󰏿 ,Constant",
+    Struct = "󰙅 ,Struct",
+    Event = " ,Event",
+    Operator = "󰆕 ,Operator",
+    TypeParameter = "󰊄 ,TypeParameter",
+    Table = " ,Table",
+    Object = "󰅩 ,Object",
+    Tag = " ,Tag",
+    Array = "[] ,Array",
+    Boolean = " ,Boolean",
+    Number = " ,Number",
+    Null = "󰟢 ,Null",
+    Supermaven = " ,Supermaven",
+    String = "󰉿 ,String",
+    Calendar = " ,Calendar",
+    Watch = "󰥔 ,Watch",
+    Package = " ,Package",
+    Copilot = " ,Copilot",
+    Codeium = " ,Codeium",
+    TabNine = " ,TabNine",
 }
 
 
-
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 cmp.setup {
@@ -112,14 +119,13 @@ cmp.setup {
         fields = { "kind", "abbr", "menu" },
         --        fields = { 'abbr', 'kind'},
         format = function(entry, vim_item)
-            local strings = vim.split(string.format("%s ", kind_icons[vim_item.kind]), " ")
+            local strings = vim.split(string.format("%s ", kind_icons[vim_item.kind]), ",")
             vim_item.kind = strings[1]
             vim_item.menu = strings[2]
             --           vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
             return vim_item
         end,
     },
-
 
     sources = cmp.config.sources(
         {

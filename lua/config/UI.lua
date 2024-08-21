@@ -44,7 +44,7 @@ CoreUIColorGroup = {
     VerySoftBlue               = '#9CDCFE', -- 非常柔和的蓝色
     LightGray                  = '#D4D4D4', -- 浅灰色
     DarkGrayishBlue            = '#7f828e', -- 深灰蓝色
-    DarkGrayishBlue2           = '#abb2bf', -- 深灰蓝色2
+    DarkGrayish                = '#7f828e', -- 暗灰色
     ModerateCyan               = '#56b6c2', -- 适度的青色
     violet                     = '#a9a1e1', -- 紫罗兰色
     SoftViolet                 = '#b490ca', -- 柔和的紫色
@@ -86,6 +86,7 @@ autocmd({ "InsertEnter" }, { --InsertEnter", "CursorMoved"
     end,
 })
 
+
 ----------------------------------------
 --          Cmp highlight group
 ----------------------------------------
@@ -116,8 +117,6 @@ autocmd({ "vimEnter", "ColorScheme" }, {
 })
 
 
-
-
 --------------------------------------
 -- NOTE Telescope highlight group
 --------------------------------------
@@ -132,7 +131,15 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 
 
 
-
+--------------------------------------
+-- NOTE  lualine highlight group
+--------------------------------------
+--autocmd({ "BufEnter", "ColorScheme", "ModeChanged" }, {
+--autocmd({ "ModeChanged"}, {
+--    pattern = "*",
+--    callback = myline,
+--    nested = true
+--})
 -- --------------------------------------
 --  NOTE  My java highlight group
 -- --------------------------------------
@@ -193,6 +200,3 @@ autocmd({ "ColorScheme" }, {
 highlight(0, 'GitSignsAdd', { fg = CoreUIColorGroup.SoftGreen })
 highlight(0, 'GitSignsDelete', { fg = CoreUIColorGroup.SoftRed })
 highlight(0, 'GitSignsChange', { fg = CoreUIColorGroup.SoftOrange })
-
-
-

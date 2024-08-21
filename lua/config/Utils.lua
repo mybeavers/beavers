@@ -50,7 +50,6 @@ autocmd("BufNew", {
         if buffer_count == 3 then
             vim.o.number = true -- 开启行号
             require("plugins.buffer")
-            require("plugins.lualine")
             require("mini.indentscope").setup()
             require('gitsigns').setup({
                 signs = {
@@ -95,20 +94,18 @@ cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpringBo
 --                                  Keymap快捷键函数
 -- 主题切换
 local keyCountColors = 0;
-function ChooseColorTheme()
-    local colorthemes = { 'onelight', 'default', 'retrobox', 'onedark', 'retrobox', 'default', 'vim' }
+function ThemeToggle()
+    --    local colorthemes = { 'onelight', 'default', 'retrobox', 'onedark', 'retrobox', 'default', 'vim' }
 
+    local colorthemes = { 'onelight', 'retrobox', "onedark", 'retrobox' }
     keyCountColors = keyCountColors + 1;
     if keyCountColors > #colorthemes then keyCountColors = 1 end
 
     cmd("color " .. colorthemes[keyCountColors]);
-
-    if (keyCountColors == 1 or keyCountColors == 2 or keyCountColors == 4 or keyCountColors == 6) then
+    if keyCountColors == 1 or keyCountColors == 3 then
         OnedarkPlus()
-    elseif (keyCountColors == 3 or keyCountColors == 5) then
-        RetroboxPlus()
     else
-        VimPlus()
+        RetroboxPlus()
     end
 end
 
@@ -210,5 +207,3 @@ end
 function MyStatusLine()
     return '%9*%=%-7.(%l,%c%V%) %t  '
 end
-
-

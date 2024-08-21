@@ -1,5 +1,4 @@
 local lualine = require('lualine')
-
 local conditions = {
     buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -13,43 +12,46 @@ local conditions = {
         return gitdir and #gitdir > 0 and #gitdir < #filepath
     end,
 }
+local function filename()
+    filepath = vim.api.nvim_buf_get_name(0)
+    splitString = vim.split(filepath, "/")
+    tmp = splitString[#splitString]
+    name, extension = string.match(tmp, "(.+)%.(%w+)")
 
--- Config 
+    if name == nil then
+        return "%t"
+    end
+
+    if string.len(name) > 10 then
+        local substr1 = string.sub(name, 1, 4)
+        local substr2 = substr1.sub(name, -4, -1)
+        return substr1 .. "" .. ".." .. substr2
+    end
+    return name
+end
+
+local function mySystemIcon()
+    return ""
+end
+-- Config
 local config = {
     options = {
-        component_separators = '',
-        section_separators = '',
-        theme  = "auto",
-     },
-
+        icons_enabled = true,
+        theme = 'auto',
+        component_separators = { left = ' ', right = ' ' },
+        section_separators = { left = "", right = "" },
+    },
+--
     sections = {
         lualine_a = {
+            'mode',
         },
-        lualine_b = {},
+        lualine_b = { filename },
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
-        lualine_z = {},
+        lualine_z = {mySystemIcon},
     },
-
-    inactive_sections = {
-        -- these are to remove the defaults
-        lualine_a = {},
-        lualine_b = {},
-        lualine_y = {},
-        lualine_z = {},
-        lualine_c = {},
-        lualine_x = {},
-    },
-
-    winbar = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {}
-    }
 }
 
 
@@ -64,114 +66,56 @@ end
 
 
 
-local mode_color = {
-            n = CoreUIColorGroup.blue,
-            i = CoreUIColorGroup.violet,
-            v = CoreUIColorGroup.green,
-            c = CoreUIColorGroup.red,
-}
-
-
-ins_left {
-    function()
-        return  '▊'
-    end,
---    color = { fg = CoreUIColorGroup.blue, gui = 'bold' },
-    color = function()
-        -- 颜色变化
-        return { fg = mode_color[vim.fn.mode()]}
-    end,
-
-    padding = { right = 1 },
-
-}
-
--- 图标蓝色代表插入,红色代表命令,选择模式是绿
-ins_left {
-    function()
-        return ' '
-    end,
-    color = function()
-        -- 颜色变化
-        return { fg = mode_color[vim.fn.mode()]}
-    end,
-    padding = { right = 1 },
-}
-
--- 显示time
-ins_left {
-    function ()
-        local gettime = os.date("%H:%M");
-        return gettime
-    end,
-    color = function()
-        -- auto change color according to neovims mode
-        return { fg = mode_color[vim.fn.mode()] }
-    end,
-    cond = conditions.hide_in_width,
-}
-
-ins_left{
-    '%l:%c %P',
-    color = {fg = '#7f828e'}
-}
-
--- 显示代码错误信息
-ins_left {
-    'diagnostics',
-    sources = { 'nvim_diagnostic' },
-    symbols = { error = ' ', warn = ' ', info = ' ', hint= "󰌵" },
-    }
-
-
-
-
-
-
 -- 显示添加/修改/删除
-ins_right {
+ins_left {
     'diff',
     -- Is it me or the symbol for modified us really weird
-    symbols = { added = ' ', modified =" ", removed = ' ' },
+    symbols = { added = " ", modified = " ", removed = " " },
     diff_color = {
-        added = { fg = CoreUIColorGroup.green },
-        modified = { fg = CoreUIColorGroup.orange },
-        removed = { fg = CoreUIColorGroup.red },
+        added = { fg = CoreUIColorGroup.DarkGrayish },
+        modified = { fg = CoreUIColorGroup.DarkGrayish },
+        removed = { fg = CoreUIColorGroup.DarkGrayish },
     },
     cond = conditions.hide_in_width,
 }
 
+-- 显示代码错误信息
+ins_right {
+    'diagnostics',
+    sources = { 'nvim_diagnostic' },
+    symbols = { error = ' ', warn = ' ', info = "󰋼 ", hint = "󰌵" },
+    cond = conditions.hide_in_width,
+
+}
 
 -- git分支
-ins_right {
-    'branch',
-    icon = '',
-    cond = conditions.hide_in_width,
-    color = { fg = CoreUIColorGroup.violet, gui = 'bold' },
-}
-
-
-
--- 显示编码
-ins_right {
-    'o:encoding', -- option component same as &encoding in viml
-    fmt = string.upper, -- I'm not sure why it's upper case either ;)
-    cond = conditions.hide_in_width,
-    color = { fg = CoreUIColorGroup.yellow, gui = 'bold' },
-}
-
+--ins_right {
+--    'branch',
+--    icon = '',
+--    cond = conditions.hide_in_width,
+--    color = { fg = CoreUIColorGroup.violet, gui = 'bold' },
+--}
 ins_right {
     function()
-        return '▊'
+        local clients = vim.lsp.get_clients()
+        local lspname
+        for _, client in ipairs(clients) do
+            lspname = client.name
+        end
+        if lspname == nil then
+            return "utf8"
+        end
+        return lspname
     end,
---    color = { fg = CoreUIColorGroup.blue, gui = 'bold' },
-    color = function()
-        -- 颜色变化
-        return { fg = mode_color[vim.fn.mode()]}
-    end,
-
-    padding = { left = 1 },
+    icon = " ",
+    color = { fg = CoreUIColorGroup.SoftViolet },
+    cond = conditions.hide_in_width,
 }
 
-lualine.setup(config)
 
+ins_right {
+    "progress",
+    icon = "",
+    color = { fg = CoreUIColorGroup.ModerateOrange }
+}
+lualine.setup(config)

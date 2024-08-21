@@ -87,10 +87,9 @@ require('config.Utils') -- 该文件应该先加载以便其他文件调用函�
 require('config.Keymaps')
 require('config.UI')
 require('plugins.Lazy')
-
 require('plugins.MiniConfig')
+require("plugins.lualine")
 -- -------------------------------
 --          新功能
 -- -------------------------------
 vim.lsp.inlay_hint.enable() --嵌入提示 NeoVim-0.10.0
-
