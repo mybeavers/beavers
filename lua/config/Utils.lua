@@ -20,7 +20,6 @@ if vim.fn.has('wsl') then
 end
 
 
-
 -- 自动保存
 autocmd({ "InsertLeave", "TextChanged" }, {
     pattern = "*",
@@ -41,20 +40,6 @@ autocmd("BufReadPost", {
     nested = true
 })
 
-autocmd("BufNew", {
-    pattern = "*",
-    callback = function()
-        local buffer_count = #vim.fn.getbufinfo({ buflisted = 1 })
-        if buffer_count == 3 then
-            vim.o.number = true -- 开启行号
-            require("plugins.lualine")
-            require("plugins.bufferline")
-            require("plugins.gitsigns")
-            require("mini.indentscope").setup()
-        end
-    end,
-    nested = true
-})
 -- 目录关闭
 vim.api.nvim_create_user_command("MakeDirectory", function()
     ---@diagnostic disable-next-line: missing-parameter
@@ -226,5 +211,4 @@ function getPWD()
     splitstr = vim.split(path, "/")
     return splitstr[#splitstr]:gsub("%s+", "")
     --return splitstr[#splitstr]
-    
 end

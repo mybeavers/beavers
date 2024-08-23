@@ -112,10 +112,11 @@ autocmd({ "vimEnter", "ColorScheme" }, {
 
         -- cmp bg
         highlight(0, 'MyCmpSel', { bg = CoreUIColorGroup.SoftBlue, fg = CoreUIColorGroup.black })
+        highlight(0, 'MyCmpFloatBorder', { fg = CoreUIColorGroup.SoftViolet})
+
     end,
     nested = true,
 })
-
 
 --------------------------------------
 -- NOTE Telescope highlight group

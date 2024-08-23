@@ -5,11 +5,6 @@ local getGitBranch = GetGitBranch()
 
 require("bufferline").setup {
     options = {
-        hover = {
-            enabled = true,
-            delay = 200,
-            reveal = { 'close' }
-        },
         diagnostics = "nvim_lsp",      -- 使用 nvim 内置lsp
         always_show_bufferline = true, -- 显示bufferline
         show_close_icon = true,

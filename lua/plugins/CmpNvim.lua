@@ -107,10 +107,10 @@ cmp.setup {
     -- 窗口
     window = {
         documentation = cmp.config.window.bordered({
-            winhighlight = "Normal:MyCmpNormal" --",FloatBorder:MyCmpFloatBorder",
+            winhighlight = "Normal:MyCmpNormal,FloatBorder:MyCmpFloatBorder",
         }),
         completion = cmp.config.window.bordered({
-            winhighlight = "Normal:MyCmpNormal,CursorLine:MyCmpSel" --",FloatBorder:MyCmpFloatBorder",
+            winhighlight = "Normal:MyCmpNormal,CursorLine:MyCmpSel,FloatBorder:MyCmpFloatBorder",
         }),
     },
 
