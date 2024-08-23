@@ -11,11 +11,8 @@ local lspconfig = require("lspconfig")
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
-        -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }                                        --  NOTE  说明
         vim.keymap.set('n', '<space>g', vim.lsp.buf.definition, opts)           -- go to 方法/变量...定义
         vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, opts)               -- 重命名
@@ -55,9 +52,9 @@ vim.diagnostic.config({
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = "┃",
-            [vim.diagnostic.severity.WARN] =  "┃",
-            [vim.diagnostic.severity.INFO] =  "┃",
-            [vim.diagnostic.severity.HINT] =  "┃",
+            [vim.diagnostic.severity.WARN] = "┃",
+            [vim.diagnostic.severity.INFO] = "┃",
+            [vim.diagnostic.severity.HINT] = "┃",
         },
         linehl = {
             [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
@@ -71,20 +68,18 @@ vim.diagnostic.config({
 
 
 
+local border = {
+      {"🭽", "FloatBorder"},
+      {"▔", "FloatBorder"},
+      {"🭾", "FloatBorder"},
+      {"▕", "FloatBorder"},
+      {"🭿", "FloatBorder"},
+      {"▁", "FloatBorder"},
+      {"🭼", "FloatBorder"},
+      {"▏", "FloatBorder"},
+}
 
 -- 悬浮样式
---local border = {
---    { "╭", "FloatBorder" },
---    { "▔", "FloatBorder" },
---    { "╮", "FloatBorder" },
---    { "▕", "FloatBorder" },
---    { "╯", "FloatBorder" },
---    { "▁", "FloatBorder" },
---    { "╰", "FloatBorder" },
---    { "▏", "FloatBorder" },
---}
---
--- LSP settings (for overriding per client)
 local handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
@@ -132,7 +127,7 @@ local lsp_flags = {
     debounce_text_changes = 100,
 }
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) -- Setup lspconfig.
-local servers = { "jdtls", "pyright", "clangd", "bashls", "lua_ls", "vtsls" }
+local servers = {"jdtls", "pyright", "clangd", "lua_ls", "vtsls"}
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {

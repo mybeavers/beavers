@@ -41,8 +41,8 @@ MyKeymap('n', '<C-b>', ':Ntree<CR>', MyKeymapOpt)
 -- 光标快速跳转快捷键 -> 1/2
 MyKeymap('n', '[', '<S-{>', MyKeymapOpt)                -- 光标跳转到上一个段落
 MyKeymap('n', ']', '<S-}>', MyKeymapOpt)                -- 光标跳转下一个段落
-MyKeymap('n', '1', ':bprevious<CR>', MyKeymapOpt)       -- 跳转到上一个buffer
-MyKeymap("n", "2", ":bNext<CR>", MyKeymapOpt)           -- 跳转到下一个buffer
+MyKeymap('n', '2', ':bnext<CR>', MyKeymapOpt)       -- 跳转到上一个buffer
+MyKeymap("n", "1", ":bNext<CR>", MyKeymapOpt)           -- 跳转到下一个buffer
 
 
 -- 快速注释

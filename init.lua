@@ -5,7 +5,6 @@ vim.o.filetype = 'on'                 -- 设置开启文件类型侦测
 vim.o.eb = false                      -- 关闭错误的提示
 vim.o.syntax = 'enable'               -- 开启语法高亮功能
 vim.o.syntax = 'on'                   -- 自动语法高亮
---vim.o.background = "dark"             -- 背景颜色
 vim.wo.cursorline = false             -- 高亮所在行
 vim.wo.signcolumn = "yes"             -- 显示左侧图标指示列
 vim.o.showmode = false                -- 是否在命令行下显示当前模式
@@ -17,6 +16,7 @@ vim.o.timeoutlen = 100                -- 等待mapping时间
 vim.o.pumheight = 10                  -- 插入模式下弹出式菜单的高度
 vim.o.laststatus = 3                  -- 分割window时状态栏不变
 vim.o.mouse = "a"                     -- 启用鼠标
+ 
 
 
 ---------------------------------
@@ -86,9 +86,8 @@ vim.o.fileencodings = "utf8,ucs-bom,gbk,cp936,gb2312,gb18030"
 require('config.Utils') -- 该文件应该先加载以便其他文件调用函数
 require('config.Keymaps')
 require('config.UI')
+
 require('plugins.Lazy')
-require('plugins.MiniConfig')
-require("plugins.lualine")
 -- -------------------------------
 --          新功能
 -- -------------------------------

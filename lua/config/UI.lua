@@ -131,15 +131,6 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 
 
 
---------------------------------------
--- NOTE  lualine highlight group
---------------------------------------
---autocmd({ "BufEnter", "ColorScheme", "ModeChanged" }, {
---autocmd({ "ModeChanged"}, {
---    pattern = "*",
---    callback = myline,
---    nested = true
---})
 -- --------------------------------------
 --  NOTE  My java highlight group
 -- --------------------------------------

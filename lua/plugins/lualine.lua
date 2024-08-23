@@ -1,10 +1,11 @@
 local lualine = require('lualine')
+
 local conditions = {
     buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
     end,
     hide_in_width = function()
-        return vim.fn.winwidth(0) > 80
+        return vim.fn.winwidth(0) > 60
     end,
     check_git_workspace = function()
         local filepath = vim.fn.expand('%:p:h')
@@ -21,31 +22,29 @@ local function filename()
     if name == nil then
         return "%t"
     end
+    find = "%a"
 
-    if string.len(name) > 10 then
-        local substr1 = string.sub(name, 1, 4)
-        local substr2 = substr1.sub(name, -4, -1)
-        return substr1 .. "" .. ".." .. substr2
-    end
+--    if string.len(name) > 10 then
+--        local substr1 = string.sub(name, 1, 4)
+--        local substr2 = substr1.sub(name, -4, -1)
+--        return substr1 .. "" .. ".." .. substr2
+--    end
     return name
 end
 
 local function mySystemIcon()
-    return ""
+    return  ""
 end
 -- Config
 local config = {
     options = {
         icons_enabled = true,
         theme = 'auto',
-        component_separators = { left = ' ', right = ' ' },
+        component_separators = { left = '', right = '' },
         section_separators = { left = "", right = "" },
     },
---
     sections = {
-        lualine_a = {
-            'mode',
-        },
+        lualine_a = {'mode'},
         lualine_b = { filename },
         lualine_c = {},
         lualine_x = {},
@@ -69,7 +68,6 @@ end
 -- 显示添加/修改/删除
 ins_left {
     'diff',
-    -- Is it me or the symbol for modified us really weird
     symbols = { added = " ", modified = " ", removed = " " },
     diff_color = {
         added = { fg = CoreUIColorGroup.DarkGrayish },
@@ -88,13 +86,6 @@ ins_right {
 
 }
 
--- git分支
---ins_right {
---    'branch',
---    icon = '',
---    cond = conditions.hide_in_width,
---    color = { fg = CoreUIColorGroup.violet, gui = 'bold' },
---}
 ins_right {
     function()
         local clients = vim.lsp.get_clients()
@@ -108,14 +99,14 @@ ins_right {
         return lspname
     end,
     icon = " ",
-    color = { fg = CoreUIColorGroup.SoftViolet },
+    color = {fg = CoreUIColorGroup.SoftViolet},
     cond = conditions.hide_in_width,
 }
-
 
 ins_right {
     "progress",
     icon = "",
-    color = { fg = CoreUIColorGroup.ModerateOrange }
+    color = {fg = CoreUIColorGroup.ModerateOrange},
+    cond = conditions.hide_in_width
 }
 lualine.setup(config)

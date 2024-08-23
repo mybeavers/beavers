@@ -49,6 +49,7 @@ autocmd("BufNew", {
         local buffer_count = #vim.fn.getbufinfo({ buflisted = 1 })
         if buffer_count == 3 then
             vim.o.number = true -- 开启行号
+            require("plugins.lualine")
             require("plugins.buffer")
             require("mini.indentscope").setup()
             require('gitsigns').setup({
@@ -206,4 +207,40 @@ end
 
 function MyStatusLine()
     return '%9*%=%-7.(%l,%c%V%) %t  '
+end
+
+function GetGitBranch()
+    local handle = io.popen("git rev-parse --abbrev-ref HEAD 2> /dev/null")
+    local branch = handle:read("*a")
+    handle:close()
+    if branch == "" or branch == nil then
+        return "NotGit"
+    end
+    return branch:gsub("%s+", "")
+    -- "",   "
+end
+
+function GetGitRepertoryName()
+    local handle = io.popen("git rev-parse --show-toplevel 2> /dev/null")
+    local repo_path = handle:read("*a")
+    handle:close()
+
+    if repo_path == "" or repo_path == nil then
+        return getPWD()
+    end
+    return repo_path:match("([^/]+)$"):gsub("%s+", "")
+end
+
+function getPWD()
+    local handle = io.popen("pwd")
+    local path = handle:read("*a")
+    handle:close()
+    if path == "" or path == nil then
+        return "NvimTree"
+    end
+
+    splitstr = vim.split(path, "/")
+    return splitstr[#splitstr]:gsub("%s+", "")
+    --return splitstr[#splitstr]
+    
 end

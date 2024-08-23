@@ -19,6 +19,7 @@ require("lazy").setup({
     -- +==================================+
     -- |               功能               |
     -- +==================================+
+
     -- 目录
     {
         "nvim-tree/nvim-tree.lua",
@@ -55,8 +56,9 @@ require("lazy").setup({
     },
 
     -- 括号自动补齐
-    'echasnovski/mini.nvim',
-
+    {
+        'echasnovski/mini.nvim'
+    },
     -- +==================================+
     -- |               UI                 |
     -- +==================================+
@@ -67,7 +69,14 @@ require("lazy").setup({
         config = function()
             require("onedarkpro").setup({
                 options = {
-                    --                    transparency = true
+                    transparency = false
+                },
+                styles = {
+                    comments = "italic",
+                },
+                colors = { 
+                    onelight = { bg = "#fffafa" -- 雪色
+                },
                 }
             })
 
@@ -75,7 +84,6 @@ require("lazy").setup({
         end,
 
     },
-
     -- 主页
     {
         'nvimdev/dashboard-nvim',
@@ -86,21 +94,21 @@ require("lazy").setup({
         end,
     },
 
--- 底栏
+    -- 底栏
     {
         "nvim-lualine/lualine.nvim",
         event = "InsertEnter",
-        commit= "b431d228b7bbcdaea818bdc3e25b8cdbe861f056"
+        commit = "b431d228b7bbcdaea818bdc3e25b8cdbe861f056"
     },
     -- buffer
--- 标签页
-        {
-            "akinsho/bufferline.nvim",
-            event = "InsertEnter",
-            config = function()
-                MyKeymap("n", "3", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", MyKeymapOpt)
-            end,
-        },
+    -- 标签页
+    {
+        "akinsho/bufferline.nvim",
+        event = "InsertEnter",
+        config = function()
+            MyKeymap("n", "3", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", MyKeymapOpt)
+        end,
+    },
 
 
     -- git标记
@@ -130,7 +138,7 @@ require("lazy").setup({
     -- +==================================+
     {
         "hrsh7th/nvim-cmp",
---        event = "InsertEnter",
+        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
