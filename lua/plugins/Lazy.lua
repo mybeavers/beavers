@@ -54,7 +54,11 @@ require("lazy").setup({
             MyKeymap("n", "<leader>s", ":Telescope lsp_document_symbols<CR>", MyKeymapOpt)
         end,
     },
-
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {}
+    },
     -- 括号自动补齐
     {
         'echasnovski/mini.nvim'
@@ -74,9 +78,9 @@ require("lazy").setup({
                 styles = {
                     comments = "italic",
                 },
-                colors = { 
+                colors = {
                     onelight = { bg = "#fffafa" -- 雪色
-                },
+                    },
                 }
             })
 
@@ -129,7 +133,8 @@ require("lazy").setup({
     -- lsp服务器配置插件
     {
         "neovim/nvim-lspconfig",
-        event = "InsertEnter",
+        config = function()
+        end
     },
 
 
@@ -145,11 +150,15 @@ require("lazy").setup({
 
             {
                 'L3MON4D3/LuaSnip',
+                dependencies = {
+                    "rafamadriz/friendly-snippets" },
                 config = function()
+                    require("luasnip.loaders.from_vscode").lazy_load()
                     require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
                     require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
                 end
             },
+
             {
                 'saadparwaiz1/cmp_luasnip',
                 build = "make install_jsregexp"
@@ -163,3 +172,5 @@ require("lazy").setup({
         end
     }
 })
+
+

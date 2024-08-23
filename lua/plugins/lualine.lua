@@ -22,15 +22,13 @@ local function filename()
     if name == nil then
         return "%t"
     end
-    find = "%a"
 
---    if string.len(name) > 10 then
---        local substr1 = string.sub(name, 1, 4)
---        local substr2 = substr1.sub(name, -4, -1)
---        return substr1 .. "" .. ".." .. substr2
---    end
     return name
 end
+
+
+
+
 
 local function mySystemIcon()
     return  ""

@@ -41,8 +41,6 @@ autocmd("BufReadPost", {
     nested = true
 })
 
-
--- 加载更多功能
 autocmd("BufNew", {
     pattern = "*",
     callback = function()
@@ -50,27 +48,13 @@ autocmd("BufNew", {
         if buffer_count == 3 then
             vim.o.number = true -- 开启行号
             require("plugins.lualine")
-            require("plugins.buffer")
+            require("plugins.bufferline")
+            require("plugins.gitsigns")
             require("mini.indentscope").setup()
-            require('gitsigns').setup({
-                signs = {
-                    add          = { text = '│' },
-                    change       = { text = '│' },
-                    delete       = { text = '_' },
-                    topdelete    = { text = '‾' },
-                    changedelete = { text = '~' },
-                    untracked    = { text = '┆' },
-                },
-
-                numhl = true,   -- 当前行号是否修改
-                linehl = false, -- 当前行颜色是否修改
-                signcolumn = false,
-            })
         end
     end,
     nested = true
 })
-
 -- 目录关闭
 vim.api.nvim_create_user_command("MakeDirectory", function()
     ---@diagnostic disable-next-line: missing-parameter
