@@ -126,6 +126,8 @@ autocmd({ "BufEnter", "ColorScheme" }, {
     callback = function()
         highlight(0, 'TelescopePromptTitle', { bg = CoreUIColorGroup.SoftOrange, fg = CoreUIColorGroup.black }) --左下title
         highlight(0, 'TelescopePreviewTitle', { bg = CoreUIColorGroup.SoftGreen, fg = CoreUIColorGroup.black }) --右上title
+        highlight(0, 'TelescopeBorder', { link = "NormalNC" }) --右上title
+        highlight(0, 'TelescopeNormal', { link = "NormalNC" }) --右上title
     end,
     nested = true
 })

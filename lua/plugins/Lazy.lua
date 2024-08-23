@@ -79,12 +79,15 @@ require("lazy").setup({
                     comments = "italic",
                 },
                 colors = {
-                    onelight = { bg = "#fffafa" -- 雪色
-                    },
+                    onelight = { bg = "#fffafa"}, -- 雪色
                 }
             })
-
-            vim.cmd("colorscheme onedark")
+            local hour = tonumber(os.date("%H"))
+            if hour >= 12 and hour < 15 then
+                vim.cmd("colorscheme " .. "onelight")
+            else
+                vim.cmd("colorscheme " .. "onedark")
+            end
         end,
 
     },
@@ -93,7 +96,7 @@ require("lazy").setup({
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
         dependencies = { { 'nvim-tree/nvim-web-devicons' } },
-       config = function()
+        config = function()
             require("plugins.dashboard")
         end,
     },
