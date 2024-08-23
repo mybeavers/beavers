@@ -212,3 +212,32 @@ function getPWD()
     return splitstr[#splitstr]:gsub("%s+", "")
     --return splitstr[#splitstr]
 end
+
+-- 当打开文件大于2时, 开启
+autocmd("BufNew", {
+    pattern = "*",
+    callback = function()
+        local buffer_count = #vim.fn.getbufinfo({ buflisted = 1 })
+        if buffer_count >= 3 and buffer_count < 4 then
+            vim.o.number = true -- 开启行号
+            require("plugins.lualine")
+            require("plugins.bufferline")
+            require("mini.indentscope").setup()
+            require('gitsigns').setup {
+                signs        = {
+                    add    = { text = '│' },
+                    change = { text = '│' },
+                },
+                signs_staged = {
+                    add    = { text = '│' },
+                    change = { text = '│' },
+                },
+                signcolumn   = false,
+                numhl        = true,
+            }
+            MyKeymap("n", "<leader>d", ":Gitsigns diffthis<CR>", MyKeymapOpt)
+            MyKeymap("n", "<leader>h", ":Gitsigns toggle_linehl<CR>", MyKeymapOpt)
+        end
+    end,
+    nested = true
+})

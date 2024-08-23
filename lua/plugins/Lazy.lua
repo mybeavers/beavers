@@ -57,7 +57,9 @@ require("lazy").setup({
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
-        opts = {}
+        config = function ()
+            require("plugins.autopairs")
+        end
     },
     -- 括号自动补齐
     {
