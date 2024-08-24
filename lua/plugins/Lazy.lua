@@ -103,7 +103,7 @@ require("lazy").setup({
         end,
     },
 
-  
+
     -- 底栏
     {
         "nvim-lualine/lualine.nvim",
@@ -151,7 +151,7 @@ require("lazy").setup({
         event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
---           "hrsh7th/cmp-buffer",
+            --           "hrsh7th/cmp-buffer",
 
             {
                 'L3MON4D3/LuaSnip',
