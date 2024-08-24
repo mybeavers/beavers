@@ -112,7 +112,7 @@ autocmd({ "vimEnter", "ColorScheme" }, {
 
         -- cmp bg
         highlight(0, 'MyCmpSel', { bg = CoreUIColorGroup.SoftBlue, fg = CoreUIColorGroup.black })
-        highlight(0, 'MyCmpFloatBorder', { fg = CoreUIColorGroup.SoftViolet})
+        highlight(0, 'MyCmpFloatBorder', { fg = CoreUIColorGroup.DarkGrayishBlue})
 
     end,
     nested = true,
@@ -127,7 +127,8 @@ autocmd({ "BufEnter", "ColorScheme" }, {
         highlight(0, 'TelescopePromptTitle', { bg = CoreUIColorGroup.SoftOrange, fg = CoreUIColorGroup.black }) --左下title
         highlight(0, 'TelescopePreviewTitle', { bg = CoreUIColorGroup.SoftGreen, fg = CoreUIColorGroup.black }) --右上title
         highlight(0, 'TelescopeBorder', { link = "NormalNC" }) --右上title
-        highlight(0, 'TelescopeNormal', { link = "NormalNC" }) --右上title
+        highlight(0, 'TelescopeNormal', { link = "NormalNC" }) --右上titl
+
     end,
     nested = true
 })

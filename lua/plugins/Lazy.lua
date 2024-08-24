@@ -57,7 +57,7 @@ require("lazy").setup({
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
-        config = function ()
+        config = function()
             require("plugins.autopairs")
         end
     },
@@ -81,7 +81,7 @@ require("lazy").setup({
                     comments = "italic",
                 },
                 colors = {
-                    onelight = { bg = "#fffafa"}, -- 雪色
+                    onelight = { bg = "#fffafa" }, -- 雪色
                 }
             })
             local hour = tonumber(os.date("%H"))
@@ -103,6 +103,7 @@ require("lazy").setup({
         end,
     },
 
+  
     -- 底栏
     {
         "nvim-lualine/lualine.nvim",
@@ -125,7 +126,6 @@ require("lazy").setup({
         "lewis6991/gitsigns.nvim",
         event = "InsertEnter",
     },
-
     -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
@@ -151,7 +151,7 @@ require("lazy").setup({
         event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
+--           "hrsh7th/cmp-buffer",
 
             {
                 'L3MON4D3/LuaSnip',
@@ -163,6 +163,7 @@ require("lazy").setup({
                     require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
                 end
             },
+
 
             {
                 'saadparwaiz1/cmp_luasnip',
