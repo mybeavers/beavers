@@ -180,6 +180,10 @@ end
 
 function GetGitBranch()
     local handle = io.popen("git rev-parse --abbrev-ref HEAD 2> /dev/null")
+    if handle == nil then
+        return ""
+    end
+
     local branch = handle:read("*a")
     handle:close()
     if branch == "" or branch == nil then
@@ -191,6 +195,11 @@ end
 
 function GetGitRepertoryName()
     local handle = io.popen("git rev-parse --show-toplevel 2> /dev/null")
+    if handle == nil then
+        return ""
+    end
+
+
     local repo_path = handle:read("*a")
     handle:close()
 
@@ -202,8 +211,14 @@ end
 
 function getPWD()
     local handle = io.popen("pwd")
+
+    if handle == nil then
+        return ""
+    end
+
     local path = handle:read("*a")
     handle:close()
+    
     if path == "" or path == nil then
         return "NvimTree"
     end

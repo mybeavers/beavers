@@ -86,11 +86,20 @@ autocmd({ "InsertEnter" }, { --InsertEnter", "CursorMoved"
     end,
 })
 
+autocmd({ "VimEnter", "ColorScheme" }, {
+    pattern = "*",
+    callback = function()
+        highlight(0, 'CurSearch', { bg = CoreUIColorGroup.SoftRed, fg = CoreUIColorGroup.black })
+        highlight(0, 'IncSearch', { bg = CoreUIColorGroup.SoftRed, fg = CoreUIColorGroup.black })
+        highlight(0, 'Search', { bg = CoreUIColorGroup.yellow, fg = CoreUIColorGroup.black })
+    end,
+    nested = true
+})
 
 ----------------------------------------
 --          Cmp highlight group
 ----------------------------------------
-autocmd({ "vimEnter", "ColorScheme" }, {
+autocmd({ "VimEnter", "ColorScheme" }, {
     pattern = "*",
     callback = function()
         -- gray
@@ -112,8 +121,7 @@ autocmd({ "vimEnter", "ColorScheme" }, {
 
         -- cmp bg
         highlight(0, 'MyCmpSel', { bg = CoreUIColorGroup.SoftBlue, fg = CoreUIColorGroup.black })
-        highlight(0, 'MyCmpFloatBorder', { fg = CoreUIColorGroup.DarkGrayishBlue})
-
+        highlight(0, 'MyCmpFloatBorder', { fg = CoreUIColorGroup.DarkGrayishBlue })
     end,
     nested = true,
 })
@@ -126,9 +134,8 @@ autocmd({ "BufEnter", "ColorScheme" }, {
     callback = function()
         highlight(0, 'TelescopePromptTitle', { bg = CoreUIColorGroup.SoftOrange, fg = CoreUIColorGroup.black }) --左下title
         highlight(0, 'TelescopePreviewTitle', { bg = CoreUIColorGroup.SoftGreen, fg = CoreUIColorGroup.black }) --右上title
-        highlight(0, 'TelescopeBorder', { link = "NormalNC" }) --右上title
-        highlight(0, 'TelescopeNormal', { link = "NormalNC" }) --右上titl
-
+        highlight(0, 'TelescopeBorder', { link = "NormalNC" })                                                  --右上title
+        highlight(0, 'TelescopeNormal', { link = "NormalNC" })                                                  --右上titl
     end,
     nested = true
 })

@@ -115,14 +115,11 @@ cmp.setup {
     },
 
     formatting = {
-        -- 显示顺序: 图标 补全字符 类
         fields = { "kind", "abbr", "menu" },
-        --        fields = { 'abbr', 'kind'},
         format = function(entry, vim_item)
             local strings = vim.split(string.format("%s ", kind_icons[vim_item.kind]), ",")
             vim_item.kind = strings[1]
             vim_item.menu = strings[2]
-            --           vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
             return vim_item
         end,
     },
