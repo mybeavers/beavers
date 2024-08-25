@@ -56,7 +56,6 @@ require("lazy").setup({
     },
     {
         'windwp/nvim-autopairs',
-        event = "InsertEnter",
         config = function()
             require("plugins.autopairs")
         end
@@ -126,20 +125,20 @@ require("lazy").setup({
         "lewis6991/gitsigns.nvim",
         event = "InsertEnter",
     },
+
     -- +==================================+
     -- |          lsp服务器               |
     -- +==================================+
     -- lsp服务器按照插件
     {
         "williamboman/mason.nvim",
-        event = "InsertEnter",
+        event = { "BufReadPre", "InsertEnter" },
     },
 
     -- lsp服务器配置插件
     {
         "neovim/nvim-lspconfig",
-        config = function()
-        end
+        event = { "BufReadPre", "InsertEnter" },
     },
 
 
@@ -148,10 +147,9 @@ require("lazy").setup({
     -- +==================================+
     {
         "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
+        event = { "BufReadPre", "InsertEnter" },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
-            --           "hrsh7th/cmp-buffer",
 
             {
                 'L3MON4D3/LuaSnip',
