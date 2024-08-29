@@ -127,7 +127,7 @@ local lsp_flags = {
     debounce_text_changes = 100,
 }
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) -- Setup lspconfig.
-local servers = {"jdtls", "pyright", "clangd", "lua_ls", "vtsls"}
+local servers = {"jdtls", "pyright", "clangd", "lua_ls", "cssls", 'html', 'vtsls'}
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {

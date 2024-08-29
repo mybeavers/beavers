@@ -65,45 +65,32 @@ cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpringBo
 -- 主题切换
 local keyCountColors = 0;
 function ThemeToggle()
-    --    local colorthemes = { 'onelight', 'default', 'retrobox', 'onedark', 'retrobox', 'default', 'vim' }
-
-    local colorthemes = { 'onelight', 'retrobox', "onedark", 'retrobox' }
+    local colorthemes = { 'onelight', 'retrobox', "onedark", 'retrobox', 'randomhue', 'minicyan', 'minischeme' }
     keyCountColors = keyCountColors + 1;
     if keyCountColors > #colorthemes then keyCountColors = 1 end
 
     cmd("color " .. colorthemes[keyCountColors]);
-    if keyCountColors == 1 or keyCountColors == 3 then
-        OnedarkPlus()
-    else
-        RetroboxPlus()
-    end
+    OnedarkPlus()
 end
 
 -- 自动保存所以已经打开的文件
 function SaveAllFiles()
     cmd('silent wall')
-    if vim.bo.filetype == 'markdown' then
-        cmd('MarkdownPreviewStop')
-    end
     cmd('q')
 end
 
 -- 一键运行程序: c/java/python
 function RunCode()
     cmd('w')
-
     if not vim.fn.isdirectory('.build') then
         vim.fn.mkdir('.build')
     end
-
     if vim.bo.filetype == 'java' then
         cmd('!javac % && java %< && mv %:h/*.class ./.build/')
     elseif vim.bo.filetype == 'c' then
         cmd('!gcc % -o .build/%< && time ./.build/%<')
     elseif vim.bo.filetype == 'python' then
         cmd('!python3 %')
-    elseif vim.bo.filetype == 'markdown' then
-        cmd('MarkdownPreview')
     end
 end
 
@@ -160,14 +147,14 @@ end
 
 function OnedarkPlus()
     highlight(0, 'javaType', { fg = CoreUIColorGroup.magenta })                         -- 数据类型
-    highlight(0, '@lsp.type.modifier.java', { link = 'javaType' })                      -- 关键字
-    highlight(0, '@lsp.type.method.java', { fg = CoreUIColorGroup.SoftBlue })           -- 方法/函数
-    highlight(0, '@lsp.type.property.java', { fg = CoreUIColorGroup.SoftRed })          --变量
-    highlight(0, '@lsp.type.parameter.java', { fg = CoreUIColorGroup.SoftRed })         -- 变量
-    highlight(0, '@lsp.type.class.java', { fg = CoreUIColorGroup.SoftOrange })          -- 类
+    highlight(0, '@lsp.type.modifier', { link = 'javaType' })                      -- 关键字
+    highlight(0, '@lsp.type.method', { fg = CoreUIColorGroup.SoftBlue })           -- 方法/函数
+    highlight(0, '@lsp.type.property', { fg = CoreUIColorGroup.SoftRed })          --变量
+    highlight(0, '@lsp.type.parameter', { fg = CoreUIColorGroup.SoftRed })         -- 变量
+    highlight(0, '@lsp.type.class', { fg = CoreUIColorGroup.SoftOrange })          -- 类
     highlight(0, 'javaClassDecl', { link = 'javaType' })                                -- 实现
-    highlight(0, '@lsp.type.annotationMember.java', { fg = CoreUIColorGroup.SoftBlue }) -- 注解方法
-    highlight(0, '@lsp.type.enumMember.java', { fg = CoreUIColorGroup.ModerateOrange }) -- 枚举常量
+    highlight(0, '@lsp.type.annotationMember', { fg = CoreUIColorGroup.SoftBlue }) -- 注解方法
+    highlight(0, '@lsp.type.enumMember', { fg = CoreUIColorGroup.ModerateOrange }) -- 枚举常量
 end
 
 function RetroboxPlus()
@@ -218,14 +205,13 @@ function getPWD()
 
     local path = handle:read("*a")
     handle:close()
-    
+
     if path == "" or path == nil then
         return "NvimTree"
     end
 
     splitstr = vim.split(path, "/")
     return splitstr[#splitstr]:gsub("%s+", "")
-    --return splitstr[#splitstr]
 end
 
 -- 当打开文件大于2时, 开启

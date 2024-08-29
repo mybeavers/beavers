@@ -86,7 +86,7 @@ autocmd({ "InsertEnter" }, { --InsertEnter", "CursorMoved"
     end,
 })
 
-autocmd({ "VimEnter", "ColorScheme" }, {
+autocmd({ "BufEnter", "ColorScheme" }, {
     pattern = "*",
     callback = function()
         highlight(0, 'CurSearch', { bg = CoreUIColorGroup.SoftRed, fg = CoreUIColorGroup.black })
@@ -99,7 +99,7 @@ autocmd({ "VimEnter", "ColorScheme" }, {
 ----------------------------------------
 --          Cmp highlight group
 ----------------------------------------
-autocmd({ "VimEnter", "ColorScheme" }, {
+autocmd({ "BufEnter", "ColorScheme" }, {
     pattern = "*",
     callback = function()
         -- gray
@@ -126,6 +126,22 @@ autocmd({ "VimEnter", "ColorScheme" }, {
     nested = true,
 })
 
+
+--------------------------------------
+-- NOTE  GitSigns highlight group
+--------------------------------------
+autocmd({ "BufEnter", "ColorScheme" }, {
+    pattern = '*',
+    callback = function()
+        highlight(0, 'GitSignsAdd', { fg = CoreUIColorGroup.SoftGreen })
+        highlight(0, 'GitSignsDelete', { fg = CoreUIColorGroup.SoftRed })
+        highlight(0, 'GitSignsChange', { fg = CoreUIColorGroup.SoftOrange })
+    end,
+    nested = true,
+
+})
+
+
 --------------------------------------
 -- NOTE Telescope highlight group
 --------------------------------------
@@ -143,10 +159,10 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 
 
 -- --------------------------------------
---  NOTE  My java highlight group
+--  NOTE  JAVA highlight group
 -- --------------------------------------
 
-autocmd({ "FileType", "InsertLeave", "TextChanged" }, {
+autocmd({ "BufEnter", "ColorScheme" }, {
     pattern = 'java',
     callback = function()
         highlight(0, 'javaType', { fg = CoreUIColorGroup.magenta })                         -- 数据类型
@@ -164,10 +180,10 @@ autocmd({ "FileType", "InsertLeave", "TextChanged" }, {
 
 
 -- --------------------------------------
---  NOTE  My C highlight group
+--  NOTE  C highlight group
 -- --------------------------------------
 
-autocmd({ "ColorScheme" }, {
+autocmd({ "BufEnter", "ColorScheme" }, {
     pattern = 'c',
     callback = function()
         highlight(0, 'cIncluded', { fg = CoreUIColorGroup.SoftOrange })         -- 头文件
@@ -185,12 +201,12 @@ autocmd({ "ColorScheme" }, {
 
 
 -- --------------------------------------
---  NOTE  My py highlight group
+--  NOTE  PYTHON highlight group
 -- --------------------------------------
-autocmd({ "ColorScheme" }, {
+autocmd({ "BufEnter", "ColorScheme" }, {
     pattern = 'python',
     callback = function()
-        highlight(0, 'pythonAttribute', { fg = CoreUIColorGroup.SoftBlue }) -- 头>          highlight(0, '@function.builtin', {fg=CoreUIColorGroup.SoftBlue})                   -- 库>
+        highlight(0, 'pythonAttribute', { fg = CoreUIColorGroup.SoftBlue })
     end,
     nested = true,
 
@@ -198,7 +214,3 @@ autocmd({ "ColorScheme" }, {
 
 
 
-
-highlight(0, 'GitSignsAdd', { fg = CoreUIColorGroup.SoftGreen })
-highlight(0, 'GitSignsDelete', { fg = CoreUIColorGroup.SoftRed })
-highlight(0, 'GitSignsChange', { fg = CoreUIColorGroup.SoftOrange })

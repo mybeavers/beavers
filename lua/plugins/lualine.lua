@@ -31,7 +31,7 @@ end
 
 
 local function mySystemIcon()
-    return  ""
+    return ""
 end
 -- Config
 local config = {
@@ -42,12 +42,12 @@ local config = {
         section_separators = { left = "", right = "" },
     },
     sections = {
-        lualine_a = {'mode'},
+        lualine_a = { 'mode' },
         lualine_b = { filename },
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
-        lualine_z = {mySystemIcon},
+        lualine_z = { mySystemIcon },
     },
 }
 
@@ -60,9 +60,6 @@ end
 local function ins_right(component)
     table.insert(config.sections.lualine_x, component)
 end
-
-
-
 -- 显示添加/修改/删除
 ins_left {
     'diff',
@@ -75,7 +72,7 @@ ins_left {
     cond = conditions.hide_in_width,
 }
 
--- 显示代码错误信息
+
 ins_right {
     'diagnostics',
     sources = { 'nvim_diagnostic' },
@@ -83,6 +80,7 @@ ins_right {
     cond = conditions.hide_in_width,
 
 }
+-- 显示代码错误信息
 
 ins_right {
     function()
@@ -97,14 +95,14 @@ ins_right {
         return lspname
     end,
     icon = " ",
-    color = {fg = CoreUIColorGroup.SoftViolet},
+    color = { fg = CoreUIColorGroup.SoftViolet },
     cond = conditions.hide_in_width,
 }
 
 ins_right {
     "progress",
     icon = "",
-    color = {fg = CoreUIColorGroup.ModerateOrange},
+    color = { fg = CoreUIColorGroup.ModerateOrange },
     cond = conditions.hide_in_width
 }
 lualine.setup(config)
