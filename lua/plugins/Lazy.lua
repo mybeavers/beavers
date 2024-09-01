@@ -64,6 +64,7 @@ require("lazy").setup({
     {
         'echasnovski/mini.nvim'
     },
+
     -- +==================================+
     -- |               UI                 |
     -- +==================================+
@@ -132,13 +133,11 @@ require("lazy").setup({
     -- lsp服务器按照插件
     {
         "williamboman/mason.nvim",
-        event = { "BufReadPre", "InsertEnter" },
     },
 
     -- lsp服务器配置插件
     {
         "neovim/nvim-lspconfig",
-        event = { "BufReadPre", "InsertEnter" },
     },
 
 
@@ -147,7 +146,6 @@ require("lazy").setup({
     -- +==================================+
     {
         "hrsh7th/nvim-cmp",
-        event = { "BufReadPre", "InsertEnter" },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
 
