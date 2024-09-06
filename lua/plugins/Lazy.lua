@@ -159,7 +159,6 @@ require("lazy").setup({
                 end
             },
 
-
             {
                 'saadparwaiz1/cmp_luasnip',
                 build = "make install_jsregexp"

@@ -58,9 +58,6 @@ CoreUIColorGroup = {
 ----------------------------------------
 vim.o.statusline = MyStatusLine()
 
-
-
-
 ----------------------------------------
 --          TODO 字符高亮
 ----------------------------------------
@@ -79,7 +76,7 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 })
 
 
-autocmd({ "InsertEnter" }, { --InsertEnter", "CursorMoved"
+autocmd({ "InsertEnter","CursorMoved" }, { --InsertEnter", 
     pattern = '*',
     callback = function()
         cmd("let @/ = ''")
@@ -97,7 +94,7 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 })
 
 ----------------------------------------
---          Cmp highlight group
+--          Cmp highlight group dddfd
 ----------------------------------------
 autocmd({ "BufEnter", "ColorScheme" }, {
     pattern = "*",
@@ -121,6 +118,8 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 
         -- cmp bg
         highlight(0, 'MyCmpSel', { bg = CoreUIColorGroup.SoftBlue, fg = CoreUIColorGroup.black })
+        highlight(0, 'MyCmpFloatBorder', { fg = CoreUIColorGroup.DarkGrayishBlue })
+
         highlight(0, 'MyCmpFloatBorder', { fg = CoreUIColorGroup.DarkGrayishBlue })
     end,
     nested = true,
@@ -180,7 +179,7 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 
 
 -- --------------------------------------
---  NOTE  C highlight group
+--=  NOTE  C highlight group
 -- --------------------------------------
 
 autocmd({ "BufEnter", "ColorScheme" }, {
@@ -211,6 +210,3 @@ autocmd({ "BufEnter", "ColorScheme" }, {
     nested = true,
 
 })
-
-
-
