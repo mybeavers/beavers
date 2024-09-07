@@ -20,13 +20,13 @@ local function filename()
     name, extension = string.match(tmp, "(.+)%.(%w+)")
 
     if name == nil then
-        return "%t"
+        return "%t" .. "%m"
     end
 
-    return name
-end
+    return name .. "%m"
+end 
 
-
+ 
 
 
 
@@ -90,7 +90,7 @@ ins_right {
             lspname = client.name
         end
         if lspname == nil then
-            return "utf8"
+            return "%Y"
         end
         return lspname
     end,

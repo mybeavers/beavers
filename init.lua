@@ -88,6 +88,7 @@ require('config.Keymaps')
 require('config.UI')
 
 require('plugins.Lazy')
+require('plugins.lualine')
 -- -------------------------------
 --          新功能
 -- -------------------------------
