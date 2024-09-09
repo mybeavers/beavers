@@ -15,6 +15,12 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
+    {
+        dir = "~/.config/nvim/config/statuline.lua",
+        config = function()
+            require("config.statuline")
+        end
+    },
 
     -- +==================================+
     -- |               功能               |
