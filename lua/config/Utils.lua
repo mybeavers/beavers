@@ -4,10 +4,9 @@ api = vim.api
 cmd = vim.cmd
 highlight = vim.api.nvim_set_hl
 autocmd = vim.api.nvim_create_autocmd
-
--- ///////////////////////////////////////////////////////////////////////
---                            自动程序
--- //////////////////////////////////////////////////////////////////////
+---------------------------------
+-- NOTE  AUTOCMD CODE
+---------------------------------
 
 -- 将wsl中的nvim复制内容复制到windows粘贴板
 if vim.fn.has('wsl') then
@@ -60,8 +59,9 @@ cmd('command MvnJavaMVC :execute "!cp -r ~/.config/templates/javaMVC/* ./"')
 cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpringBoot/* ./"')
 
 
-
---                                  Keymap快捷键函数
+---------------------------
+-- NOTE  功能函数
+---------------------------
 -- 主题切换
 local keyCountColors = 0;
 function ThemeToggle()
@@ -165,6 +165,7 @@ function MyStatusLine()
     return '%9*%=%-7.(%l,%c%V%) %t  '
 end
 
+-- 获取当前目录分支
 function GetGitBranch()
     local handle = io.popen("git rev-parse --abbrev-ref HEAD 2> /dev/null")
     if handle == nil then
@@ -180,6 +181,7 @@ function GetGitBranch()
     -- "",   "
 end
 
+-- 获取当前git项目名称
 function GetGitRepertoryName()
     local handle = io.popen("git rev-parse --show-toplevel 2> /dev/null")
     if handle == nil then
@@ -196,6 +198,7 @@ function GetGitRepertoryName()
     return repo_path:match("([^/]+)$"):gsub("%s+", "")
 end
 
+-- 获取打开neovim目录位置
 function getPWD()
     local handle = io.popen("pwd")
 
@@ -214,31 +217,16 @@ function getPWD()
     return splitstr[#splitstr]:gsub("%s+", "")
 end
 
--- 当打开文件大于2时, 开启
-autocmd("BufNew", {
-    pattern = "*",
-    callback = function()
-        local buffer_count = #vim.fn.getbufinfo({ buflisted = 1 })
-        if buffer_count >= 3 and buffer_count < 4 then
-            vim.o.number = true -- 开启行号
-            require("plugins.lualine")
-            require("plugins.bufferline")
-            require("mini.indentscope").setup()
-            require('gitsigns').setup {
-                signs        = {
-                    add    = { text = '│' },
-                    change = { text = '│' },
-                },
-                signs_staged = {
-                    add    = { text = '│' },
-                    change = { text = '│' },
-                },
-                signcolumn   = false,
-                numhl        = true,
-            }
-            MyKeymap("n", "<leader>d", ":Gitsigns diffthis<CR>", MyKeymapOpt)
-            MyKeymap("n", "<leader>h", ":Gitsigns toggle_linehl<CR>", MyKeymapOpt)
-        end
-    end,
-    nested = true
-})
+-- 获取显示组的bg 以合适的格式返回
+get_highlight_group_bg = function(group_name)
+    local hl = vim.api.nvim_get_hl_by_name(group_name, true)
+    local str = vim.inspect(hl)
+    local table = assert(loadstring("return" .. str))()
+    local backgroundValue = table.background
+    return "#" .. string.format("%x", backgroundValue)
+end
+
+
+
+
+

@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
         local opts = { buffer = ev.buf }                                        --  NOTE  说明
-        vim.keymap.set('n', '<space>g', vim.lsp.buf.definition, opts)           -- go to 方法/变量...定义
+--        vim.keymap.set('n', '<space>g', vim.lsp.buf.definition, opts)           -- go to 方法/变量...定义
         vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, opts)               -- 重命名
         vim.keymap.set({ 'n', 'v' }, '<space>t', vim.lsp.buf.code_action, opts) -- 代码修改建议
         vim.keymap.set('n', '<space>f', function()                              -- 代码格式化
@@ -22,10 +22,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end, opts)
         vim.keymap.set('n', '<space>d', vim.lsp.buf.declaration, opts)              -- 查看: method textDocument/declaration
         vim.keymap.set('n', '<space>k', vim.lsp.buf.hover, opts)                    -- 查看: 代码的Tip悬浮展示
-        vim.keymap.set('n', '<space>i', vim.lsp.buf.implementation, opts)           -- 查看: 当前代码(主要是函数方法/变量)的实现定位
+--        vim.keymap.set('n', '<space>i', vim.lsp.buf.implementation, opts)           -- 查看: 当前代码(主要是函数方法/变量)的实现定位
         vim.keymap.set('n', '<space>h', vim.lsp.buf.signature_help, opts)           -- 查看: 签名帮助
         vim.keymap.set('n', '<space>a', vim.lsp.buf.type_definition, opts)          -- 查看: 类型定义
-        vim.keymap.set('n', '<space>s', vim.lsp.buf.references, opts)               -- 查看: 当前代码符号的引用查询
+--        vim.keymap.set('n', '<space>s', vim.lsp.buf.references, opts)               -- 查看: 当前代码符号的引用查询
 
         vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)    -- 添加工作区折叠
         vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts) -- 删除工作区折叠

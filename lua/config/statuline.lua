@@ -15,7 +15,6 @@ autocmd({ "BufEnter", "ColorScheme" }, {
             { fg = CoreUIColorGroup.SoftViolet })
 
 
-
         highlight(0, "statuslineCommand", { fg = CoreUIColorGroup.black, bg = CoreUIColorGroup.red })
         highlight(0, "statuslineCommandIcon",
             { fg = CoreUIColorGroup.red, bg = get_highlight_group_bg("NvimTreeCursorLine") })
@@ -40,32 +39,37 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 -- ------------
 -- mode
 -- ------------
-mode = setmetatable({
-        ['n'] = { string = 'NORMAL', mode_hl = '%#statuslineNormal#', mode_right_icon = '', mode_icon_hl = '%#statuslineNormalIcon#', mode_icon_left_hl = "%#statuslineNormalLeftIcon#" },
-        ['i'] = { string = 'INSERT', mode_hl = '%#statuslineInsert#', mode_right_icon = '', mode_icon_hl = '%#statuslineInsertIcon#', mode_icon_left_hl = "%#statuslineInsertLeftIcon#" },
-        ['v'] = { string = 'VISUAL', mode_hl = '%#statuslineVisual#', mode_right_icon = '', mode_icon_hl = '%#statuslineVisualIcon#', mode_icon_left_hl = "%#statuslineVisualLeftIcon#" },
-        ['c'] = { string = 'COMMAND', mode_hl = '%#statuslineCommand#', mode_right_icon = '', mode_icon_hl = '%#statuslineCommandIcon#', mode_icon_left_hl = "%#statuslineCommandLeftIcon#" },
-        ['t'] = { string = 'TERMINAL', mode_hl = '%1*', mode_right_icon = '', mode_left_icon = '', mode_icon_hl = '%2*' },
+
+local mode = setmetatable({
+        ['n'] = { string = ' NORMAL ', mode_hl = '%#statuslineNormal#', mode_icon_hl = '%#statuslineNormalIcon#', mode_icon_left_hl = "%#statuslineNormalLeftIcon#" },
+        ['i'] = { string = ' INSERT ', mode_hl = '%#statuslineInsert#',  mode_icon_hl = '%#statuslineInsertIcon#', mode_icon_left_hl = "%#statuslineInsertLeftIcon#" },
+        ['v'] = { string = ' VISUAL ', mode_hl = '%#statuslineVisual#',  mode_icon_hl = '%#statuslineVisualIcon#', mode_icon_left_hl = "%#statuslineVisualLeftIcon#" },
+        ['c'] = { string = ' COMMAND ', mode_hl = '%#statuslineCommand#', mode_icon_hl = '%#statuslineCommandIcon#', mode_icon_left_hl = "%#statuslineCommandLeftIcon#" },
+        ['t'] = { string = ' TERMINAL ', mode_hl = '%#statuslineCommand#', mode_icon_hl = '%#statuslineCommandIcon#', mode_icon_left_hl = "%#statuslineCommandLeftIcon#" },
     },
     {
         __index = function()
-            return { string = 'NORMAL', mode_hl = '%#statuslineNormal#', mode_right_icon = '', mode_icon_hl = '%#statuslineNormalIcon#', mode_icon_left_hl = "%#statuslineNormalLeftIcon#" }
+            return {
+                string = 'UNKONW',
+                mode_hl = '%#statuslineNormal#',
+                mode_icon_hl =
+                '%#statuslineNormalIcon#',
+                mode_icon_left_hl = "%#statuslineNormalLeftIcon#"
+            }
         end,
     })
 
-section_mode = function()
+local section_mode = function()
     mode_info = mode[vim.fn.mode()]
-    return mode_info.mode_hl .. mode_info.string .. mode_info.mode_icon_hl .. mode_info.mode_right_icon .. filename()
+    return mode_info.mode_hl .. mode_info.string .. mode_info.mode_icon_hl .. ''
 end
 
-section_mode_left = function()
+local section_mode_left = function()
     mode_info = mode[vim.fn.mode()]
     return mode_info.mode_icon_left_hl .. "" .. mode_info.mode_hl .. " "
 end
--- ----------------
--- file
--- ----------------
-function filename()
+
+local filename = function()
     local filepath = vim.api.nvim_buf_get_name(0)
     local splitString = vim.split(filepath, "/")
     local tmp = splitString[#splitString]
@@ -84,7 +88,7 @@ end
 -- LSP诊断信息
 -- -----------
 
-diagnostic_levels = {
+local diagnostic_levels = {
     { name = 'ERROR', hl = "%#DiagnosticError#" },
     { name = 'WARN',  hl = '%#DiagnosticWarn#' },
     { name = 'INFO',  hl = "%#DiagnosticInfo#" },
@@ -92,7 +96,7 @@ diagnostic_levels = {
 }
 
 
-get_diagnostics_Count = function()
+local get_diagnostics_Count = function()
     local res = {}
     for _, d in ipairs(vim.diagnostic.get(0)) do
         res[d.severity] = (res[d.severity] or 0) + 1
@@ -108,26 +112,28 @@ get_diagnostics_Count = function()
     return severityCount
 end
 
-section_diagnostics = function()
-    local array = get_diagnostics_Count()
-    
-    return "%#DiagnosticError#" .. '  ' .. array[1] ..
-        '%#DiagnosticWarn#' .. '  ' .. array[2] ..
-        "%#DiagnosticInfo#" .. " 󰋼 " .. array[3] ..
-        "%#DiagnosticHint#" .. ' 󰌵' .. array[4]
+local section_diagnostics = function()
+    local dianosticsCount = get_diagnostics_Count()
+    local error,warn,info,hint = "","","",""
+
+    if dianosticsCount[1] > 0 then
+        error = "%#DiagnosticError#" .. '  ' .. dianosticsCount[1]
+    end
+    if dianosticsCount[2] > 0 then
+        warn = '%#DiagnosticWarn#' .. '  ' .. dianosticsCount[2]
+    end
+    if dianosticsCount[3] > 0 then
+        info = "%#DiagnosticInfo#" .. " 󰋼 " .. dianosticsCount[3]
+    end
+    if dianosticsCount[4] > 0 then
+        hint = "%#DiagnosticHint#" .. ' 󰌵' .. dianosticsCount[4]
+    end
+
+    return error .. warn .. info .. hint
 end
 
 
--- 获取显示组的bg 以合适的格式返回
-function get_highlight_group_bg(group_name)
-    local hl = vim.api.nvim_get_hl_by_name(group_name, true)
-    local str = vim.inspect(hl)
-    local table = assert(loadstring("return" .. str))()
-    local backgroundValue = table.background
-    return "#" .. string.format("%x", backgroundValue)
-end
-
-function get_lsp()
+local get_lsp = function ()
     local clients = vim.lsp.get_clients()
     local lspname
     for _, client in ipairs(clients) do
@@ -139,13 +145,16 @@ function get_lsp()
     return "  " .. lspname
 end
 
-statusLine_right_show = function()
-    return section_mode() .. "%l:%v"
+local line = function ()
+    return "%l:%v"
 end
 
-statusLine_left_show = function()
+Right_show = function()
+    return section_mode() .. filename() .. line()
+end
+Left_show = function()
     return section_diagnostics() .. "  " .. get_lsp() .. "  " .. section_mode_left()
 end
 
 
-vim.go.statusline = "%{%v:lua.statusLine_right_show()%}%*%=%{%v:lua.statusLine_left_show()%}%*"
+vim.go.statusline = "%{%v:lua.Right_show()%}%*%=%{%v:lua.Left_show()%}"

@@ -54,12 +54,12 @@ CoreUIColorGroup = {
 -- icons:
 --"＞◡❛", " " ," ", " ", " ", " ", " ", " ", " ", '' "",""," ,"ﰊ","", "", "", "", ""
 -----------------------------------------
---  NOTE     statusline 底栏
+-- NOTE     statusline 底栏
 ----------------------------------------
 vim.o.statusline = MyStatusLine()
 
 ----------------------------------------
---          TODO 字符高亮
+-- NOTE 字符高亮
 ----------------------------------------
 autocmd({ "BufEnter", "ColorScheme" }, {
     pattern = '*',
@@ -68,7 +68,7 @@ autocmd({ "BufEnter", "ColorScheme" }, {
         cmd('1match MyNOTE / NOTE /')
         cmd('2match MyTODO / TODO /')
 
-        highlight(0, 'MyTODO', { fg = CoreUIColorGroup.black, bg = CoreUIColorGroup.SoftBlue })
+        highlight(0, 'MyTODO', { fg = CoreUIColorGroup.black, bg = CoreUIColorGroup.blue })
         highlight(0, 'MyFIX', { fg = CoreUIColorGroup.black, bg = CoreUIColorGroup.yellow })
         highlight(0, 'MyNOTE', { fg = CoreUIColorGroup.black, bg = CoreUIColorGroup.green })
     end,
@@ -76,7 +76,10 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 })
 
 
-autocmd({ "InsertEnter","CursorMoved" }, { --InsertEnter", 
+----------------------------------------
+-- NOTE  Search
+----------------------------------------
+autocmd({ "InsertEnter"}, {
     pattern = '*',
     callback = function()
         cmd("let @/ = ''")
@@ -93,8 +96,9 @@ autocmd({ "BufEnter", "ColorScheme" }, {
     nested = true
 })
 
+
 ----------------------------------------
---          Cmp highlight group dddfd
+-- NOTE  Cmp highlight group dddfd
 ----------------------------------------
 autocmd({ "BufEnter", "ColorScheme" }, {
     pattern = "*",

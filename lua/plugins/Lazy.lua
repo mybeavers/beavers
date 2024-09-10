@@ -15,12 +15,12 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
-    {
-        dir = "~/.config/nvim/config/statuline.lua",
-        config = function()
-            require("config.statuline")
-        end
-    },
+--   {
+--       dir = "~/.config/nvim/config/statuline.lua",
+--       config = function()
+--           require("config.statuline")
+--       end
+--   },
 
     -- +==================================+
     -- |               功能               |
@@ -58,6 +58,13 @@ require("lazy").setup({
             MyKeymap("n", "<leader>f", ":Telescope find_files<CR>", MyKeymapOpt)
             MyKeymap("n", "<leader>b", ":Telescope buffers<CR>", MyKeymapOpt)
             MyKeymap("n", "<leader>s", ":Telescope lsp_document_symbols<CR>", MyKeymapOpt)
+            MyKeymap("n", "<leader>d", ":Telescope diagnostics<CR>", MyKeymapOpt)
+
+            -- 对lspconfig原始功能的替换
+            MyKeymap("n", "<space>g", ":Telescope lsp_definitions<CR>", MyKeymapOpt)
+            MyKeymap("n", "<space>s", ":Telescope lsp_references<CR>", MyKeymapOpt)
+            MyKeymap("n", "<space>i", ":Telescope lsp_implementations<CR>", MyKeymapOpt)
+
         end,
     },
     {
