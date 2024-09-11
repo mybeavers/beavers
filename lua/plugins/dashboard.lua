@@ -55,6 +55,6 @@ db.setup({
                 action = 'Telescope colorscheme'
             },
         },
-        footer = { "    Have fun with Neovim" } --your footer
+        footer = { "    Have fun with Neovim" } --your footer
     }
 })

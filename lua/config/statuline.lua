@@ -15,6 +15,7 @@ autocmd({ "BufEnter", "ColorScheme" }, {
             { fg = CoreUIColorGroup.SoftViolet })
 
 
+
         highlight(0, "statuslineCommand", { fg = CoreUIColorGroup.black, bg = CoreUIColorGroup.red })
         highlight(0, "statuslineCommandIcon",
             { fg = CoreUIColorGroup.red, bg = get_highlight_group_bg("NvimTreeCursorLine") })
@@ -30,20 +31,24 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 
         highlight(0, "statuslineFileName", { bg = get_highlight_group_bg("NvimTreeCursorLine") })
         highlight(0, "statuslineFileNameIcon", { fg = get_highlight_group_bg("NvimTreeCursorLine") })
+
+        highlight(0, "statuslineGitAdd", { fg = CoreUIColorGroup.ModerateOrange })
+        highlight(0, "statuslineGitDelet", { fg = CoreUIColorGroup.SoftRed })
+
+        highlight(0, "statuslineLspName", { fg = CoreUIColorGroup.SoftViolet })
     end,
     nested = true,
 })
 
 
-
 -- ------------
--- mode
+-- mode  
 -- ------------
 
 local mode = setmetatable({
         ['n'] = { string = ' NORMAL ', mode_hl = '%#statuslineNormal#', mode_icon_hl = '%#statuslineNormalIcon#', mode_icon_left_hl = "%#statuslineNormalLeftIcon#" },
-        ['i'] = { string = ' INSERT ', mode_hl = '%#statuslineInsert#',  mode_icon_hl = '%#statuslineInsertIcon#', mode_icon_left_hl = "%#statuslineInsertLeftIcon#" },
-        ['v'] = { string = ' VISUAL ', mode_hl = '%#statuslineVisual#',  mode_icon_hl = '%#statuslineVisualIcon#', mode_icon_left_hl = "%#statuslineVisualLeftIcon#" },
+        ['i'] = { string = ' INSERT ', mode_hl = '%#statuslineInsert#', mode_icon_hl = '%#statuslineInsertIcon#', mode_icon_left_hl = "%#statuslineInsertLeftIcon#" },
+        ['v'] = { string = ' VISUAL ', mode_hl = '%#statuslineVisual#', mode_icon_hl = '%#statuslineVisualIcon#', mode_icon_left_hl = "%#statuslineVisualLeftIcon#" },
         ['c'] = { string = ' COMMAND ', mode_hl = '%#statuslineCommand#', mode_icon_hl = '%#statuslineCommandIcon#', mode_icon_left_hl = "%#statuslineCommandLeftIcon#" },
         ['t'] = { string = ' TERMINAL ', mode_hl = '%#statuslineCommand#', mode_icon_hl = '%#statuslineCommandIcon#', mode_icon_left_hl = "%#statuslineCommandLeftIcon#" },
     },
@@ -60,13 +65,13 @@ local mode = setmetatable({
     })
 
 local section_mode = function()
-    mode_info = mode[vim.fn.mode()]
+    local mode_info = mode[vim.fn.mode()]
     return mode_info.mode_hl .. mode_info.string .. mode_info.mode_icon_hl .. ''
 end
 
 local section_mode_left = function()
-    mode_info = mode[vim.fn.mode()]
-    return mode_info.mode_icon_left_hl .. "" .. mode_info.mode_hl .. " "
+    local mode_info = mode[vim.fn.mode()]
+    return mode_info.mode_icon_left_hl .. "" .. mode_info.mode_hl .." "
 end
 
 local filename = function()
@@ -84,9 +89,7 @@ local filename = function()
     return fileBG .. name .. fileIcon .. ''
 end
 
---------------
--- LSP诊断信息
--- -----------
+
 
 local diagnostic_levels = {
     { name = 'ERROR', hl = "%#DiagnosticError#" },
@@ -114,7 +117,7 @@ end
 
 local section_diagnostics = function()
     local dianosticsCount = get_diagnostics_Count()
-    local error,warn,info,hint = "","","",""
+    local error, warn, info, hint = "", "", "", ""
 
     if dianosticsCount[1] > 0 then
         error = "%#DiagnosticError#" .. '  ' .. dianosticsCount[1]
@@ -133,27 +136,82 @@ local section_diagnostics = function()
 end
 
 
-local get_lsp = function ()
+local get_lsp        = function()
     local clients = vim.lsp.get_clients()
     local lspname
     for _, client in ipairs(clients) do
         lspname = client.name
     end
     if lspname == nil then
-        return "  utf8"
+        lspname = "%Y"
     end
-    return "  " .. lspname
+    return "%#statuslineLspName#" .. "  " .. lspname end
+
+local line           = function()
+    local active_bufnr = tostring(vim.api.nvim_buf_get_name(0))
+    local nopass = active_bufnr:match("NvimTree")
+    if nopass == "NvimTree" then
+        return ""
+    end
+
+
+    return "%l:%v "
 end
 
-local line = function ()
-    return "%l:%v"
+local git_diff_count = function()
+    local handle = io.popen("git rev-parse --show-toplevel 2> /dev/null")
+    if handle == nil then
+        return ""
+    end
+
+
+    local repo_path = handle:read("*a")
+    handle:close()
+
+    if repo_path == "" or repo_path == nil then
+        return ""
+    end
+
+    local active_bufnr = tostring(vim.api.nvim_buf_get_name(0))
+    local nopass = active_bufnr:match("NvimTree")
+    if nopass == "NvimTree" then
+        return ""
+    end
+
+    local git = "git --no-pager diff --stat --no-color --no-ext-diff " .. active_bufnr
+
+    local handle = io.popen(git)
+    if handle == nil or handle == 0 then
+        return ""
+    end
+    local str = handle:read("*a")
+    handle:close()
+
+    if str == nil or str == "" then
+        return ""
+    end
+
+    local insertions = str:match("(%d+) insertions")
+    local deletions = str:match("(%d+) deletions")
+    if insertions == nil then
+        insertions = ""
+    end
+    if deletions == "" then
+        deletions = ""
+    end
+
+
+
+    return "%#statuslineGitAdd#" .. "  " .. insertions .. "%#statuslineGitDelet#" .. "  " .. deletions
 end
+
+
 
 Right_show = function()
-    return section_mode() .. filename() .. line()
+    return section_mode() .. filename() .. line() .. " "
 end
 Left_show = function()
-    return section_diagnostics() .. "  " .. get_lsp() .. "  " .. section_mode_left()
+    return section_diagnostics() .. "  " .. get_lsp() .. "  %#statuslineGitAdd# UTF8 " .. section_mode_left()
 end
 
 

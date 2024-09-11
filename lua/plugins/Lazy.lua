@@ -15,12 +15,6 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
---   {
---       dir = "~/.config/nvim/config/statuline.lua",
---       config = function()
---           require("config.statuline")
---       end
---   },
 
     -- +==================================+
     -- |               功能               |
@@ -99,11 +93,11 @@ require("lazy").setup({
             })
             local hour = tonumber(os.date("%H"))
             if hour >= 12 and hour < 15 then
-                vim.cmd("colorscheme " .. "onelight")
+                vim.cmd("colorscheme " .. "onedark")
             else
                 vim.cmd("colorscheme " .. "onedark")
             end
-        end,
+        end
 
     },
     -- 主页
@@ -117,13 +111,6 @@ require("lazy").setup({
     },
 
 
-    -- 底栏
-    {
-        "nvim-lualine/lualine.nvim",
-        event = "InsertEnter",
-        commit = "b431d228b7bbcdaea818bdc3e25b8cdbe861f056"
-    },
-    -- buffer
     -- 标签页
     {
         "akinsho/bufferline.nvim",
