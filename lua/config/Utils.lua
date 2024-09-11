@@ -197,7 +197,7 @@ function GetGitRepertoryName()
     end
     return repo_path:match("([^/]+)$"):gsub("%s+", "")
 end
-
+ 
 -- 获取打开neovim目录位置
 function getPWD()
     local handle = io.popen("pwd")

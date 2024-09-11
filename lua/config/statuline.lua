@@ -42,7 +42,7 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 
 
 -- ------------
--- mode 
+-- mode  
 -- ------------
 
 local mode = setmetatable({
@@ -206,20 +206,24 @@ local git_diff_count = function()
     local deletions = str:match("(%d+) deletions")
     if insertions == nil then
         insertions = ""
+    else 
+        insertions = "%#statuslineGitAdd#" .. "  " .. insertions
     end
+
     if deletions == "" then
         deletions = ""
+    else
+        deletions = "%#statuslineGitDelet#" .. "  " .. deletions
     end
 
+   return insertions .. deletions 
 
 
-    return "%#statuslineGitAdd#" .. "  " .. insertions .. "%#statuslineGitDelet#" .. "  " .. deletions
 end
 
 
-
 Right_show = function()
-    return section_mode() .. filename() .. line() .. " "
+    return section_mode() .. filename() .. line() 
 end
 
 Left_show = function()
