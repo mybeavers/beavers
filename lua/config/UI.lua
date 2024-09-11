@@ -144,7 +144,6 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 
 })
 
-
 --------------------------------------
 -- NOTE Telescope highlight group
 --------------------------------------

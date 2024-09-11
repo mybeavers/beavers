@@ -42,7 +42,7 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 
 
 -- ------------
--- mode  
+-- mode 
 -- ------------
 
 local mode = setmetatable({
@@ -71,7 +71,7 @@ end
 
 local section_mode_left = function()
     local mode_info = mode[vim.fn.mode()]
-    return mode_info.mode_icon_left_hl .. "" .. mode_info.mode_hl .." "
+    return mode_info.mode_icon_left_hl .. "" .. mode_info.mode_hl .. " "
 end
 
 local filename = function()
@@ -86,7 +86,7 @@ local filename = function()
 
     local fileBG = "%#statuslineFileName#"
     local fileIcon = "%#statuslineFileNameIcon#"
-    return fileBG .. name .. fileIcon .. ''
+    return fileBG .. name .. "%m" .. fileIcon .. ''
 end
 
 
@@ -115,7 +115,7 @@ local get_diagnostics_Count = function()
     return severityCount
 end
 
-local section_diagnostics = function()
+local get_diagnostics = function()
     local dianosticsCount = get_diagnostics_Count()
     local error, warn, info, hint = "", "", "", ""
 
@@ -135,8 +135,8 @@ local section_diagnostics = function()
     return error .. warn .. info .. hint
 end
 
-
-local get_lsp        = function()
+-- 获取lsp名称
+local get_lsp_name = function()
     local clients = vim.lsp.get_clients()
     local lspname
     for _, client in ipairs(clients) do
@@ -145,8 +145,16 @@ local get_lsp        = function()
     if lspname == nil then
         lspname = "%Y"
     end
-    return "%#statuslineLspName#" .. "  " .. lspname end
+    return "%#statuslineLspName#" .. "  " .. lspname
+end
 
+-- 文件变量
+local get_file_encodeing = function ()
+    local encodeing =  string.upper(vim.opt.fileencoding:get()) or ""
+    return "  %#statuslineGitAdd# " .. encodeing .. " "
+end
+
+-- 光标行列
 local line           = function()
     local active_bufnr = tostring(vim.api.nvim_buf_get_name(0))
     local nopass = active_bufnr:match("NvimTree")
@@ -155,9 +163,12 @@ local line           = function()
     end
 
 
-    return "%l:%v "
+    return "%l:%v  "
 end
 
+local get_file_type = function ()
+    return "%y"
+end
 local git_diff_count = function()
     local handle = io.popen("git rev-parse --show-toplevel 2> /dev/null")
     if handle == nil then
@@ -210,8 +221,9 @@ end
 Right_show = function()
     return section_mode() .. filename() .. line() .. " "
 end
+
 Left_show = function()
-    return section_diagnostics() .. "  " .. get_lsp() .. "  %#statuslineGitAdd# UTF8 " .. section_mode_left()
+    return get_diagnostics() .. "  " .. get_lsp_name() .. get_file_encodeing() .. section_mode_left()
 end
 
 
