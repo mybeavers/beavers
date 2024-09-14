@@ -3,14 +3,14 @@ autocmd({ "BufEnter", "ColorScheme" }, {
     callback = function()
         highlight(0, "statuslineNormal", { fg = CoreUIColorGroup.black, bg = CoreUIColorGroup.SoftBlue })
         highlight(0, "statuslineNormalIcon",
-            { fg = CoreUIColorGroup.SoftBlue, bg = get_highlight_group_bg("NvimTreeCursorLine") })
+            { fg = CoreUIColorGroup.SoftBlue, bg = get_highlight_group_bg("CursorColumn") })
         highlight(0, "statuslineNormalLeftIcon",
             { fg = CoreUIColorGroup.SoftBlue })
 
 
         highlight(0, "statuslineInsert", { fg = CoreUIColorGroup.black, bg = CoreUIColorGroup.SoftViolet })
         highlight(0, "statuslineInsertIcon",
-            { fg = CoreUIColorGroup.SoftViolet, bg = get_highlight_group_bg("NvimTreeCursorLine") })
+            { fg = CoreUIColorGroup.SoftViolet, bg = get_highlight_group_bg("CursorColumn") })
         highlight(0, "statuslineInsertLeftIcon",
             { fg = CoreUIColorGroup.SoftViolet })
 
@@ -18,19 +18,19 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 
         highlight(0, "statuslineCommand", { fg = CoreUIColorGroup.black, bg = CoreUIColorGroup.red })
         highlight(0, "statuslineCommandIcon",
-            { fg = CoreUIColorGroup.red, bg = get_highlight_group_bg("NvimTreeCursorLine") })
+            { fg = CoreUIColorGroup.red, bg = get_highlight_group_bg("CursorColumn") })
         highlight(0, "statuslineCommandLeftIcon",
             { fg = CoreUIColorGroup.red })
 
 
         highlight(0, "statuslineVisual", { fg = CoreUIColorGroup.black, bg = CoreUIColorGroup.SoftGreen })
         highlight(0, "statuslineVisualIcon",
-            { fg = CoreUIColorGroup.SoftGreen, bg = get_highlight_group_bg("NvimTreeCursorLine") })
+            { fg = CoreUIColorGroup.SoftGreen, bg = get_highlight_group_bg("CursorColumn") })
         highlight(0, "statuslineVisualLeftIcon",
-            { fg = CoreUIColorGroup.SoftGreen, bg = get_highlight_group_bg("NvimTreeCursorLine") })
+            { fg = CoreUIColorGroup.SoftGreen, bg = get_highlight_group_bg("CursorColumn") })
 
-        highlight(0, "statuslineFileName", { bg = get_highlight_group_bg("NvimTreeCursorLine") })
-        highlight(0, "statuslineFileNameIcon", { fg = get_highlight_group_bg("NvimTreeCursorLine") })
+        highlight(0, "statuslineFileName", { bg = get_highlight_group_bg("CursorColumn") })
+        highlight(0, "statuslineFileNameIcon", { fg = get_highlight_group_bg("CursorColumn") })
 
         highlight(0, "statuslineGitAdd", { fg = CoreUIColorGroup.ModerateOrange })
         highlight(0, "statuslineGitDelet", { fg = CoreUIColorGroup.SoftRed })
@@ -216,14 +216,14 @@ local git_diff_count = function()
         deletions = "%#statuslineGitDelet#" .. "  " .. deletions
     end
 
-   return insertions .. deletions 
+   return insertions .. deletions
 
 
 end
 
 
 Right_show = function()
-    return section_mode() .. filename() .. line() 
+    return section_mode() .. filename() .. line() --.. git_diff_count()
 end
 
 Left_show = function()

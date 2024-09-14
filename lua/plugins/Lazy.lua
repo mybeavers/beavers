@@ -8,7 +8,7 @@ if not vim.loop.fs_stat(lazypath) then
         "--branch=stable", -- latest stable release
         lazypath,
     })
-end
+end 
 vim.opt.rtp:prepend(lazypath)
 
 
@@ -37,7 +37,8 @@ require("lazy").setup({
 
     {
         'nvim-treesitter/nvim-treesitter',
-        event = "VimEnter",
+        event = "BufReadPost",
+        build = ":TSUpdate",
     },
     -- 文件搜索
     {
@@ -58,18 +59,19 @@ require("lazy").setup({
             MyKeymap("n", "<space>g", ":Telescope lsp_definitions<CR>", MyKeymapOpt)
             MyKeymap("n", "<space>s", ":Telescope lsp_references<CR>", MyKeymapOpt)
             MyKeymap("n", "<space>i", ":Telescope lsp_implementations<CR>", MyKeymapOpt)
-
         end,
     },
     {
         'windwp/nvim-autopairs',
+        event = "BufReadPost",
         config = function()
             require("plugins.autopairs")
         end
     },
     -- 括号自动补齐
     {
-        'echasnovski/mini.nvim'
+        'echasnovski/mini.nvim',
+        event = "BufReadPost",
     },
 
     -- +==================================+
@@ -93,7 +95,7 @@ require("lazy").setup({
             })
             local hour = tonumber(os.date("%H"))
             if hour >= 12 and hour < 15 then
-                vim.cmd("colorscheme " .. "onedark")
+                vim.cmd("colorscheme " .. "onelight")
             else
                 vim.cmd("colorscheme " .. "onedark")
             end
@@ -133,11 +135,13 @@ require("lazy").setup({
     -- lsp服务器按照插件
     {
         "williamboman/mason.nvim",
+        event = "BufReadPost",
     },
 
     -- lsp服务器配置插件
     {
         "neovim/nvim-lspconfig",
+        event = "BufReadPost",
     },
 
 
@@ -146,6 +150,7 @@ require("lazy").setup({
     -- +==================================+
     {
         "hrsh7th/nvim-cmp",
+        event = "BufReadPost",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
 
