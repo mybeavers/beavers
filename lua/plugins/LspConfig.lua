@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local opts = { buffer = ev.buf }                                        --  NOTE  说明
 --        vim.keymap.set('n', '<space>g', vim.lsp.buf.definition, opts)           -- go to 方法/变量...定义
         vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, opts)               -- 重命名
-        vim.keymap.set({ 'n', 'v' }, '<space>t', vim.lsp.buf.code_action, opts) -- 代码修改建议
+        vim.keymap.set({ 'n', 'v' }, '<space>c', vim.lsp.buf.code_action, opts) -- 代码修改建议
         vim.keymap.set('n', '<space>f', function()                              -- 代码格式化
             vim.lsp.buf.format { async = true }
         end, opts)

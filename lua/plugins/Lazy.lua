@@ -8,14 +8,13 @@ if not vim.loop.fs_stat(lazypath) then
         "--branch=stable", -- latest stable release
         lazypath,
     })
-end 
+end
 vim.opt.rtp:prepend(lazypath)
 
 
 
 
 require("lazy").setup({
-
     -- +==================================+
     -- |               功能               |
     -- +==================================+
@@ -73,7 +72,12 @@ require("lazy").setup({
         'echasnovski/mini.nvim',
         event = "BufReadPost",
     },
-
+    {
+        "MunifTanjim/nui.nvim",
+        config = function()
+            require("plugins.NuiConfig")
+        end
+    },
     -- +==================================+
     -- |               UI                 |
     -- +==================================+
@@ -171,8 +175,8 @@ require("lazy").setup({
         },
 
         config = function()
-            require('plugins.CmpNvim')
             require('mason').setup()
+            require('plugins.CmpConfig')
             require('plugins.LspConfig')
         end
     }

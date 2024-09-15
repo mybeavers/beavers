@@ -79,7 +79,7 @@ autocmd({ "BufEnter", "ColorScheme" }, {
 ----------------------------------------
 -- NOTE  Search
 ----------------------------------------
-autocmd({ "InsertEnter"}, {
+autocmd({ "InsertEnter" }, {
     pattern = '*',
     callback = function()
         cmd("let @/ = ''")
