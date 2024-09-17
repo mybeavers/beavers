@@ -28,8 +28,7 @@ function lspMenu()
             Menu.item("hover"),
             Menu.item("signature help"),
             Menu.item("type definition"),
-            Menu.item("declaration")
-
+            Menu.item("declaration"),
 
         },
         max_width = 30,
@@ -70,5 +69,6 @@ function lspMenu()
     -- mount the component
     menu:mount()
 end
+
 
 MyKeymap("n", "<space>t", ":lua lspMenu()<CR>", MyKeymapOpt)

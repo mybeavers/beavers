@@ -27,9 +27,9 @@ autocmd({ "BufEnter", "ColorScheme" }, {
         highlight(0, "statuslineVisualIcon",
             { fg = CoreUIColorGroup.SoftGreen, bg = get_highlight_group_bg("CursorColumn") })
         highlight(0, "statuslineVisualLeftIcon",
-            { fg = CoreUIColorGroup.SoftGreen, bg = get_highlight_group_bg("CursorColumn") })
+            { fg = CoreUIColorGroup.SoftGreen})
 
-        highlight(0, "statuslineFileName", { bg = get_highlight_group_bg("CursorColumn") })
+        highlight(0, "statuslineFileName", {bg = get_highlight_group_bg("CursorColumn")})
         highlight(0, "statuslineFileNameIcon", { fg = get_highlight_group_bg("CursorColumn") })
 
         highlight(0, "statuslineGitAdd", { fg = CoreUIColorGroup.ModerateOrange })
@@ -169,7 +169,7 @@ end
 local get_file_type = function ()
     return "%y"
 end
-local git_diff_count = function()
+git_diff_count = function()
     local handle = io.popen("git rev-parse --show-toplevel 2> /dev/null")
     if handle == nil then
         return ""

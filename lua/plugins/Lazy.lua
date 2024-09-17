@@ -54,10 +54,10 @@ require("lazy").setup({
             MyKeymap("n", "<leader>s", ":Telescope lsp_document_symbols<CR>", MyKeymapOpt)
             MyKeymap("n", "<leader>d", ":Telescope diagnostics<CR>", MyKeymapOpt)
 
-            -- 对lspconfig原始功能的替换
-            MyKeymap("n", "<space>g", ":Telescope lsp_definitions<CR>", MyKeymapOpt)
-            MyKeymap("n", "<space>s", ":Telescope lsp_references<CR>", MyKeymapOpt)
-            MyKeymap("n", "<space>i", ":Telescope lsp_implementations<CR>", MyKeymapOpt)
+--            -- 对lspconfig原始功能的替换
+--            MyKeymap("n", "<space>g", ":Telescope lsp_definitions<CR>", MyKeymapOpt)
+--            MyKeymap("n", "<space>s", ":Telescope lsp_references<CR>", MyKeymapOpt)
+--            MyKeymap("n", "<space>i", ":Telescope lsp_implementations<CR>", MyKeymapOpt)
         end,
     },
     {

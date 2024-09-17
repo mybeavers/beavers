@@ -1,4 +1,3 @@
-
 require("core.Basic")
 require('core.Utils') -- 该文件应该先加载以便其他文件调用函数
 require('core.Keymaps')
@@ -26,7 +25,7 @@ autocmd("BufNew", {
             require("core.statuline")
             require("plugins.bufferline")
             require("mini.indentscope").setup()
-            require('gitsigns').setup ({
+            require('gitsigns').setup({
                 signs        = {
                     add    = { text = '│' },
                     change = { text = '│' },
@@ -44,5 +43,6 @@ autocmd("BufNew", {
     end,
     nested = true
 })
+
 
 

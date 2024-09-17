@@ -123,8 +123,9 @@ autocmd({ "BufEnter", "ColorScheme" }, {
         -- cmp bg
         highlight(0, 'MyCmpSel', { bg = CoreUIColorGroup.SoftBlue, fg = CoreUIColorGroup.black })
         highlight(0, 'MyCmpFloatBorder', { fg = CoreUIColorGroup.DarkGrayishBlue })
-
+        
         highlight(0, 'MyCmpFloatBorder', { fg = CoreUIColorGroup.DarkGrayishBlue })
+
     end,
     nested = true,
 })

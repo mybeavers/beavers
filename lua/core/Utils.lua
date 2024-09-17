@@ -4,6 +4,7 @@ api = vim.api
 cmd = vim.cmd
 highlight = vim.api.nvim_set_hl
 autocmd = vim.api.nvim_create_autocmd
+
 ---------------------------------
 -- NOTE  AUTOCMD CODE
 ---------------------------------
@@ -27,6 +28,17 @@ autocmd({ "InsertLeave", "TextChanged" }, {
 })
 
 
+-- 离开窗口时,关闭qf文件
+autocmd({ "WinLeave" }, {
+    pattern = '*',
+    callback = function()
+        local buftype = vim.bo.buftype
+        if buftype == 'quickfix' then
+            vim.cmd('cclose')
+        end
+    end,
+})
+
 -- 恢复光标位置
 autocmd("BufReadPost", {
     pattern = "*",
@@ -39,20 +51,6 @@ autocmd("BufReadPost", {
     nested = true
 })
 
--- 目录关闭
-vim.api.nvim_create_user_command("MakeDirectory", function()
-    ---@diagnostic disable-next-line: missing-parameter
-    local path = vim.fn.expand("%")
-    local dir = vim.fn.fnamemodify(path, ":p:h")
-    if vim.fn.isdirectory(dir) == 0 then
-        vim.fn.mkdir(dir, "p")
-    else
-        vim.notify("Directory already exists", "WARN", { title = "Nvim" })
-    end
-end, { desc = "Create directory if it doesn't exist" })
-
-
-
 -- 创建Java Maven项目目录
 cmd('command MvnJavaSE :execute "!cp -r ~/.config/templates/javaSE/* ./"')
 cmd('command MvnJavaMVC :execute "!cp -r ~/.config/templates/javaMVC/* ./"')
@@ -60,7 +58,7 @@ cmd('command MvnJavaSpringBoot :execute "!cp -r ~/.config/templates/javaSpringBo
 
 
 ---------------------------
--- NOTE  功能函数
+-- NOTE  TOOL METHOD
 ---------------------------
 -- 主题切换
 local keyCountColors = 0;
@@ -146,13 +144,13 @@ function VimPlus()
 end
 
 function OnedarkPlus()
-    highlight(0, 'javaType', { fg = CoreUIColorGroup.magenta })                         -- 数据类型
+    highlight(0, 'javaType', { fg = CoreUIColorGroup.magenta })                    -- 数据类型
     highlight(0, '@lsp.type.modifier', { link = 'javaType' })                      -- 关键字
     highlight(0, '@lsp.type.method', { fg = CoreUIColorGroup.SoftBlue })           -- 方法/函数
     highlight(0, '@lsp.type.property', { fg = CoreUIColorGroup.SoftRed })          --变量
     highlight(0, '@lsp.type.parameter', { fg = CoreUIColorGroup.SoftRed })         -- 变量
     highlight(0, '@lsp.type.class', { fg = CoreUIColorGroup.SoftOrange })          -- 类
-    highlight(0, 'javaClassDecl', { link = 'javaType' })                                -- 实现
+    highlight(0, 'javaClassDecl', { link = 'javaType' })                           -- 实现
     highlight(0, '@lsp.type.annotationMember', { fg = CoreUIColorGroup.SoftBlue }) -- 注解方法
     highlight(0, '@lsp.type.enumMember', { fg = CoreUIColorGroup.ModerateOrange }) -- 枚举常量
 end
@@ -197,7 +195,7 @@ function GetGitRepertoryName()
     end
     return repo_path:match("([^/]+)$"):gsub("%s+", "")
 end
- 
+
 -- 获取打开neovim目录位置
 function getPWD()
     local handle = io.popen("pwd")
@@ -218,15 +216,10 @@ function getPWD()
 end
 
 -- 获取显示组的bg 以合适的格式返回
-get_highlight_group_bg = function(group_name)
+function get_highlight_group_bg(group_name)
     local hl = vim.api.nvim_get_hl_by_name(group_name, true)
     local str = vim.inspect(hl)
     local table = assert(loadstring("return" .. str))()
     local backgroundValue = table.background
     return "#" .. string.format("%x", backgroundValue)
 end
-
-
-
-
-
